@@ -1,0 +1,113 @@
+post:
+  summary: Create a new OEM group name
+  description: |
+    # Create a new OEM group
+  operationId: createNewOemGroup
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/setting/OemUpsertDto.yaml"
+  responses:
+    201:
+      description: Create successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: get list of all OEM groups
+  security:
+    - bearerAuth: []
+  operationId: getOemGroups
+  description: |
+    # Get all OEM groups
+  parameters:
+    - $ref: "../../../parameters/query/oemGroup/isClientEdit.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/setting/OemGroupListDto.yaml"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

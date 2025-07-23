@@ -1,0 +1,26 @@
+type: object
+required:
+  - id
+  - contactDateTime
+  - pic
+  - memo
+description: |
+  通話履歴
+properties:
+  id:
+    type: string
+    description: 通話ID
+    example: id
+  contactDateTime:
+    type: string
+    description: 通話日時
+    example: 2025/09/12 12:00
+  pic:
+    type: string
+    description: 担当者
+    example: 鈴木 太郎
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: memo

@@ -1,0 +1,7 @@
+name: applicantId
+in: query
+required: false
+description: 応募者ID
+schema:
+  type: string
+  example: id

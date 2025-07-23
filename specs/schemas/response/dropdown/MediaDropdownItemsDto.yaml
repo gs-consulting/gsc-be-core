@@ -1,0 +1,21 @@
+type: object
+required:
+  - id
+  - name
+  - amount
+description: | 
+  親項目一覧
+properties:
+  id:
+    type: string
+    description: ID
+    example: id
+  name:
+    type: string
+    description: 媒体名
+    example: 媒体名
+  amount:
+    type: integer
+    format: int32
+    description: 金額
+    example: 1000

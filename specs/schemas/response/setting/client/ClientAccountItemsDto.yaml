@@ -1,0 +1,65 @@
+type: object
+description: クライアントのアカウント情報
+required:
+  - id
+  - clientName
+  - managers
+  - branches
+  - stores
+  - totalApplications
+  - totalNotSupportedApplications
+  - isMember
+  - isExpired
+properties:
+  id:
+    type: string
+    description: ユーザーID
+    example: id
+  clientName:
+    type: string
+    description: クライアント名
+    example: サンプル
+  managers:
+    type: array
+    description: 営業担当者
+    nullable: true
+    items:
+      type: string
+    example: 
+      - id
+  branches:
+    type: array
+    description: 支店
+    nullable: true
+    items:
+      type: string
+    example: 
+      - id
+  stores:
+    type: array
+    description: 拠点・店舗
+    nullable: true
+    items:
+      type: string
+    example: 
+      - id
+  totalApplications:
+    type: integer
+    format: int64
+    default: 0
+    description: 応募件数
+    example: 10
+  totalNotSupportedApplications:
+    type: integer
+    format: int64
+    default: 0
+    description: 応募件数
+    example: 10
+  isMember:
+    type: boolean
+    description: 代理ログイン
+    example: true
+  isExpired:
+    type: boolean
+    description: 再送信
+    example: false

@@ -1,0 +1,24 @@
+type: object
+description: |
+  案件権限_支店なし
+required:
+  - id
+  - projectName
+  - permission
+properties:
+  id:
+    type: string
+    description: 案件ID
+    example: id
+  projectNo:
+    type: string
+    description: 案件No.
+    example: 1234567
+  projectName:
+    type: string
+    description: 案件名
+    example: 案件００１
+  permission:
+    type: string
+    description: 閲覧/編集
+    example: VIEW

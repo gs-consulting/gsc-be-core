@@ -1,0 +1,39 @@
+type: object
+required:
+  - questionId
+  - answerId
+  - pageNumber
+  - pageSize
+  - arrangedBy
+description: |
+  # SurveyStatisticSearchDto
+  調査統計検索
+properties:
+  questionId:
+    type: string
+    nullable: true
+    description: 質問ID
+    example: id
+  answerId:
+    type: string
+    nullable: true
+    description: 回答ID
+    example: id
+  pageNumber:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページ番号
+    example: 1
+  pageSize:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページサイズ
+    example: 10
+  arrangedBy:
+    type: string
+    nullable: true
+    description: |
+      answerDateTime: ASC or DESC
+    example: "answerDateTime:ASC"

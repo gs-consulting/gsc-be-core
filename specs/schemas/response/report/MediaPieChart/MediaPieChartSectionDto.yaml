@@ -1,0 +1,35 @@
+type: object
+description: 円グラフの項目
+required:
+  - name
+  - personCount
+  - cost
+  - ratio
+  - color
+properties:
+  name:
+    type: string
+    description: 媒体名
+    example: indeed
+  personCount:
+    type: integer
+    format: int64
+    description: 応募数
+    example: 10
+  cost:
+    type: integer
+    format: int32
+    description: コスト
+    example: 50000
+  ratio:
+    type: number
+    format: double
+    description: 応募率
+    example: 50%
+  color:
+    type: string
+    nullable: true
+    description: 色
+    example: "#FFFFFF"
+x-use:
+  builder: true

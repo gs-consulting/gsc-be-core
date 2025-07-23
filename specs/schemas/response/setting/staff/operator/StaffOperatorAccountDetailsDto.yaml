@@ -1,0 +1,41 @@
+type: object
+description: 運営のアカウント詳細
+required:
+  - id
+  - email
+  - fullName
+  - teamIds
+  - permissions
+  - isRestricted
+properties:
+  id:
+    type: string
+    description: アカウントID
+    example: "id"
+  email:
+    type: string
+    description: メールアドレス
+    example: abc@goalist.co.jp
+  fullName:
+    type: string
+    description: 氏名
+    example: 山田太郎
+  teamIds:
+    type: array
+    nullable: true
+    description: チーム
+    items:
+      type: string
+    example:
+      - id1
+  permissions:
+    type: array
+    nullable: true
+    description: 機能制限
+    items:
+      type: string
+    example: [ "1", "2", "3" ]
+  isRestricted:
+    type: boolean
+    description: 変更できるかどうか
+    example: false

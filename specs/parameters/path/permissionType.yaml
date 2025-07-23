@@ -1,0 +1,7 @@
+name: permissionType
+in: path
+description: 機能制限
+required: true
+schema:
+  type: string
+  example: "1"

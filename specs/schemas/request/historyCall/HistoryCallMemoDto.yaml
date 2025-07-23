@@ -1,0 +1,11 @@
+type: object
+required:
+  - memo
+description: | 
+  通話履歴メモ編集
+properties:
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: 合同説明会参加者

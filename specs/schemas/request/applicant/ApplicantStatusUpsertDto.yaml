@@ -1,0 +1,11 @@
+type: object
+required:
+  - statusId
+description: |
+  応募者のステータス編集
+properties:
+  statusId:
+    type: string
+    description: ステータス
+    nullable: true
+    example: 1

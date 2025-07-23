@@ -1,0 +1,15 @@
+type: object
+required:
+  - id
+  - name
+description: |
+  アンケート
+properties:
+  id:
+    type: string
+    description: アンケートID
+    example: id
+  name:
+    type: string
+    description: アンケート名
+    example: テンプレ名

@@ -1,0 +1,11 @@
+type: array
+description: 未読メッセージ
+items:
+  $ref: ./DChatItemsDto.yaml
+example:
+  - id: id
+    fullName: 田中 由紀子
+    gender: FEMALE
+    age: 30
+    address: 東京都中央区
+    repliedDate: 2024/09/10 11:00

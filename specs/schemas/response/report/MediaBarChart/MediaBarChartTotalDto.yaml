@@ -1,0 +1,16 @@
+type: object
+description: 合計
+required:
+  - items
+  - colors
+properties:
+  items:
+    type: array
+    items:
+      $ref: "./MediaBarChartSectionDto.yaml"
+  colors:
+    type: array
+    items:
+      $ref: "../MediaColorDto.yaml"
+x-use:
+  builder: true

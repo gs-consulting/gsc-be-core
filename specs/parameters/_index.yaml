@@ -1,0 +1,68 @@
+# Path
+Id:
+  $ref: "./path/id.yaml"
+AccountIdPath:
+  $ref: "./path/accountId.yaml"
+HistoryId:
+  $ref: "./path/historyId.yaml"
+FileId:
+  $ref: "./path/fileId.yaml"
+PeriodPath:
+  $ref: "./path/period.yaml"
+ReportType:
+  $ref: "./path/reportType.yaml"
+AccountType:
+  $ref: "./path/accountType.yaml"
+PostCodePath:
+  $ref: "./path/postCode.yaml"
+PermissionTypePath:
+  $ref: "./path/permissionType.yaml"
+StatusId:
+  $ref: "./path/statusId.yaml"
+ApplicantId:
+  $ref: "./path/applicantId.yaml"
+SurveyId:
+  $ref: "./path/surveyId.yaml"
+StatusType:
+  $ref: "./path/statusType.yaml"
+FlowType:
+  $ref: "./path/flowType.yaml"
+
+# Query
+PageNumber:
+  $ref: "./query/pageNumber.yaml"
+PageSize:
+  $ref: "./query/pageSize.yaml"
+SearchInput:
+  $ref: "./query/searchInput.yaml"
+
+SettingSearchType:
+  $ref: "./query/setting/searchType.yaml"
+SearchStaffType:
+  $ref: "./query/searchStaffType.yaml"
+ClientAccountId:
+  $ref: "./query/clientAccountId.yaml"
+BranchIds:
+  $ref: "./query/branchIds.yaml"
+BranchId:
+  $ref: "./query/branchId.yaml"
+StoreId:
+  $ref: "./query/storeId.yaml"
+TeamId:
+  $ref: "./query/teamId.yaml"
+ManagerId:
+  $ref: "./query/managerId.yaml"
+OemId:
+  $ref: "./query/oemId.yaml"
+IsAll:
+  $ref: "./query/isAll.yaml"
+SelectedDate:
+  $ref: "./query/selectedDate.yaml"
+ArrangedBy:
+  $ref: "./query/arrangedBy.yaml"
+IsInterviewer:
+  $ref: "./query/isInterviewer.yaml"
+IsClientEdit:
+  $ref: "./query/oemGroup/isClientEdit.yaml"
+RequireBranchId:
+  $ref: "./query/client/requireBranchId.yaml"

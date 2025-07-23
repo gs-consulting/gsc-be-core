@@ -1,0 +1,7 @@
+name: projectId
+in: query
+required: false
+description: 案件ID
+schema:
+  type: string
+  example: id

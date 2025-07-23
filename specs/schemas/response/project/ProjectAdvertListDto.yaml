@@ -1,0 +1,28 @@
+type: object
+description: |
+  広告状況一覧
+properties:
+  total:
+    type: integer
+    format: int64
+    description: 広告費用合計
+    example: 5000
+  items:
+    type: array
+    items:
+      $ref: ./ProjectAdvertItemsDto.yaml
+    example:
+      - id: id
+        publishingStartDate: 2024/4/1
+        publishingEndDate: 2024/4/30
+        advertisementName: 広告名1
+        mediaName: 中小企業求人部
+        amount: 3000
+      - id: id
+        publishingStartDate: 2024/2/1
+        publishingEndDate: 2024/3/30
+        advertisementName: 広告名2
+        mediaName: 中小企業求人部
+        amount: 2000
+x-use:
+  builder: true

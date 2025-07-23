@@ -1,0 +1,14 @@
+type: object
+description: 最近の採用状況
+required: 
+  - days
+  - lastMonth
+  - twoMonths
+properties:
+  days:
+    $ref: StatisticsTodayDto.yaml
+  lastMonth:
+    $ref: StatisticsTodayDto.yaml
+  twoMonths:
+    $ref: StatisticsTodayDto.yaml
+  

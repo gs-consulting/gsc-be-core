@@ -1,0 +1,10 @@
+name: searchStaffType
+in: query
+required: false
+description: Search type
+schema:
+  type: string
+  enum:
+    - CLIENT_NAME
+    - STAFF_NAME
+    - EMAIL

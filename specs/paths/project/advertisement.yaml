@@ -1,0 +1,56 @@
+get:
+  summary: Get project advertisements (案件情報・広告)
+  security:
+    - bearerAuth: []
+  operationId: getProjectAdvertisements
+  description: |
+    # Get advertisements of a project
+  parameters:
+    - $ref: "../../parameters/path/id.yaml"
+  responses:
+    200:
+      description: Get details of a project
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/project/ProjectAdvertListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

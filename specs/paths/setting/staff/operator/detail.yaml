@@ -1,0 +1,125 @@
+put:
+  summary: Edit operator account (スタッフ・運営)
+  description: |
+    # Edit operator acount (スタッフ・運営)
+  operationId: editStaffOperatorAccount
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../../parameters/path/accountId.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../schemas/request/setting/staff/operator/StaffOperatorAccountUpserDto.yaml"
+  responses:
+    200:
+      description: Edit successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: get operator account (スタッフ・運営)
+  description: |
+    # Get operator account (スタッフ・運営)
+  operationId: getStaffOperatorAccountDetails
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../../parameters/path/accountId.yaml"
+  responses:
+    200:
+      description: Get details of an OEM account
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/setting/staff/operator/StaffOperatorAccountDetailsDto.yaml"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

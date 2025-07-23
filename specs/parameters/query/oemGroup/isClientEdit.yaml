@@ -1,0 +1,8 @@
+name: isClientEdit
+in: query
+required: false
+description: ジーエス様を含めて返す
+schema:
+  type: boolean
+  default: false
+  example: false

@@ -1,0 +1,82 @@
+plugins {
+	id 'java'
+	id 'io.spring.dependency-management' version '1.1.6'
+
+    // OpenAPI
+    id "org.openapi.generator" version "7.10.0"
+}
+
+group = 'jp.co.goalist'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+}
+
+dependencies {
+}
+
+openApiValidate {
+    inputSpec.set("$rootDir/build/index.yaml")
+}
+
+def generatorNameParam = project.hasProperty('generatorName') ? project.getProperty('generatorName') : 'spring'
+
+openApiGenerate {
+    inputSpec.set("$projectDir/build/index.yaml")
+    generatorName.set(generatorNameParam)
+    skipValidateSpec.set(true)
+    configOptions.set([
+        apiPackage: "jp.co.goalist.gsc.gen.apis",
+        modelPackage: "jp.co.goalist.gsc.gen.dtos",
+        sourceFolder: "",
+        useSpringBoot3: "true",
+        useJakartaEe: "true",
+        skipDefaultInterface: "true",
+        generateConstructorWithAllArgs: "false",
+        generatedConstructorWithRequiredArgs: "false",
+        interfaceOnly: "true",
+        openApiNullable: "false",
+        useBeanValidation: "true",
+        performBeanValidation: "true",
+        library: "spring-boot"
+    ])
+    globalProperties.set([
+        "skipValidateSpec": "false",
+        "cleanupOutput": "true",
+    ])
+
+    if (generatorNameParam == 'spring') {
+        outputDir.set("$projectDir/../src/main/java/")
+        globalProperties.put("apis", "")
+        globalProperties.put("models", "")
+        templateDir.set("$projectDir/templates/")
+    } else {
+        outputDir.set("$projectDir/output/$generatorNameParam")
+    }
+
+
+    typeMappings = ["OffsetDateTime": "LocalDateTime"]
+    importMappings = ["OffsetDateTime": "java.time.LocalDateTime"]
+}
+
+apply plugin: 'org.openapi.generator'
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

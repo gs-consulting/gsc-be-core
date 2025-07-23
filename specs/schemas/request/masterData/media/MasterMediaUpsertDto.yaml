@@ -1,0 +1,53 @@
+type: object
+required:
+  - name
+  - mediaCode
+  - amount
+  - hexColor
+  - memo
+  - siteName
+  - managementLoginId
+  - managementPwd
+description: |
+  媒体マスタ登録
+properties:
+  name:
+    type: string
+    description: 媒体名
+    example: 緊急メンテナンスのお知らせ
+  mediaCode:
+    type: string
+    nullable: true
+    description: 媒体コード
+    example: お知らせ本文テキスト
+  amount:
+    type: integer
+    format: int32
+    description: 金額
+    example: 10000
+  hexColor:
+    type: string
+    nullable: true
+    description: 色
+    example: "#00000"
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: "メモを入力してください"
+  siteName:
+    type: string
+    nullable: true
+    description: 連携先 管理画面
+    example: MYNAVI
+  managementLoginId:
+    type: string
+    nullable: true
+    description: ログインID
+    example: admin
+  managementPwd:
+    type: string
+    nullable: true
+    description: パスワード
+    example: password
+  

@@ -1,0 +1,33 @@
+type: object
+description: |
+  拠点・店舗一覧
+required:
+  - id
+  - name
+  - branch
+  - address
+  - tel
+properties:
+  id:
+    type: string
+    description: 拠点・店舗ID
+    example: id
+  name:
+    type: string
+    description: 拠点・店舗名
+    example: 〇〇拠点・店舗名
+  branch:
+    type: string
+    description: 支店
+    nullable: true
+    example: 〇〇支店
+  address:
+    type: string
+    description: 住所
+    nullable: true
+    example: 〒100-0000 東京都中央区
+  tel:
+    type: string
+    description: 電話番号
+    nullable: true
+    example: 012345678

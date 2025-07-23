@@ -1,0 +1,30 @@
+type: object
+required:
+  - id
+  - name
+  - createdAt
+  - updatedAt
+  - isDeletable
+description: |
+  テンプレート管理
+properties:
+  id:
+    type: string
+    description: タイトル
+    example: id
+  name:
+    type: string
+    description: テンプレート名
+    example: 面接日程決定のご連絡
+  createdAt:
+    type: string
+    description: 作成日時
+    example: "2022/12/31 12:00"
+  updatedAt:
+    type: string
+    description: 最終更新日時
+    example: "2023/06/30 17:26"
+  isDeletable:
+    type: boolean
+    description: 削除できるかどうか
+    example: false

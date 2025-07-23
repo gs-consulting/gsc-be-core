@@ -1,0 +1,19 @@
+allOf:
+  - $ref: ../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        description: ドロップダウン
+        items:
+          $ref: ./MDropdownItemsDto.yaml
+        example:
+        - id: 1
+          name: チームA
+        - id: 2
+          name: チームB
+x-use:
+  builder: true
+

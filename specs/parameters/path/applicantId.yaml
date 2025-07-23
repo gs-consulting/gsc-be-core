@@ -1,0 +1,6 @@
+name: applicantId
+in: path
+description: ID of the resource
+required: true
+schema:
+  type: string

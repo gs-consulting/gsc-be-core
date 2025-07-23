@@ -1,0 +1,419 @@
+# Common
+ErrorResponse:
+  $ref: "./response/ErrorResponse.yaml"
+MetaListResponse:
+  $ref: "./response/MetaListResponse.yaml"
+
+SelectedIds:
+  $ref: "./request/common/SelectedIds.yaml"
+
+# Login
+LoginInfoDto:
+  $ref: "./response/auth/LoginInfoDto.yaml"
+LoginFormDto:
+  $ref: "./request/auth/LoginFormDto.yaml"
+ResetPasswordFormDto:
+  $ref: "./request/auth/ResetPasswordFormDto.yaml"
+
+# Notification
+NotificationUpsertDto:
+  $ref: "./request/notification/NotificationUpsertDto.yaml"
+NotificationListDto:
+  $ref: "./response/notification/NotificationListDto.yaml"
+NotificationItemsDto:
+  $ref: "./response/notification/NotificationItemsDto.yaml"
+NotificationDetailsDto:
+  $ref: "./response/notification/NotificationDetailsDto.yaml"
+
+# Setting
+OemUpsertDto:
+  $ref: "./request/setting/OemUpsertDto.yaml"
+OemGroupListDto:
+  $ref: "./response/setting/OemGroupListDto.yaml"
+OemGroupItemsDto:
+  $ref: "./response/setting/OemGroupItemsDto.yaml"
+
+# Setting - Operator - Staff
+StaffOperatorAccountUpserDto:
+  $ref: "./request/setting/staff/operator/StaffOperatorAccountUpserDto.yaml"
+StaffOperatorAccountDetailsDto:
+  $ref: "./response/setting/staff/operator/StaffOperatorAccountDetailsDto.yaml"
+StaffOperatorAccountListDto:
+  $ref: "./response/setting/staff/operator/StaffOperatorAccountListDto.yaml"
+StaffOperatorAccountItemsDto:
+  $ref: "./response/setting/staff/operator/StaffOperatorAccountItemsDto.yaml"
+
+# Setting - OEM - Staff
+StaffOemAccountUpsertDto:
+  $ref: "./request/setting/staff/oem/StaffOemAccountUpsertDto.yaml"
+StaffOemAccountDetailsDto:
+  $ref: "./response/setting/staff/oem/StaffOemAccountDetailsDto.yaml"
+StaffOemAccountListDto:
+  $ref: "./response/setting/staff/oem/StaffOemAccountListDto.yaml"
+StaffOemAccountItemsDto:
+  $ref: "./response/setting/staff/oem/StaffOemAccountItemsDto.yaml"
+
+# Setting - OEM accounts
+OemAccountUpsertDto:
+  $ref: "./request/setting/oem/OemAccountUpsertDto.yaml"
+OemAccountDetailsDto:
+  $ref: "./response/setting/oem/OemAccountDetailsDto.yaml"
+OemAccountListDto:
+  $ref: "./response/setting/oem/OemAccountListDto.yaml"
+OemAccountItemsDto:
+  $ref: "./response/setting/oem/OemAccountItemsDto.yaml"
+
+# Setting - Team
+TeamUpsertDto:
+  $ref: "./request/setting/team/TeamUpsertDto.yaml"
+TeamDetailsDto:
+  $ref: "./response/setting/team/TeamDetailsDto.yaml"
+TeamListDto:
+  $ref: "./response/setting/team/TeamListDto.yaml"
+TeamItemsDto:
+  $ref: "./response/setting/team/TeamItemsDto.yaml"
+
+# Setting - Staff / Client
+ClientAccountUpsertDto:
+  $ref: "./request/setting/client/ClientAccountUpsertDto.yaml"
+ClientAccountDetailsDto:
+  $ref: "./response/setting/client/ClientAccountDetailsDto.yaml"
+ClientAccountListDto:
+  $ref: "./response/setting/client/ClientAccountListDto.yaml"
+ClientAccountItemsDto:
+  $ref: "./response/setting/client/ClientAccountItemsDto.yaml"
+
+
+# Client
+ClientUserAccountUpsertDto:
+  $ref: "./request/client/user/ClientUserAccountUpsertDto.yaml"
+ClientUserAccountDetailsDto:
+  $ref: "./response/client/user/ClientUserAccountDetailsDto.yaml"
+ClientUserAccountListDto:
+  $ref: "./response/client/user/ClientUserAccountListDto.yaml"
+ClientUserAccountItemsDto:
+  $ref: "./response/client/user/ClientUserAccountItemsDto.yaml"
+
+# Client - Branch
+ClientBranchUpsertDto:
+  $ref: "./request/client/branch/ClientBranchUpsertDto.yaml"
+ClientBranchRestrictionUpsertDto:
+  $ref: "./request/client/branch/ClientBranchRestrictionUpsertDto.yaml"
+ClientBranchDetailsDto:
+  $ref: "./response/client/branch/ClientBranchDetailsDto.yaml"
+ClientBranchListDto:
+  $ref: "./response/client/branch/ClientBranchListDto.yaml"
+ClientBranchItemsDto:
+  $ref: "./response/client/branch/ClientBranchItemsDto.yaml"
+ClientBranchDataListDto:
+  $ref: "./response/client/branch/ClientBranchDataListDto.yaml"
+ClientBranchDataItemsDto:
+  $ref: "./response/client/branch/ClientBranchDataItemsDto.yaml"
+
+# Client - Store
+ClientStoreUpsertDto:
+  $ref: "./request/client/store/ClientStoreUpsertDto.yaml"
+ClientStoreDetailsDto:
+  $ref: "./response/client/store/ClientStoreDetailsDto.yaml"
+ClientStoreListDto:
+  $ref: "./response/client/store/ClientStoreListDto.yaml"
+ClientStoreItemsDto:
+  $ref: "./response/client/store/ClientStoreItemsDto.yaml"
+
+# Client - Setting / Selection Status
+MasterSelectionStatusUpsertListDto:
+  $ref: "./request/masterData/selectionStatus/MasterSelectionStatusUpsertListDto.yaml"
+MasterSelectionStatusUpsertDto:
+  $ref: "./request/masterData/selectionStatus/MasterSelectionStatusUpsertDto.yaml"
+MasterSelectionStatusListDto:
+  $ref: "./response/masterData/selectionStatus/MasterSelectionStatusListDto.yaml"
+MasterSelectionStatusItemsDto:
+  $ref: "./response/masterData/selectionStatus/MasterSelectionStatusItemsDto.yaml"
+
+# Client - Setting / Media Report
+MasterMediaReportUpsertDto:
+  $ref: "./request/masterData/mediaReport/MasterMediaReportUpsertDto.yaml"
+MasterMediaReportListDto:
+  $ref: "./response/masterData/mediaReport/MasterMediaReportListDto.yaml"
+
+# Client - Setting / Master Data Status
+MasterDataStatusUpsertListDto:
+  $ref: "./request/masterData/projectStatus/MasterDataStatusUpsertListDto.yaml"
+MasterDataStatusUpsertDto:
+  $ref: "./request/masterData/projectStatus/MasterDataStatusUpsertDto.yaml"
+MasterDataStatusListDto:
+  $ref: "./response/masterData/projectStatus/MasterDataStatusListDto.yaml"
+MasterDataStatusItemsDto:
+  $ref: "./response/masterData/projectStatus/MasterDataStatusItemsDto.yaml"
+
+# Client - Setting / Monthly Cost
+MasterMonthlyCostUpsertListDto:
+  $ref: "./request/masterData/monthlyCost/MasterMonthlyCostUpsertListDto.yaml"
+MasterMonthlyCostUpsertDto:
+  $ref: "./request/masterData/monthlyCost/MasterMonthlyCostUpsertDto.yaml"
+MasterMonthlyCostListDto:
+  $ref: "./response/masterData/monthlyCost/MasterMonthlyCostListDto.yaml"
+MasterMonthlyCostItemsDto:
+  $ref: "./response/masterData/monthlyCost/MasterMonthlyCostItemsDto.yaml"
+
+# Client - Setting / Media
+MasterMediaUpsertDto:
+  $ref: "./request/masterData/media/MasterMediaUpsertDto.yaml"
+MasterMediaDetailsDto:
+  $ref: "./response/masterData/media/MasterMediaDetailsDto.yaml"
+MasterMediaListDto:
+  $ref: "./response/masterData/media/MasterMediaListDto.yaml"
+MasterMediaItemsDto:
+  $ref: "./response/masterData/media/MasterMediaItemsDto.yaml"
+
+# Client - Setting / Interview Category
+MasterInterviewCategoryUpsertListDto:
+  $ref: "./request/masterData/interviewCategory/MasterInterviewCategoryUpsertListDto.yaml"
+MasterInterviewCategoryUpsertDto:
+  $ref: "./request/masterData/interviewCategory/MasterInterviewCategoryUpsertDto.yaml"
+MasterInterviewCategoryListDto:
+  $ref: "./response/masterData/interviewCategory/MasterInterviewCategoryListDto.yaml"
+MasterInterviewCategoryItemsDto:
+  $ref: "./response/masterData/interviewCategory/MasterInterviewCategoryItemsDto.yaml"
+
+# Project
+ProjectSearchBoxDto:
+  $ref: "./request/project/ProjectSearchBoxDto.yaml"
+ProjectPermissionUpsertDto:
+  $ref: "./request/project/ProjectPermissionUpsertDto.yaml"
+ProjectPermissionUpsertItemsDto:
+  $ref: "./request/project/ProjectPermissionUpsertItemsDto.yaml"
+ProjectListDto:
+  $ref: "./response/project/ProjectListDto.yaml"
+ProjectItemsDto:
+  $ref: "./response/project/ProjectItemsDto.yaml"
+ProjectAdvertListDto:
+  $ref: "./response/project/ProjectAdvertListDto.yaml"
+ProjectAdvertItemsDto:
+  $ref: "./response/project/ProjectAdvertItemsDto.yaml"
+ProjectPermissionListDto:
+  $ref: "./response/project/ProjectPermissionListDto.yaml"
+ProjectPermissionItemsDto:
+  $ref: "./response/project/ProjectPermissionItemsDto.yaml"
+ProjectApplicantsDto:
+  $ref: "./response/project/ProjectApplicantsDto.yaml"
+ProjectApplicantListDto:
+  $ref: "./response/project/ProjectApplicantListDto.yaml"
+ProjectApplicantItemsDto:
+  $ref: "./response/project/ProjectApplicantItemsDto.yaml"
+
+# Media Report
+MediaReportSearchBoxDto:
+  $ref: "./request/report/MediaReportSearchBoxDto.yaml"
+MediaReportBeforeJoinDto:
+  $ref: "./response/report/MediaReportBeforeJoinDto.yaml"
+MediaReportAfterJoinDto:
+  $ref: "./response/report/MediaReportAfterJoinDto.yaml"
+
+# 媒体レポートのテーブル
+MediaCostListBeforeJoinDto:
+  $ref: "./response/report/MediaTable/MediaCostListBeforeJoinDto.yaml"
+MediaCostListAfterJoinDto:
+  $ref: "./response/report/MediaTable/MediaCostListAfterJoinDto.yaml"
+MediaCostBeforeJoinDto:
+  $ref: "./response/report/MediaTable/MediaCostBeforeJoinDto.yaml"
+MediaCostAfterJoinDto:
+  $ref: "./response/report/MediaTable/MediaCostAfterJoinDto.yaml"
+MediaCostColumnDto:
+  $ref: "./response/report/MediaTable/MediaCostColumnDto.yaml"
+
+# 媒体レポートの円グラフ
+MediaPieChartBeforeJoinDto:
+  $ref: "./response/report/MediaPieChart/MediaPieChartBeforeJoinDto.yaml"
+MediaPieChartAfterJoinDto:
+  $ref: "./response/report/MediaPieChart/MediaPieChartAfterJoinDto.yaml"
+MediaPieChartSectionDto:
+  $ref: "./response/report/MediaPieChart/MediaPieChartSectionDto.yaml"
+MediaColorDto:
+  $ref: "./response/report/MediaColorDto.yaml"
+
+# 媒体レポートのボリュームグラフ
+MediaBarChartBeforeJoinDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartBeforeJoinDto.yaml"
+MediaBarChartBeforeJoinItemsDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartBeforeJoinItemsDto.yaml"
+MediaBarChartItemGroupDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartItemGroupDto.yaml"
+MediaBarChartAfterJoinDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartAfterJoinDto.yaml"
+MediaBarChartSectionDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartSectionDto.yaml"
+MediaBarChartTotalDto:
+  $ref: "./response/report/MediaBarChart/MediaBarChartTotalDto.yaml"
+
+# Applicant
+ApplicantUpsertDto:
+  $ref: "./request/applicant/ApplicantUpsertDto.yaml"
+ApplicantStatusUpsertDto:
+  $ref: "./request/applicant/ApplicantStatusUpsertDto.yaml"
+ApplicantInterviewUpsertDto:
+  $ref: "./request/applicant/ApplicantInterviewUpsertDto.yaml"
+ApplicantProjectDto:
+  $ref: "./request/applicant/ApplicantProjectDto.yaml"
+ApplicantMemoDto:
+  $ref: "./request/applicant/ApplicantMemoDto.yaml"
+ApplicantSearchDto:
+  $ref: "./request/applicant/ApplicantSearchDto.yaml"
+ApplicantListDto:
+  $ref: "./response/applicant/ApplicantListDto.yaml"
+ApplicantStatusCountDto:
+  $ref: "./response/applicant/ApplicantStatusCountDto.yaml"
+ApplicantItemsDto:
+  $ref: "./response/applicant/ApplicantItemsDto.yaml"
+ApplicantDetailsDto:
+  $ref: "./response/applicant/ApplicantDetailsDto.yaml"
+ApplicantInterviewDto:
+  $ref: "./response/applicant/ApplicantInterviewDto.yaml"
+
+# Blacklist
+BlacklistCreateDto:
+  $ref: "./request/blacklist/BlacklistCreateDto.yaml"
+BlacklistMemoDto:
+  $ref: "./request/blacklist/BlacklistMemoDto.yaml"
+BlacklistSearchDto:
+  $ref: "./request/blacklist/BlacklistSearchDto.yaml"
+BlacklistListDto:
+  $ref: "./response/blacklist/BlacklistListDto.yaml"
+BlacklistItemsDto:
+  $ref: "./response/blacklist/BlacklistItemsDto.yaml"
+
+# Template
+TemplateUpsertDto:
+  $ref: "./request/template/TemplateUpsertDto.yaml"
+TemplateDetailsDto:
+  $ref: "./response/template/TemplateDetailsDto.yaml"
+TemplateListDto:
+  $ref: "./response/template/TemplateListDto.yaml"
+TemplateItemsDto:
+  $ref: "./response/template/TemplateItemsDto.yaml"
+
+# Survey
+SurveyUpsertDto:
+  $ref: "./request/survey/SurveyUpsertDto.yaml"
+SurveyQuestionsUpsertDto:
+  $ref: "./request/survey/SurveyQuestionsUpsertDto.yaml"
+SurveyAnswerUpsertDto:
+  $ref: "./request/survey/SurveyAnswerUpsertDto.yaml"
+SurveyLinkRequestDto:
+  $ref: "./request/survey/SurveyLinkRequestDto.yaml"
+SurveyDetailsDto:
+  $ref: "./response/survey/SurveyDetailsDto.yaml"
+SurveyQuestionsDto:
+  $ref: "./response/survey/SurveyQuestionsDto.yaml"
+SurveyAnswersDto:
+  $ref: "./response/survey/SurveyAnswersDto.yaml"
+SurveyListDto:
+  $ref: "./response/survey/SurveyListDto.yaml"
+SurveyItemsDto:
+  $ref: "./response/survey/SurveyItemsDto.yaml"
+SurveySearchDto:
+  $ref: "./request/survey/SurveySearchDto.yaml"
+SurveyLinkDto:
+  $ref: "./response/survey/SurveyLinkDto.yaml"
+SurveySubmissionDto:
+  $ref: "./request/public/SurveySubmissionDto.yaml"
+AnswerSubmissionDto:
+  $ref: "./request/public/AnswerSubmissionDto.yaml"
+SurveyStatisticSearchDto:
+  $ref: "./request/survey-statistic/SurveyStatisticSearchDto.yaml"
+SurveyAnswersListDto:
+  $ref: "./response/survey-statistic/SurveyAnswersListDto.yaml"
+SurveyAnswersItemsDto:
+  $ref: "./response/survey-statistic/SurveyAnswersItemsDto.yaml"
+SurveyStatisticDto:
+  $ref: "./response/survey-statistic/SurveyStatisticDto.yaml"
+SurveyStatisticQuestionsDto:
+  $ref: "./response/survey-statistic/SurveyStatisticQuestionsDto.yaml"
+SurveyStatisticAnswersDto:
+  $ref: "./response/survey-statistic/SurveyStatisticAnswersDto.yaml"
+SurveyUnansweredItemsDto:
+  $ref: "./response/survey-statistic/SurveyUnansweredItemsDto.yaml"
+
+# Dashboard
+StatisticsListDto:
+  $ref: "./response/dashboard/StatisticsListDto.yaml"
+StatisticsTodayDto:
+  $ref: "./response/dashboard/StatisticsTodayDto.yaml"
+StatisticsRecentDto:
+  $ref: "./response/dashboard/StatisticsRecentDto.yaml"
+
+DApplicantListDto:
+  $ref: "./response/dashboard/DApplicantListDto.yaml"
+DApplicantItemsDto:
+  $ref: "./response/dashboard/DApplicantItemsDto.yaml"
+
+DChatListDto:
+  $ref: "./response/dashboard/DChatListDto.yaml"
+DChatItemsDto:
+  $ref: "./response/dashboard/DChatItemsDto.yaml"
+
+DInterviewListDto:
+  $ref: "./response/dashboard/DInterviewListDto.yaml"
+DInterviewItemsDto:
+  $ref: "./response/dashboard/DInterviewItemsDto.yaml"
+
+DNotificationListDto:
+  $ref: "./response/dashboard/DNotificationListDto.yaml"
+DNotificationItemsDto:
+  $ref: "./response/dashboard/DNotificationItemsDto.yaml"
+DNotificationDetailsDto:
+  $ref: "./response/dashboard/DNotificationDetailsDto.yaml"
+
+DProjectListDto:
+  $ref: "./response/dashboard/DProjectListDto.yaml"
+DProjectItemsDto:
+  $ref: "./response/dashboard/DProjectItemsDto.yaml"
+
+# メッセージ
+HistoryCallListDto:
+  $ref: "./response/historyCall/HistoryCallListDto.yaml"
+HistoryCallItemsDto:
+  $ref: "./response/historyCall/HistoryCallItemsDto.yaml"
+HistoryCallDetailsDto:
+  $ref: "./response/historyCall/HistoryCallDetailsDto.yaml"
+HistoryCallUpsertDto:
+  $ref: "./request/historyCall/HistoryCallUpsertDto.yaml"
+HistoryCallMemoDto:
+  $ref: "./request/historyCall/HistoryCallMemoDto.yaml"
+
+MTemplateListDto:
+  $ref: "./response/message/MTemplateListDto.yaml"
+MTemplateItemsDto:
+  $ref: "./response/message/MTemplateItemsDto.yaml"
+
+MSurveyListDto:
+  $ref: "./response/message/MSurveyListDto.yaml"
+MSurveyItemsDto:
+  $ref: "./response/message/MSurveyItemsDto.yaml"
+
+MProfileDto:
+  $ref: "./response/message/MProfileDto.yaml"
+
+# Dropdown
+MTPrefectureListDto:
+  $ref: "./response/dropdown/MTPrefectureListDto.yaml"
+MTPrefectureItemsDto:
+  $ref: "./response/dropdown/MTPrefectureItemsDto.yaml"
+MTCityItemsDto:
+  $ref: "./response/dropdown/MTCityItemsDto.yaml"
+
+MPostCodeDto:
+  $ref: "./response/dropdown/MPostCodeDto.yaml"
+
+MDropdownListDto:
+  $ref: "./response/dropdown/MDropdownListDto.yaml"
+MDropdownItemsDto:
+  $ref: "./response/dropdown/MDropdownItemsDto.yaml"
+
+# Crawler
+CrawlerMediasDto:
+  $ref: "./response/crawler/CrawlerMediasDto.yaml"
+
+# Webhook
+ExternalApplicantCreateDto:
+  $ref: "./request/webhook/ExternalApplicantCreateDto.yaml"

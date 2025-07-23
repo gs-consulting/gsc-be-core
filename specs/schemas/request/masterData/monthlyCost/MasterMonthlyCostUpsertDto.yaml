@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - mediaId
+  - amount
+properties:
+  id:
+    type: string
+    description: ID
+    nullable: true
+    example: id
+  mediaId:
+    type: string
+    description: 媒体ID
+    example: mediaId
+  amount:
+    type: integer
+    format: int32
+    description: 金額
+    example: 10000

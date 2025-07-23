@@ -1,0 +1,14 @@
+type: array
+description: 新規応募者一覧
+items:
+  $ref: ./DApplicantItemsDto.yaml
+example:
+  - id: id
+    fullName: 田中 由紀子
+    isStatusNotChanged: false
+    gender: FEMALE
+    age: 30
+    address: 東京都中央区
+    mediaName: 中小企業求人部
+    projectName: 案件名
+    registeredDate: 2024/09/10 11:00

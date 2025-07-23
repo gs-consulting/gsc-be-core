@@ -1,0 +1,40 @@
+type: object
+description: Login response
+required:
+  - fullName
+  - oemGroupName
+  - email
+  - accessToken
+  - role
+  - permissions
+properties:
+  fullName:
+    type: string
+    description: 氏名
+    example: 会社株式サンプル
+  oemGroupName:
+    type: string
+    nullable: true
+    description: OEMグループ
+    example: OEMグループA
+  email:
+    type: string
+    description: メールアドレス
+    example: secretString
+  accessToken:
+    type: string
+    description: Access Token
+    example: secretString
+  role:
+    type: string
+    description: Role
+    example: secretString
+  permissions:
+    type: array
+    nullable: true
+    description: 機能制限
+    items: 
+      type: string
+    example: ["1", "3", "4"]
+x-use:
+  builder: true

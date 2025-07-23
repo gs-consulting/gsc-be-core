@@ -1,0 +1,105 @@
+get:
+  summary: Get all branches for client accounts (クライアント・支店)
+  security:
+    - bearerAuth: []
+  operationId: getClientBranches
+  description: |
+    # Get all branches for client accounts
+  parameters:
+    - $ref: "../../../parameters/query/pageNumber.yaml"
+    - $ref: "../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../parameters/query/searchInput.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/client/branch/ClientBranchListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+            
+post:
+  summary: Create a new branch for client accounts (クライアント・支店)
+  operationId: createClientBranch
+  security:
+    - bearerAuth: []
+  description: |
+    # Create a new branch by client accounts
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/client/branch/ClientBranchUpsertDto.yaml"
+  responses:
+    201:
+      description: Create successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "400"
+            fieldError: "name"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

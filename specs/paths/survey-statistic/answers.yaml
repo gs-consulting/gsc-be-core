@@ -1,0 +1,51 @@
+post:
+  summary: Get list Survey group by Applicants
+  security:
+    - bearerAuth: []
+  operationId: getSurveyStatisticAnswers
+  description: |
+    # Get list Survey group by Applicants
+  parameters:
+    - $ref: "../../parameters/path/surveyId.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/survey-statistic/SurveyStatisticSearchDto.yaml"
+  responses:
+    200:
+      description: Get successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/survey-statistic/SurveyAnswersListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

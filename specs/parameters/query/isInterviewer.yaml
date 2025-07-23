@@ -1,0 +1,9 @@
+name: isInterviewer
+in: query
+required: false
+description: 面接者のみ
+schema:
+  type: boolean
+  description: 面接官に設定のみ
+  default: false
+  example: true

@@ -1,0 +1,31 @@
+type: object
+required:
+  - id
+  - name
+  - flowOrder
+  - displayOrder
+description: | 
+  選考ステータス一覧
+properties:
+  id:
+    type: string
+    description: タイトル
+    example: id
+  name:
+    type: string
+    description: 項目名
+    example: 名前
+  flowOrder:
+    type: integer
+    format: int32
+    description: 選考フロー
+    example: 1
+  displayOrder:
+    type: integer
+    format: int32
+    description: 表示順
+    example: 1
+  isDeletable:
+    type: boolean
+    description: 削除できるかどうか
+    example: true

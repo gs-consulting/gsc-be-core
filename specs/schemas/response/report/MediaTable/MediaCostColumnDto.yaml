@@ -1,0 +1,26 @@
+type: object
+description: 最初の表の各列の項目
+nullable: true
+required:
+  - personCount
+  - cost
+  - ratio
+properties:
+  personCount:
+    type: integer
+    format: int64
+    description: 人数
+    example: 10
+  cost:
+    type: integer
+    format: int32
+    description: コスト
+    example: 50000
+  ratio:
+    type: number
+    nullable: true
+    format: double
+    description: 率
+    example: 50%
+x-use:
+  builder: true

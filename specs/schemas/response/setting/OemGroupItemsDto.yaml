@@ -1,0 +1,15 @@
+type: object
+required: 
+  - id
+  - oemName
+properties:
+  id:
+    type: string
+    description: OEMグループID
+    example: "id"
+  oemName:
+    type: string
+    description: OEM名
+    example: "株式会社〇〇"
+x-use:
+  builder: true

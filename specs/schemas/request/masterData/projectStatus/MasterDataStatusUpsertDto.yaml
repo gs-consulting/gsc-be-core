@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - name
+  - order
+properties:
+  id:
+    type: string
+    nullable: true
+    description: ID
+    example: xxxxxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  name:
+    type: string
+    description: 項目名
+    example: 公開
+  order:
+    type: integer
+    format: int32
+    description: 表示順
+    example: 1

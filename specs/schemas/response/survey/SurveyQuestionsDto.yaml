@@ -1,0 +1,32 @@
+type: object
+required:
+  - id
+  - questionText
+  - type
+  - isRequired
+  - answers
+description: |
+  テンプレート管理
+properties:
+  id:
+    type: string
+    description: 質問ID
+    example: id
+  questionText:
+    type: string
+    description: 質問テキスト
+    example: 質問1
+  type:
+    type: string
+    description: 回答方式
+    example: SELECTION
+  isRequired:
+    type: boolean
+    description: 必須
+    example: true
+  answers:
+    type: array
+    description: 回答一覧
+    nullable: true
+    items:
+      $ref: "./SurveyAnswersDto.yaml"

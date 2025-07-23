@@ -1,0 +1,7 @@
+name: branchId
+in: query
+required: true
+description: 支店
+schema:
+  type: string
+  example: id

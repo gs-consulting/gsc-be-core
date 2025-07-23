@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - title
+  - postingStartDate
+description: |
+  お知らせ設定一覧
+properties:
+  id:
+    type: string
+    description: タイトル
+    example: id
+  title:
+    type: string
+    description: タイトル
+    example: 緊急メンテナンスのお知らせ
+  postingStartDate:
+    type: string
+    description: 掲載開始日
+    example: 2022/12/31

@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+configMapGenerator:
+  - behavior: merge
+    envs:
+      - gsc-be-core.env
+    name: gsc-be-core
+patchesStrategicMerge:
+  - deployment.yaml
+  - hpa.yaml

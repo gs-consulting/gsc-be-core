@@ -1,0 +1,8 @@
+name: postCode
+in: path
+description: |
+  郵便番号
+required: true
+schema:
+  type: string
+example: "1010041"

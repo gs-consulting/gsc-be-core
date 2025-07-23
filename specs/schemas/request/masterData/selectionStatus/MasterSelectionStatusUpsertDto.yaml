@@ -1,0 +1,26 @@
+type: object
+required:
+  - id
+  - name
+  - flowOrder
+  - displayOrder
+properties:
+  id:
+    type: string
+    nullable: true
+    description: ID
+    example: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+  name:
+    type: string
+    description: 項目名
+    example: 名前
+  flowOrder:
+    type: integer
+    format: int32
+    description: 選考フロー
+    example: 1
+  displayOrder:
+    type: integer
+    format: int32
+    description: 表示順
+    example: 1

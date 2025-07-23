@@ -1,0 +1,9 @@
+name: isAll
+in: query
+required: false
+description: すべての取得
+schema:
+  type: integer
+  format: int32
+  default: 0
+  example: 1

@@ -1,0 +1,202 @@
+type: object
+required:
+  - applicantId
+  - messageType
+  - name
+  - isNameExactly
+  - genders
+  - maxAge
+  - minAge
+  - selectionStatusIds
+  - applicantStatuses
+  - masterMediaIds
+  - projectName
+  - applyStartDate
+  - applyEndDate
+  - prefectures
+  - city
+  - address
+  - qualificationIds
+  - experienceIds
+  - isStatusNotChanged
+  - isUnread
+  - pageNumber
+  - pageSize
+  - arrangedBy
+  - blacklistId
+description: |
+  # ApplicantSearchDto
+  応募者絞り込み
+properties:
+  applicantId:
+    type: string
+    nullable: true
+    description: 応募(ID)
+    example: "12345"
+  messageType:
+    type: string
+    nullable: true
+    description: メッセージ一括送信 (EMAIL|LINE|SMS)
+    example: "EMAIL"
+  name:
+    type: string
+    nullable: true
+    description: 名前(漢字)
+    example: "山田太郎"
+  isNameExactly:
+    type: boolean
+    description: 完全一致で検索
+    example: true
+  genders:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: |
+      性別
+      enum: MALE, FEMALE
+    example:
+      - "MALE"
+      - "FEMALE"
+  maxAge:
+    type: integer
+    format: int32
+    nullable: true
+    description: 年齢(以上)
+    example: 20
+  minAge:
+    type: integer
+    format: int32
+    nullable: true
+    description: 年齢(以下)
+    example: 30
+  selectionStatusIds:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: 選考ステータス
+    example:
+      - "id1"
+      - "id2"
+  applicantStatuses:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: 応募者の状態
+    example:
+      - "id1"
+      - "id2"
+  masterMediaIds:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: 応募経路 / Master media
+    example:
+      - "中小企業求人部"
+      - "Indeed"
+      - "Indeed(ATS連携)"
+  projectName:
+    type: string
+    nullable: true
+    description: 案件名
+    example: 案件名
+  applyStartDate:
+    type: string
+    format: date
+    nullable: true
+    description: 応募日(開始)
+    example: "2021/01/01"
+  applyEndDate:
+    type: string
+    format: date
+    nullable: true
+    description: 応募日(終了)
+    example: "2021/01/31"
+  prefectures:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: 住所(都道府県)
+    example:
+      - "13"
+      - "14"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "新宿区"
+  address:
+    type: string
+    nullable: true
+    description: 住所(その他)
+    example: "新宿1-1-1"
+  qualificationIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: |
+      資格enum:
+        - LARGE	大型
+        - MED_RESTRICT	中型限定解除
+        - MEDIUM	中型
+        - SEMI_MEDIUM_RESTRICT	準中限定解除
+        - SEMI_MED_RESTRICTION	準中型
+        - NORMAL	普通
+        - LIFT	リフト
+        - TOWING	牽引
+    example:
+      - LARGE
+      - MEDIUM
+  experienceIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: |
+      経験enum:
+        - LARGE	大型
+        - MEDIUM	中型
+        - REGULAR	普通
+        - LIFT	リフト
+        - WAREHOUSE	倉庫作業
+        - FACTORY	工場作業
+        - ADMINISTRATIVE	事務
+        - NONE	なし
+    example:
+      - LARGE
+      - MEDIUM
+  isStatusNotChanged:
+    type: boolean
+    description: 24時間以上ステータスの変動がない応募のみ表示
+    example: true
+  isUnread:
+    type: boolean
+    description: 未読メッセージのみ表示
+    example: true
+  pageNumber:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページ番号
+    example: 1
+  pageSize:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページサイズ
+    example: 10
+  arrangedBy:
+    type: string
+    nullable: true
+    description: |
+      並び順: ASC or DESC
+    example: "応募受付日時:ASC"
+  blacklistId:
+    type: string
+    nullable: true
+    example: "12345"

@@ -1,0 +1,40 @@
+type: object
+description: チーム詳細
+required:
+  - id
+  - name
+  - furiganaName
+  - teamCode
+  - staffIds
+  - memo
+properties:
+  id:
+    type: string
+    description: チームID
+    example: "id"
+  name:
+    type: string
+    description: チーム名
+    example: "株式会社〇〇"
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: "カブシキガイシャ"
+  teamCode:
+    type: string
+    description: チームコード
+    example: "XXXXXXXX"
+    nullable: true
+  staffIds:
+    type: array
+    nullable: true
+    description: スタッフ
+    items:
+      type: string
+    example:
+      - id1
+  memo:
+    type: string
+    description: メモ
+    example: "メモ"
+    nullable: true

@@ -1,0 +1,150 @@
+get:
+  summary: Get list of history calls (通話履歴)
+  security:
+    - bearerAuth: []
+  operationId: getHistoryCalls
+  description: |
+    # Get list of history calls
+  parameters: 
+    - $ref: "../../parameters/path/applicantId.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/historyCall/HistoryCallListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+post:
+  summary: Create a history call (通話履歴)
+  security:
+    - bearerAuth: []
+  operationId: createNewHistoryCall
+  description: |
+    # Create a history call
+  parameters: 
+    - $ref: "../../parameters/path/applicantId.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/historyCall/HistoryCallUpsertDto.yaml"
+  responses:
+    201:
+      description: Saved successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+delete:
+  summary: Delete selected call histories (通話履歴)
+  security:
+    - bearerAuth: []
+  operationId: deleteSelectedHistories
+  parameters: 
+    - $ref: "../../parameters/path/applicantId.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    200:
+      description: OK
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

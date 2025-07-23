@@ -1,0 +1,40 @@
+type: object
+description: プロセス別経路割合
+required:
+  - total
+  - apply
+  - interview
+  - offer
+  - agreement
+  - colors
+properties:
+  total:
+    type: array
+    items:
+      $ref: "./MediaPieChartSectionDto.yaml"
+  apply:
+    type: array
+    nullable: true
+    items:
+      $ref: "./MediaPieChartSectionDto.yaml"
+  interview:
+    type: array
+    nullable: true
+    items:
+      $ref: "./MediaPieChartSectionDto.yaml"
+  offer:
+    type: array
+    nullable: true
+    items:
+      $ref: "./MediaPieChartSectionDto.yaml"
+  agreement:
+    type: array
+    nullable: true
+    items:
+      $ref: "./MediaPieChartSectionDto.yaml"
+  colors:
+    type: array
+    items:
+      $ref: "../MediaColorDto.yaml"
+x-use:
+  builder: true

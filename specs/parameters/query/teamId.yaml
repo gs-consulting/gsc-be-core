@@ -1,0 +1,7 @@
+name: teamId
+in: query
+required: false
+description: チーム
+schema:
+  type: string
+  example: id

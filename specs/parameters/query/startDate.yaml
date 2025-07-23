@@ -1,0 +1,8 @@
+name: startDate
+in: query
+required: false
+description: 開始日を選択
+schema:
+  type: string
+  format: date
+  example: 2025/01/01

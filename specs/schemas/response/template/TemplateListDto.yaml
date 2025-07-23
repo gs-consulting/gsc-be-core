@@ -1,0 +1,21 @@
+type: object
+description: |
+  お知らせ一覧
+allOf:
+  - $ref: ../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./TemplateItemsDto.yaml
+        example:
+          - id: id
+            name: 面接日程決定のご連絡
+            createdAt: 2024/08/20 17:29
+            updatedAt: 2024/08/20 18:00
+            isDeletable: false
+x-use:
+  builder: true

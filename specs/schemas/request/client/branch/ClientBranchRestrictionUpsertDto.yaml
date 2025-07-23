@@ -1,0 +1,15 @@
+type: object
+description: |
+  案件権限_支店なし
+required:
+  - id
+  - permission
+properties:
+  id:
+    type: string
+    description: 案件ID
+    example: id
+  permission:
+    type: string
+    description: 案件権限
+    example: "VIEW"

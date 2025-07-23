@@ -1,0 +1,59 @@
+post:
+  summary: Get list of templates for chat (メッセージ・テンプレート)
+  operationId: getTemplatesForChat
+  security:
+    - bearerAuth: []
+  description: |
+    # Get list of templates for chat
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/template/TemplateSearchDto.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/message/MTemplateListDto.yaml"
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "pageNumber"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

@@ -1,0 +1,15 @@
+type: object
+required:
+  - id
+  - permission
+description: |
+  職種権限一覧の編集
+properties:
+  id:
+    type: string
+    description: 案件ID
+    example: id
+  permission:
+    type: string
+    description: 閲覧/編集
+    example: VIEW

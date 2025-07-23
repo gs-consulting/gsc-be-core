@@ -1,0 +1,8 @@
+type: array
+items:
+  $ref: ./ProjectPermissionItemsDto.yaml
+example:
+  - id: id
+    projectNo: 1234567
+    projectName: 案件名
+    permission: VIEW

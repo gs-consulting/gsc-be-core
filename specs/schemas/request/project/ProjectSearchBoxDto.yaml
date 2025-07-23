@@ -1,0 +1,161 @@
+type: object
+required:
+  - projectNo
+  - projectName
+  - statusIds
+  - registeredStartDate
+  - registeredEndDate
+  - occupationIds
+  - isShiftSystem
+  - experience
+  - qualificationIds
+  - qualificationNotes
+  - prefecture
+  - city
+  - ward
+  - holiday
+  - benefit
+  - branchIds
+  - storeName
+  - workingPeriodId
+  - abAdjustment
+  - pageNumber
+  - pageSize
+  - arrangedBy
+description: |
+  案件の案件絞り込み
+properties:
+  projectNo:
+    type: string
+    nullable: true
+    description: 仕事No
+    example: 仕事No1000
+  projectName:
+    type: string
+    nullable: true
+    description: 案件名
+    example: 1234567
+  statusIds:
+    type: array
+    nullable: true
+    description: ステータス
+    items:
+      type: string
+    example:
+      - status_id1
+  registeredStartDate:
+    type: string
+    format: date
+    nullable: true
+    description: 登録日時（開始）
+    example: 2025/01/25
+  registeredEndDate:
+    type: string
+    format: date
+    nullable: true
+    description: 登録日時（終了）
+    example: 2025/01/25
+  occupationIds:
+    type: array
+    nullable: true
+    description: 職種
+    items:
+      type: string
+    example:
+      - occupation_id1
+  isShiftSystem:
+    type: string
+    nullable: true
+    description: |
+      シフト制: 1: 有, 0: 無, -1: 未入力
+    example: "1"
+  experience:
+    type: string
+    nullable: true
+    description: |
+      経験の有無: EXPERIENCE: 経験者のみ, NONE: 未経験可, BOTH: どちらでも, NOT_ENTERED: 未入力
+    example: "NOT_ENTERED"
+  qualificationIds:
+    type: array
+    nullable: true
+    description: |
+      資格: LARGE: 大型, MEDIUM_RESTRICTED: 中型限定解除, MEDIUM: 中型 etc.
+    items:
+      type: string
+    example:
+      - LARGE
+      - MEDIUM
+  qualificationNotes:
+    type: string
+    nullable: true
+    description: 資格補足
+    example: "資格補足を入力してください"
+  prefecture:
+    type: string
+    nullable: true
+    description: 勤務地（都道府県)
+    example: 1
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: 25
+  ward:
+    type: string
+    nullable: true
+    description: 勤務地（市区群以下）
+    example: "勤務地（市区群以下）"
+  holiday:
+    type: string
+    nullable: true
+    description: 休日
+    example: 休日を入力してください
+  benefit:
+    type: string
+    nullable: true
+    description: 福利厚生
+    example: 福利厚生を入力してください
+  branchIds:
+    type: array
+    nullable: true
+    description: 支店
+    items:
+      type: string
+    example:
+      - id1
+      - id2
+  storeName:
+    type: string
+    nullable: true
+    description: 拠点・店舗
+    example: 拠点・店舗を入力してください
+  workingPeriodId:
+    type: string
+    nullable: true
+    description: |
+     長期休暇: LONG: 有, SHORT: 無, NOT_ENTERED
+    example: SHORT
+  abAdjustment:
+    type: string
+    nullable: true
+    description: |
+      AB判定: A, B, NOT_ENTERED
+    example: A
+  pageNumber:
+    type: integer
+    format: int32
+    nullable: true
+    description: Page number
+    minimum: 1
+  pageSize:
+    type: integer
+    format: int32
+    nullable: true
+    description: Number of items per page
+    minimum: 1
+  arrangedBy:
+    type: string
+    nullable: true
+    description: |
+      並び順: ASC or DESC
+    example: "案件No.:ASC"

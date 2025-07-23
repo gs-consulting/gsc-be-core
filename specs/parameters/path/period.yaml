@@ -1,0 +1,10 @@
+name: period
+in: path
+description: |
+  1. 応募〜入社
+  2. 入社後
+required: true
+schema:
+  type: integer
+  format: int32
+  example: 1

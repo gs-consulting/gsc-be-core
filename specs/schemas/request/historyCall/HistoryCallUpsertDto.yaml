@@ -1,0 +1,26 @@
+type: object
+required:
+  - contactStartDateTime
+  - contactEndDateTime
+  - picId
+  - memo
+description: |
+  通話履歴登録
+properties:
+  contactStartDateTime:
+    type: string
+    description: 通話日時
+    example: 2025/09/12 12:00
+  contactEndDateTime:
+    type: string
+    description: 通話終了日時
+    example: 2025/09/12 12:30
+  picId:
+    type: string
+    description: 担当者
+    example: id
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: 次回履歴書をメッセージから送ってもらう次回履歴書をメッセージから送ってもらう

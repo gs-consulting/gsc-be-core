@@ -1,0 +1,64 @@
+package jp.co.goalist.gsc.entities;
+
+import jakarta.persistence.*;
+import jp.co.goalist.gsc.utils.JsonColumnConverter;
+import lombok.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Cacheable
+@Cache(region = "operatorAccountCache", usage = CacheConcurrencyStrategy.READ_WRITE)
+@Entity(name = "operator_accounts")
+@EqualsAndHashCode(callSuper = true)
+public class OperatorAccount extends BaseEntity {
+
+    /**
+     * Reference to Account.id
+     */
+    @Id
+    private String id;
+
+    @OneToOne
+    @JoinColumn(name = "id")  // Foreign key column referencing Account table's primary key.
+    private Account account;
+
+    @Column
+    private String fullName;
+
+    @Column(columnDefinition = "json")
+    @Convert(converter = JsonColumnConverter.class)
+    private List<String> permissions;
+
+    @ManyToMany
+    @JoinTable(
+            name = "operator_account_teams",
+            joinColumns = @JoinColumn(name = "operator_id"),
+            inverseJoinColumns = @JoinColumn(name = "team_id"))
+    private List<OperatorTeam> teams = new ArrayList<>();
+
+    public void setTeams(List<OperatorTeam> teams) {
+        if ( this.getTeams() != null ) {
+            if ( teams != null ) {
+                this.getTeams().clear();
+                this.teams = teams;
+            }
+            else {
+                this.teams = null;
+            }
+        }
+        else {
+            if ( teams != null ) {
+                this.teams = teams;
+            }
+        }
+    }
+}

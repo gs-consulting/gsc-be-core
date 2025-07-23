@@ -1,0 +1,119 @@
+post:
+  summary: Create a template (テンプレート管理)
+  security:
+    - bearerAuth: []
+  operationId: createTemplate
+  description: |
+    # Create new template
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/template/TemplateUpsertDto.yaml"
+  responses:
+    201:
+      description: Saved successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+delete:
+  summary: Delete selected templates (テンプレート管理)
+  security:
+    - bearerAuth: []
+  operationId: deleteSelectedTemplates
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    200:
+      description: OK
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

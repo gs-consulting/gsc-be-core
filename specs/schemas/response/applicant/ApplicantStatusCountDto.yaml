@@ -1,0 +1,11 @@
+type: object
+required:
+  - count
+description: |
+  応募者の連絡から24時間以上ステータス
+properties:
+  count:
+    type: integer
+    format: int32
+    description: 応募者の連絡から24時間以上ステータス
+    example: 10

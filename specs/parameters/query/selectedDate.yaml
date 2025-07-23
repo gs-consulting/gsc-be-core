@@ -1,0 +1,6 @@
+name: selectedDate
+in: query
+description: selected date
+required: true
+schema:
+  type: string

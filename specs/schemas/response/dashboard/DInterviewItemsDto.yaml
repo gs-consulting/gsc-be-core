@@ -1,0 +1,36 @@
+type: object
+description: 面接スケジュール
+required:
+  - id
+  - categoryName
+  - fullName
+  - interviewDate
+  - mediaName
+  - projectName
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  categoryName:
+    type: string
+    description: 面接区分
+    example: 面接区分
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  interviewDate:
+    type: string
+    description: 応募受付日時
+    example: 2024/12/31 22:10
+  mediaName:
+    type: string
+    nullable: true
+    description: 応募経路
+    example: 中小企業求人部
+  projectName:
+    type: string
+    nullable: true
+    description: 案件名
+    example: 案件名

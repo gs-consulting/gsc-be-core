@@ -1,0 +1,17 @@
+type: object
+required:
+  - id
+  - name
+  - order
+properties:
+  id:
+    type: string
+    description: ID
+    nullable: true
+  name:
+    type: string
+    description: 項目名
+  order:
+    type: integer
+    format: int32
+    description: 表示順

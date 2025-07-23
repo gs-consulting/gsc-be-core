@@ -1,0 +1,10 @@
+type: object
+description: |
+  # OEMグループ登録
+required: 
+  - oemName
+properties:
+  oemName:
+    type: string
+    description: OEM名
+    example: "株式会社〇〇"

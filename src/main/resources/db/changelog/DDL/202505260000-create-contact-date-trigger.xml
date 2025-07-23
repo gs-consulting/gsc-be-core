@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="202505260000-create-contact-DATE-trigger" author="gcs">
+        <comment>Creates trigger to update lst_contact_date_time after inserting into operator/oem_mail_messages</comment>
+        <sql splitStatements="false">
+            CREATE TRIGGER operator_applicant_contact_date
+            AFTER INSERT ON operator_mail_messages
+            FOR EACH ROW
+            BEGIN
+                IF NEW.sent_at IS NOT NULL THEN
+                    UPDATE operator_applicants
+                        SET lst_contact_date_time = NEW.sent_at
+                    WHERE id = NEW.applicant_id;
+                    UPDATE operator_applicants
+                        SET is_unread = 1
+                    WHERE id = NEW.sender_id;
+                END IF;
+            END;
+        </sql>
+        <sql splitStatements="false">
+            CREATE TRIGGER oem_applicant_contact_date
+            AFTER INSERT ON oem_mail_messages
+            FOR EACH ROW
+            BEGIN
+                IF NEW.sent_at IS NOT NULL THEN
+                    UPDATE oem_applicants
+                        SET lst_contact_date_time = NEW.sent_at
+                    WHERE id = NEW.applicant_id;
+                    UPDATE oem_applicants
+                        SET is_unread = 1
+                    WHERE id = NEW.sender_id;
+                END IF;
+            END;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

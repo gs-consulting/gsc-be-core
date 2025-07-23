@@ -1,0 +1,36 @@
+type: object
+description: 面接日時を追加
+required:
+  - id
+  - categoryId
+  - startDateTime
+  - endDateTime
+  - picId
+  - memo
+properties:
+  id:
+    type: string
+    nullable: true
+    description: 応募者面接
+    example: id
+  categoryId:
+    type: string
+    description: 面接区分
+    example: id
+  startDateTime:
+    type: string
+    description: 面接開始日
+    example: "2021-01-01 00:00"
+  endDateTime:
+    type: string
+    description: 面接終了日
+    example: "2021-01-01 12:00"
+  picId:
+    type: string
+    description: 担当者ID
+    example: id
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: これはメモです

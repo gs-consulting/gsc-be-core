@@ -1,0 +1,118 @@
+post:
+  summary: Create a OEM account (OEMアカウント)
+  description: |
+    # Create a OEM account (OEMアカウント)
+  operationId: createOemAccount
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/setting/oem/OemAccountUpsertDto.yaml"
+  responses:
+    201:
+      description: Create successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: Get list of OEM accounts (OEMアカウント)
+  description: |
+    # Get list of OEM accounts (OEMアカウント)
+  operationId: getOemAccounts
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+    - $ref: "../../../parameters/query/pageNumber.yaml"
+    - $ref: "../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../parameters/query/searchInput.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/setting/oem/OemAccountListDto.yaml"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

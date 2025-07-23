@@ -1,0 +1,169 @@
+post:
+  summary: Create a staff OEM account (スタッフ・OEM)
+  description: |
+    # Create a staff OEM account (スタッフ・OEM)
+  operationId: createStaffOemAccount
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../schemas/request/setting/staff/oem/StaffOemAccountUpsertDto.yaml"
+  responses:
+    201:
+      description: Create a new account for client
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: Get list of Staff accounts (スタッフ・OEM)
+  description: |
+    # Get list of Staff accounts (スタッフ・OEM)
+  operationId: getStaffOemAccounts
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../../parameters/query/pageNumber.yaml"
+    - $ref: "../../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../../parameters/query/searchInput.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/setting/staff/oem/StaffOemAccountListDto.yaml"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+delete:
+  summary: Delete selected OEM staffs(スタッフ)
+  security:
+    - bearerAuth: []
+  operationId: deleteSelectedOemStaffs
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    200:
+      description: OK
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

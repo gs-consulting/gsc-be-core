@@ -1,0 +1,15 @@
+type: object
+description: |
+  チーム一覧
+required:
+  - id
+  - teamName
+properties:
+  id:
+    type: string
+    description: チームID
+    example: "id"
+  teamName:
+    type: string
+    description: チーム名
+    example: "株式会社〇〇"

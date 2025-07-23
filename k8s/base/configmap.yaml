@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gsc-be-core
+data:
+  SERVER_PORT: 8080
+  IS_LOCAL: false
+  FE_URL: must_overlays
+  DB_URL: must_overlays
+  DB_NAME: gsc
+  DB_PORT: 3306
+  DB_USERNAME: app
+  JWT_EXPIRATION_DAYS: 1
+  SERVICE_URL: http://gsc-be-service/service/internal

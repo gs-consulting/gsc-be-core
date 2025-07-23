@@ -1,0 +1,39 @@
+type: object
+required:
+  - id
+  - publishingStartDate
+  - publishingEndDate
+  - advertisementName
+  - mediaName
+  - amount
+description: | 
+  案件一覧
+properties:
+  id:
+    type: string
+    description: 案件ID
+    example: id
+  publishingStartDate:
+    type: string
+    format: date
+    description: 掲載開始日
+    example: 2025/02/01
+  publishingEndDate:
+    type: string
+    format: date
+    description: 掲載終了日
+    example: 2025/07/01
+  advertisementName:
+    type: string
+    description: 広告名
+    example: 広告名
+  mediaName:
+    type: string
+    description: 媒体
+    example: 中小企業求人部
+  amount:
+    type: integer
+    format: int32
+    nullable: true
+    description: 金額
+    example: 5000

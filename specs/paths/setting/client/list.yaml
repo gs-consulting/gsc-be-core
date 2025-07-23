@@ -1,0 +1,107 @@
+
+
+get:
+  summary: Get all client accounts (クライアント)
+  description: |
+    # Get all client accounts (クライアント)
+  operationId: getClientAccounts
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref:  "../../../parameters/query/pageNumber.yaml"
+    - $ref:  "../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../parameters/query/searchInput.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/setting/client/ClientAccountListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+post:
+  summary: Create a client account (クライアント)
+  description: |
+    # Create a client account (クライアント)
+  operationId: createClientAccount
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref:  "../../../schemas/request/setting/client/ClientAccountUpsertDto.yaml"
+  responses:
+    201:
+      description: Create successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref:  "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

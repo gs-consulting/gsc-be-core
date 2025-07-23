@@ -1,0 +1,13 @@
+type: object
+description: 削除されるIDs
+required:
+  - selectedIds
+properties:
+  selectedIds:
+    type: array
+    description: Selected Ids
+    items:
+      type: string
+    example:
+      - id1
+      - id2

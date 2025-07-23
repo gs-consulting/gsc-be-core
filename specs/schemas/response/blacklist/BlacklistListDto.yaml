@@ -1,0 +1,15 @@
+type: object
+description: |
+  選考対象外一覧
+allOf:
+  - $ref: ../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./BlacklistItemsDto.yaml
+x-use:
+  builder: true

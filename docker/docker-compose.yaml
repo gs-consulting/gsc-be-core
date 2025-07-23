@@ -1,0 +1,23 @@
+services:
+  gsc-db:
+    container_name: gsc_db
+    build: ./db
+    # platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: gsc_db
+    ports:
+      - "3306:3306"
+    networks:
+      - gsc_network
+    volumes:
+      - ./gsc_mysql:/var/lib/mysql
+      - ./db/conf.d/mysql.cnf:/etc/mysql/mysql.cnf
+      - ./db/log/mysql:/var/log/mysql
+volumes:
+  gsc_mysql:
+    external: true
+
+networks:
+  gsc_network:
+    external: true

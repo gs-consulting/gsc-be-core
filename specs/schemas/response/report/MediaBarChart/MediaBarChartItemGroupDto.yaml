@@ -1,0 +1,20 @@
+type: object
+description: 詳細グラフの項目
+required:
+  - month
+  - items
+properties:
+  month:
+    type: string
+    description: X-タイトル
+  items:
+    type: array
+    items:
+      $ref: "./MediaBarChartSectionDto.yaml"
+  colors:
+    type: array
+    items:
+      $ref: "../MediaColorDto.yaml"
+x-use:
+  builder: true
+

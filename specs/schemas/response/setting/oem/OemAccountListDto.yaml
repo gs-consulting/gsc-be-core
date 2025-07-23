@@ -1,0 +1,15 @@
+type: object
+description: |
+  OEMアカウント一覧
+allOf:
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./OemAccountItemsDto.yaml
+x-use:
+  builder: true

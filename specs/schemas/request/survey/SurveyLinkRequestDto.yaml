@@ -1,0 +1,13 @@
+type: object
+required:
+  - surveyId
+  - applicantId
+properties:
+  surveyId:
+    type: string
+    description: アンケートID
+    example: survey id
+  applicantId:
+    type: string
+    description: 応募者ID
+    example: applicant id

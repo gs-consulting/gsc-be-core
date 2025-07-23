@@ -1,0 +1,5 @@
+type: array
+description: |
+  # OEM一覧
+items:
+  $ref: "./OemGroupItemsDto.yaml"

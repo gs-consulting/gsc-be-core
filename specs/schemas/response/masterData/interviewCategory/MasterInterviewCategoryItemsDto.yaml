@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - name
+  - order
+  - isDeletable
+properties:
+  id:
+    type: string
+    description: ID
+  name:
+    type: string
+    description: 名前
+  order:
+    type: integer
+    description: 順番
+  isDeletable:
+    type: boolean
+    description: 削除可能かどうか
+    default: true

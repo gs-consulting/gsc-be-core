@@ -1,0 +1,6 @@
+name: searchInput
+in: query
+required: false
+description: search input for get list api
+schema:
+  type: string

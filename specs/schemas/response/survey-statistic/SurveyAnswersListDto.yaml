@@ -1,0 +1,21 @@
+type: object
+description: |
+  応募者リストの回答
+allOf:
+  - $ref: ../MetaListResponse.yaml
+  - type: object
+    required:
+      - totalQuestions
+      - items
+    properties:
+      totalQuestions:
+        type: integer
+        format: int32
+        description: 質問総数
+        example: 10
+      items:
+        type: array
+        items:
+          $ref: ./SurveyAnswersItemsDto.yaml
+x-use:
+  builder: true

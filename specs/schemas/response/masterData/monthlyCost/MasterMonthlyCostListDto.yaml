@@ -1,0 +1,13 @@
+type: array
+description: |
+  月間コスト登録一覧
+items:
+  $ref: ./MasterMonthlyCostItemsDto.yaml
+example:
+  - id: 1
+    mediaId: 1
+    amount: 10000
+  - id: 1
+    mediaId: 2
+    amount: 30000
+        

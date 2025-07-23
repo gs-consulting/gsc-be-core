@@ -1,0 +1,39 @@
+type: object
+description: OEMアカウント情報
+required:
+  - id
+  - fullName
+  - teams
+  - tel
+  - isExpired
+properties:
+  id:
+    type: string
+    description: アカウントID
+    example: id
+  fullName:
+    type: string
+    description: 氏名
+    example: 山田太郎
+  teams:
+    type: array
+    nullable: true
+    description: 担当クライアント
+    items:
+      type: string
+    example: 
+      - チームA
+      - チームB
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 09012345678
+  isExpired:
+    type: boolean
+    description: 再送信
+    example: false
+  isDeletable:
+    type: boolean
+    description: 削除できるかどうか
+    example: false

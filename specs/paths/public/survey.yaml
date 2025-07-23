@@ -1,0 +1,35 @@
+get:
+  summary: Get questions and answers for public link (アンケートリンク)
+  description: |
+    # Get questions and answers for public link
+  operationId: getQuestionsForPublicLink
+  security: []
+  parameters:
+    - $ref: "../../parameters/query/public/token.yaml"
+  responses:
+    200:
+      description: Get questions and answers successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/survey/SurveyDetailsDto.yaml"
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Not found
+            statusCode: "ERR_404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

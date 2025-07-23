@@ -1,0 +1,14 @@
+type: object
+description: 最初の表の項目一覧
+required:
+  - total
+  - items
+properties:
+  total:
+    $ref: ./MediaCostAfterJoinDto.yaml
+  items:
+    type: array
+    items:
+      $ref: ./MediaCostAfterJoinDto.yaml
+x-use:
+  builder: true

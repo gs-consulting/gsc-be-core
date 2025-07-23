@@ -1,0 +1,8 @@
+commonLabels:
+  app: gsc-be-core
+resources:
+  - backendconfig.yaml
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
+  - hpa.yaml

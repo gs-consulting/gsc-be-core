@@ -1,0 +1,20 @@
+type: object
+description: 外部からの郵便番号
+required:
+  - address1
+  - address2
+  - addressName2
+properties:
+  address1:
+    type: string
+    description: "都道府県のコード"
+  address2:
+    type: string
+    description: "市区群のコード"
+  addressName2:
+    type: string
+    description: "市区群名"
+example:
+  address1: "1"
+  address2: "1303"
+  addressName2: "石狩郡当別町"

@@ -1,0 +1,50 @@
+get:
+  summary: Get list of branches for oem accounts (OEM・拠点・店舗)
+  security:
+    - bearerAuth: []
+  operationId: getOemStores
+  description: |
+    # Get list of stores for oem accounts (OEM・拠点・店舗)
+  parameters:
+    - $ref: "../../../parameters/query/pageNumber.yaml"
+    - $ref: "../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../parameters/query/branchIds.yaml"
+    - $ref: "../../../parameters/query/clientAccountId.yaml"
+    - $ref: "../../../parameters/query/isAll.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/dropdown/MDropdownListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

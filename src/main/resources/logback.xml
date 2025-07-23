@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<property name="HOME_LOG" value="logs"/>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} %X{unixTime} %clr(%-5level){green} %clr([%thread]){magenta} --- %logger{36}.%M %clr([%line]){yellow} %X{email} | %X{request_id} | %X{req.method} | %X{URI} | %X{status_code} | %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+    <!-- File Appender -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/application-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+			<maxFileSize>100MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>
+				%d{dd-MM-yyyy HH:mm:ss.SSS} %X{unixTime} %clr(%-5level){green} %clr([%thread]){magenta} --- %logger{36}.%M %clr([%line]){yellow} %X{email} | %X{request_id} | %X{req.method} | %X{URI} | %X{status_code} | %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="jp.co.goalist.mystart.console" level="DEBUG" additivity="false">
+		<appender-ref ref="CONSOLE"/>
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE"/>
+	</root>
+</configuration>

@@ -1,0 +1,6 @@
+name: surveyId
+in: path
+description: ID of the Survey
+required: true
+schema:
+  type: string

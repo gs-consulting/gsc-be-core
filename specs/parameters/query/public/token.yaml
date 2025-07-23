@@ -1,0 +1,7 @@
+name: token
+in: query
+required: false
+description: トークン
+schema:
+  type: string
+  example: id

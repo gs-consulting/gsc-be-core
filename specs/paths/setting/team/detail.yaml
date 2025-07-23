@@ -1,0 +1,125 @@
+put:
+  summary: Edit team details (チーム)
+  description: |
+    # Edit team details (チーム)
+  operationId: editTeam
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/setting/team/TeamUpsertDto.yaml"
+  responses:
+    200:
+      description: Update team details
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "teamName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    404:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Not found
+            statusCode: "ERR_404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: Get team details (チーム)
+  description: |
+    # Get team details (チーム)
+  operationId: getTeamDetails
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    200:
+      description: Get team details
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/setting/team/TeamDetailsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    404:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Not found
+            statusCode: "ERR_404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

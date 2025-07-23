@@ -1,0 +1,7 @@
+name: managerId
+in: query
+required: false
+description: 担当者
+schema:
+  type: string
+  example: id

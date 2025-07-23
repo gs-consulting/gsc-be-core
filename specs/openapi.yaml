@@ -1,0 +1,258 @@
+openapi: 3.0.3 # declare version of OpenAPI
+info:
+  title: "GSC"
+  version: "1.0.0"
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Local server
+
+paths:
+  /auth/login:
+    $ref: "./paths/auth/login.yaml"
+  /auth/reset-password:
+    $ref: "./paths/auth/reset-password.yaml"
+
+  /files/import:
+    $ref: "./paths/file/import.yaml"
+
+  /settings/oem-groups:
+    $ref: "./paths/setting/oemGroup/list.yaml"
+  /settings/oem-groups/{id}:
+    $ref: "./paths/setting/oemGroup/detail.yaml"
+
+  /settings/staff/operator-accounts:
+    $ref: "./paths/setting/staff/operator/list.yaml"
+  /settings/staff/operator-accounts/{accountId}:
+    $ref: "./paths/setting/staff/operator/detail.yaml"
+
+  /settings/clients/{id}/oem-accounts:
+    $ref: "./paths/setting/oem/list.yaml"
+  /settings/clients/{id}/oem-accounts/{accountId}:
+    $ref: "./paths/setting/oem/detail.yaml"
+
+  /settings/staff/oem-accounts:
+    $ref: "./paths/setting/staff/oem/list.yaml"
+  /settings/staff/oem-accounts/{accountId}:
+    $ref: "./paths/setting/staff/oem/detail.yaml"
+
+  /settings/client-accounts:
+    $ref: "./paths/setting/client/list.yaml"
+  /settings/client-accounts/{accountId}:
+    $ref: "./paths/setting/client/detail.yaml"
+
+  /settings/teams:
+    $ref: "./paths/setting/team/list.yaml"
+  /settings/teams/{id}:
+    $ref: "./paths/setting/team/detail.yaml"
+
+  /notifications:
+    $ref: "./paths/notification/list.yaml"
+  /notifications/{id}:
+    $ref: "./paths/notification/detail.yaml"
+
+  /clients/users:
+    $ref: "./paths/client/user/list.yaml"
+  /clients/users/{accountId}:
+    $ref: "./paths/client/user/detail.yaml"
+  /clients/branches:
+    $ref: "./paths/client/branch/list.yaml"
+  /clients/branches/{id}:
+    $ref: "./paths/client/branch/detail.yaml"
+  /clients/branches/related-data:
+    $ref: "./paths/client/branch/relates.yaml"
+  /clients/stores:
+    $ref: "./paths/client/store/list.yaml"
+  /clients/stores/{id}:
+    $ref: "./paths/client/store/detail.yaml"
+  /clients/master-data/selection-status:
+    $ref: "./paths/masterData/selectionStatus/list.yaml"
+  /clients/master-data/media-report:
+    $ref: "./paths/masterData/mediaReport/list.yaml"
+  /clients/master-data/status/{statusType}:
+    $ref: "./paths/masterData/projectStatus/list.yaml"
+  /clients/master-data/monthly-cost:
+    $ref: "./paths/masterData/monthlyCost/list.yaml"
+  /clients/master-data/medias:
+    $ref: "./paths/masterData/media/list.yaml"
+  /clients/master-data/medias/{id}:
+    $ref: "./paths/masterData/media/detail.yaml"
+  /clients/master-data/interview-categories:
+    $ref: "./paths/masterData/interviewCategory/index.yaml"
+
+  /projects/search:
+    $ref: "./paths/project/list.yaml"
+  /projects/{id}/advertisements:
+    $ref: "./paths/project/advertisement.yaml"
+  /projects/branches/{id}:
+    $ref: "./paths/project/permission.yaml"
+  /projects/branches/{id}/permissions:
+    $ref: "./paths/project/permission-save.yaml"
+  /projects/{id}/application-count/{flowType}:
+    $ref: "./paths/project/applications.yaml"
+  /projects/csv/export:
+    $ref: "./paths/project/export.yaml"
+
+  /advertisement-reports/media-cost-before-join:
+    $ref: "./paths/report/mediaCostBeforeJoin.yaml"
+  /advertisement-reports/media-cost-after-join:
+    $ref: "./paths/report/mediaCostAfterJoin.yaml"
+
+  /applicants:
+    $ref: "./paths/applicant/create.yaml"
+  /applicants/list:
+    $ref: "./paths/applicant/list.yaml"
+  /applicants/count:
+    $ref: "./paths/applicant/count.yaml"
+  /applicants/{id}:
+    $ref: "./paths/applicant/detail.yaml"
+  /applicants/{id}/project:
+    $ref: "./paths/applicant/project.yaml"
+  /applicants/{id}/memo:
+    $ref: "./paths/applicant/memo.yaml"
+  /applicants/{id}/status:
+    $ref: "./paths/applicant/status.yaml"
+  /applicants/csv/exports:
+    $ref: "./paths/applicant/export.yaml"
+  /applicants/new-count:
+    $ref: "./paths/applicant/new-count.yaml"
+
+  /blacklists:
+    $ref: "./paths/blacklist/create.yaml"
+  /blacklists/list:
+    $ref: "./paths/blacklist/list.yaml"
+  /blacklists/{id}/memo:
+    $ref: "./paths/blacklist/memo.yaml"
+
+  /clients/templates:
+    $ref: "./paths/template/list.yaml"
+  /clients/templates/list:
+    $ref: "./paths/template/get.yaml"
+  /clients/templates/{id}:
+    $ref: "./paths/template/detail.yaml"
+
+  /clients/surveys:
+    $ref: "./paths/survey/index.yaml"
+  /clients/surveys/list:
+    $ref: "./paths/survey/get.yaml"
+  /clients/surveys/{id}:
+    $ref: "./paths/survey/detail.yaml"
+  /clients/surveys/public-link:
+    $ref: "./paths/survey/link.yaml"
+  /clients/survey-statistic/{surveyId}/answers:
+    $ref: "./paths/survey-statistic/answers.yaml"
+  /clients/survey-statistic/{surveyId}/summary:
+    $ref: "./paths/survey-statistic/summary.yaml"
+
+  /dashboard/applications:
+    $ref: "./paths/dashboard/application.yaml"
+  /dashboard/new-applicants:
+    $ref: "./paths/dashboard/applicant.yaml"
+  /dashboard/new-chats:
+    $ref: "./paths/dashboard/chat.yaml"
+  /dashboard/projects:
+    $ref: "./paths/dashboard/project.yaml"
+  /dashboard/interviews:
+    $ref: "./paths/dashboard/interview.yaml"
+  /dashboard/notifications:
+    $ref: "./paths/dashboard/notification.yaml"
+  /dashboard/notifications/{id}:
+    $ref: "./paths/dashboard/notification-detail.yaml"
+
+  /message-groups/templates:
+    $ref: "./paths/message/template.yaml"
+  /message-groups/surveys:
+    $ref: "./paths/message/survey.yaml"
+  /message-groups/{id}/profile:
+    $ref: "./paths/message/profile.yaml"
+
+  /dropdowns/prefectures:
+    $ref: "./paths/dropdown/prefecture/list.yaml"
+  /dropdowns/operator-accounts/teams:
+    $ref: "./paths/dropdown/operator/team.yaml"
+  /dropdowns/operator-accounts/staffs:
+    $ref: "./paths/dropdown/operator/staff.yaml"
+  /dropdowns/operator-accounts/branches:
+    $ref: "./paths/dropdown/operator/branch.yaml"
+  /dropdowns/operator-accounts/stores:
+    $ref: "./paths/dropdown/operator/store.yaml"
+  /dropdowns/operator-accounts/managers:
+    $ref: "./paths/dropdown/operator/manager.yaml"
+  /dropdowns/operator-accounts/clients:
+    $ref: "./paths/dropdown/operator/client.yaml"
+  /dropdowns/operator-accounts/projects:
+    $ref: "./paths/dropdown/operator/project.yaml"
+
+  /dropdowns/oem-accounts/teams:
+    $ref: "./paths/dropdown/oem/team.yaml"
+  /dropdowns/oem-accounts/staffs:
+    $ref: "./paths/dropdown/oem/staff.yaml"
+  /dropdowns/oem-accounts/branches:
+    $ref: "./paths/dropdown/oem/branch.yaml"
+  /dropdowns/oem-accounts/stores:
+    $ref: "./paths/dropdown/oem/store.yaml"
+  /dropdowns/oem-accounts/managers:
+    $ref: "./paths/dropdown/oem/manager.yaml"
+  /dropdowns/oem-accounts/clients:
+    $ref: "./paths/dropdown/oem/client.yaml"
+  /dropdowns/oem-accounts/projects:
+    $ref: "./paths/dropdown/oem/project.yaml"
+
+  /dropdowns/client-accounts/managers:
+    $ref: "./paths/dropdown/client/manager.yaml"
+  /dropdowns/client-accounts/branches:
+    $ref: "./paths/dropdown/client/branch.yaml"
+  /dropdowns/client-accounts/stores:
+    $ref: "./paths/dropdown/client/store.yaml"
+  /dropdowns/client-accounts/master-data/{statusId}:
+    $ref: "./paths/dropdown/client/status.yaml"
+  /dropdowns/client-accounts/medias:
+    $ref: "./paths/dropdown/client/media.yaml"
+  /dropdowns/client-accounts/applicants:
+    $ref: "./paths/dropdown/client/applicant.yaml"
+  /dropdowns/client-accounts/projects:
+    $ref: "./paths/dropdown/client/project.yaml"
+
+  /dropdowns/postcode/{postCode}:
+    $ref: "./paths/dropdown/postcode.yaml"
+
+  /accounts/{accountId}/type/{accountType}/proxy-login:
+    $ref: "./paths/auth/proxy-login.yaml"
+
+  /applicants/{applicantId}/history-calls:
+    $ref: "./paths/historyCall/list.yaml"
+  /applicants/{applicantId}/history-calls/{id}:
+    $ref: "./paths/historyCall/detail.yaml"
+  /applicants/{applicantId}/history-calls/{id}/memo:
+    $ref: "./paths/historyCall/memo.yaml"
+  
+  /public/survey-submission:
+    $ref: "./paths/public/survey-submission.yaml"
+  /public/survey:
+    $ref: "./paths/public/survey.yaml"
+
+  /crawler/import-media-csv:
+    $ref: "./paths/crawler/import-media-csv.yaml"
+  /crawler/medias:
+    $ref: "./paths/crawler/medias.yaml"
+  
+  /webhook/applicants:
+    $ref: "./paths/webhook/applicants.yaml"
+      
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: API-KEY
+  schemas:
+    $ref: "./schemas/_index.yaml"
+  parameters:
+    $ref: "./parameters/_index.yaml"

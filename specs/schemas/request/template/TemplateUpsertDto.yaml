@@ -1,0 +1,15 @@
+type: object
+required:
+  - name
+  - content
+description: |
+  テンプレート編集
+properties:
+  name:
+    type: string
+    description: テンプレート名
+    example: 面接日程決定のご連絡
+  content:
+    type: string
+    description: テンプレート内容
+    example: お世話になっております。

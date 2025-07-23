@@ -1,0 +1,49 @@
+type: object
+required:
+  - id
+  - fullName
+  - gender
+  - age
+  - address
+  - isDuplicate
+  - isValid
+  - isBlacklist
+description: |
+  テンプレート管理
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  gender:
+    type: string
+    nullable: true
+    description: 性別
+    example: FEMALE
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: age
+    example: 10
+  address:
+    type: string
+    nullable: true
+    description: address
+    example: 東京都中央区
+  isDuplicate:
+    type: boolean
+    description: 重複
+    example: false
+  isValid:
+    type: boolean
+    description: 有効
+    example: false
+  isBlacklist:
+    type: boolean
+    description: 対象外
+    example: false

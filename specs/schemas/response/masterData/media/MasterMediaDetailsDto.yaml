@@ -1,0 +1,58 @@
+type: object
+required:
+  - id
+  - name
+  - mediaCode
+  - amount
+  - hexColor
+  - memo
+  - siteName
+  - managementLoginId
+  - managementPwd
+description: |
+  媒体マスタ詳細
+properties:
+  id:
+    type: string
+    description: 媒体ID
+    example: id
+  name:
+    type: string
+    description: 媒体名
+    example: 緊急メンテナンスのお知らせ
+  mediaCode:
+    type: string
+    nullable: true
+    description: 媒体コード
+    example: お知らせ本文テキスト
+  amount:
+    type: integer
+    format: int32
+    description: 金額
+    example: 10000
+  hexColor:
+    type: string
+    nullable: true
+    description: 色
+    example: "#00000"
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: "メモを入力してください"
+  siteName:
+    type: string
+    nullable: true
+    description: 連携先 管理画面URL
+    example: http://link.comm
+  managementLoginId:
+    type: string
+    nullable: true
+    description: ログインID
+    example: admin
+  managementPwd:
+    type: string
+    nullable: true
+    description: パスワード
+    example: password
+  

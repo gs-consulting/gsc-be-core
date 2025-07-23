@@ -1,0 +1,15 @@
+type: object
+required:
+  - id
+  - name
+description: | 
+  媒体マスタ登録一覧
+properties:
+  id:
+    type: string
+    description: 媒体ID
+    example: id
+  name:
+    type: string
+    description: 媒体名
+    example: doda

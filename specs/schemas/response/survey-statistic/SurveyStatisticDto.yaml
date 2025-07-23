@@ -1,0 +1,22 @@
+type: object
+required:
+  - name
+  - questions
+  - unansweredApplicants
+description: |
+  アンケートの統計画面
+properties:
+  name:
+    type: string
+    description: テンプレート名
+    example: 仕事の経験年数
+  questions:
+    type: array
+    items:
+      $ref: ./SurveyStatisticQuestionsDto.yaml
+  unansweredApplicants:
+    type: array
+    items:
+      $ref: ./SurveyUnansweredItemsDto.yaml
+x-use:
+  builder: true

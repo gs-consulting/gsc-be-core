@@ -1,0 +1,15 @@
+type: array
+description: | 
+  面接一覧
+items:
+  $ref: "./MasterInterviewCategoryUpsertDto.yaml"
+example:
+  - id: id
+    name: 未対応
+    order: 0
+  - id: null
+    name: 選考前辞退
+    order: 1
+  - id: null
+    name: 書類送付依頼
+    order: 2

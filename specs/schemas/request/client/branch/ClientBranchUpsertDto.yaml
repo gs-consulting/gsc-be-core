@@ -1,0 +1,90 @@
+type: object
+description: |
+  クライアント・支店登録
+required:
+  - name
+  - furiganaName
+  - branchCode
+  - postCode
+  - prefecture
+  - city
+  - tel
+  - faxCode
+  - email
+  - memo
+  - staffPermission
+  - partTimePermission
+  - managerRestrictions
+properties:
+  name:
+    type: string
+    description: 支店名
+    example: 〇〇支店
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: 〇〇支店
+    x-use:
+      furigana: true
+  branchCode:
+    type: string
+    nullable: true
+    description: 支店コード
+    example: code
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+    x-use:
+      postcode: true
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: "0901-2345-678"
+    x-use:
+      phone: true
+  faxCode:
+    type: string
+    nullable: true
+    description: FAX番号
+    example: "0901-2345-678"
+    x-use:
+      fax-code: true
+  email:
+    type: string
+    nullable: true
+    description: メールアドレス
+    example: sample@goalist.co.jp
+    x-use:
+      email: true
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: "メモ"
+  staffPermission:
+    type: string
+    description: 雇用形態権限(社員)
+    example: "VIEW"
+  partTimePermission:
+    type: string
+    description: 雇用形態権限(アルバイト)
+    example: "EDIT"
+  managerRestrictions:
+    type: array
+    description: 職種権限_担当者なし
+    nullable: true
+    items:
+      $ref: ./ClientBranchRestrictionUpsertDto.yaml

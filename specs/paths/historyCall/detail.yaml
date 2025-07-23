@@ -1,0 +1,127 @@
+get:
+  summary: Get details of a history call (通話履歴)
+  description: |
+    # Get details of a history call
+  security: 
+    - bearerAuth: []
+  operationId: getHistoryCallDetails
+  parameters:
+    - $ref: "../../parameters/path/applicantId.yaml"
+    - $ref: "../../parameters/path/id.yaml"
+  responses:
+    200:
+      description: Get details of a history call
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/historyCall/HistoryCallDetailsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+put:
+  summary: Edit a history call (通話履歴)
+  description: |
+    # Edit a history call
+  security: 
+    - bearerAuth: []
+  operationId: editHistoryCall
+  parameters:
+    - $ref: "../../parameters/path/applicantId.yaml"
+    - $ref: "../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/historyCall/HistoryCallUpsertDto.yaml"
+  responses:
+    200:
+      description: History call updated successfully
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

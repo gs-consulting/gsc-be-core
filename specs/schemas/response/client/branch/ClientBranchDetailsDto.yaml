@@ -1,0 +1,78 @@
+type: object
+description: |
+  支店詳細
+required:
+  - id
+  - name
+  - furiganaName
+  - branchCode
+  - postCode
+  - prefecture
+  - city
+  - tel
+  - faxCode
+  - email
+  - memo
+  - staffPermission
+  - partTimePermission
+properties:
+  id:
+    type: string
+    description: アカウントID
+    example: id
+  name:
+    type: string
+    description: 支店名
+    example: 〇〇支店
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: 〇〇支店
+  branchCode:
+    type: string
+    nullable: true
+    description: 支店コード
+    example: code
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: "09012345678"
+  faxCode:
+    type: string
+    nullable: true
+    description: FAX番号
+    example: "09012345678"
+  email:
+    type: string
+    nullable: true
+    description: メールアドレス
+    example: sample@goalist.co.jp
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: "メモ"
+  staffPermission:
+    type: string
+    description: 雇用形態権限(社員)
+    example: "VIEW"
+  partTimePermission:
+    type: string
+    description: 雇用形態権限(アルバイト)
+    example: "EDIT"

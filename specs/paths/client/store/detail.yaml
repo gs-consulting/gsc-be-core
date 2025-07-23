@@ -1,0 +1,125 @@
+get:
+  summary: Get store information (クライアント・拠点・店舗名)
+  security:
+    - bearerAuth: []
+  operationId: getClientStoreDetails
+  description: |
+    # Get store information
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    200:
+      description: Get successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/client/store/ClientStoreDetailsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+            
+put:
+  summary: Edit a store (クライアント・拠点・店舗名)
+  operationId: editClientStore
+  security:
+    - bearerAuth: []
+  description: |
+    # Edit a store
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/client/store/ClientStoreUpsertDto.yaml"
+  responses:
+    200:
+      description: Updated successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "400"
+            fieldError: "name"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

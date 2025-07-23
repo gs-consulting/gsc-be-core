@@ -1,0 +1,34 @@
+type: object
+description: 運営のアカウント登録
+required:
+  - email
+  - fullName
+  - teamIds
+  - permissions
+properties:
+  email:
+    type: string
+    format: email
+    description: メールアドレス
+    example: abc@goalist.co.jp
+    x-use:
+      email: true
+  fullName:
+    type: string
+    description: 氏名
+    example: 山田太郎
+  teamIds:
+    type: array
+    nullable: true
+    description: チーム
+    items: 
+      type: string
+    example:
+      - id1
+  permissions:
+    type: array
+    nullable: true
+    description: 機能制限
+    items:
+      type: string
+    example: [ "1", "3", "4" ]

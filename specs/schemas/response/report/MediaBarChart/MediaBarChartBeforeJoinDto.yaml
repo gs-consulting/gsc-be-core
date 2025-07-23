@@ -1,0 +1,23 @@
+type: object
+description: ボリューム推移タイムライン（入社前）
+required:
+  - apply
+  - interview
+  - offer
+  - agreement
+  - colors
+properties:
+  apply:
+    $ref: "./MediaBarChartBeforeJoinItemsDto.yaml"
+  interview:
+    $ref: "./MediaBarChartBeforeJoinItemsDto.yaml"
+  offer:
+    $ref: "./MediaBarChartBeforeJoinItemsDto.yaml"
+  agreement:
+    $ref: "./MediaBarChartBeforeJoinItemsDto.yaml"
+  colors:
+    type: array
+    items:
+      $ref: "../MediaColorDto.yaml"
+x-use:
+  builder: true

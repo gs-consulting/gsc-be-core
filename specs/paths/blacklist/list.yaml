@@ -1,0 +1,59 @@
+post:
+  summary: Get list of blacklists (選考対象外一覧)
+  operationId: getBlacklists
+  security:
+    - bearerAuth: []
+  description: |
+    # Get list of blacklists
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/blacklist/BlacklistSearchDto.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/blacklist/BlacklistListDto.yaml"
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "name"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

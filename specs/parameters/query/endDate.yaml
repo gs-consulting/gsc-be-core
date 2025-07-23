@@ -1,0 +1,8 @@
+name: endDate
+in: query
+required: false
+description: 終了日を選択
+schema:
+  type: string
+  format: date
+  example: 2025/03/30

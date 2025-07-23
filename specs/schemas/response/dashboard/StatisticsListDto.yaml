@@ -1,0 +1,12 @@
+type: object
+required:
+  - today
+  - recent
+description: | 
+  社内ユーザー情報
+properties:
+  today:
+    $ref: StatisticsTodayDto.yaml
+  recent:
+    $ref: StatisticsRecentDto.yaml
+

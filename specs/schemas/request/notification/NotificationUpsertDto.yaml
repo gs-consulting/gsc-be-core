@@ -1,0 +1,32 @@
+type: object
+required:
+  - title
+  - content
+  - postingStartDate
+  - postingEndDate
+  - status
+description: | 
+  お知らせ設定のフォーム
+properties:
+  title:
+    type: string
+    description: タイトル
+    example: 緊急メンテナンスのお知らせ
+  content:
+    type: string
+    description: お知らせ本文
+    example: お知らせ本文テキスト
+  postingStartDate:
+    type: string
+    format: date
+    description: 掲載開始日
+    example: 2022/12/31
+  postingEndDate:
+    type: string
+    format: date
+    description: 掲載終了日
+    example: 2023/06/30
+  status:
+    type: string
+    description: ステータス
+    example: PUBLIC

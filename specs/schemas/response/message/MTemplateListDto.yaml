@@ -1,0 +1,16 @@
+allOf:
+  - $ref: "../MetaListResponse.yaml"
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./MTemplateItemsDto.yaml
+        example:
+          - id: id
+            name: テンプレ名
+            content: テンプレート内容を確認
+x-use:
+  builder: true

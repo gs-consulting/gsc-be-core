@@ -1,0 +1,38 @@
+post:
+  summary: Login API
+  operationId: login
+  security: []
+  description: |
+    # Login API
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/auth/LoginFormDto.yaml"
+  responses:
+    201:
+      description: User exists and password is correct
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/auth/LoginInfoDto.yaml"
+    400:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid username
+            statusCode: "400"
+            fieldError: "username"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

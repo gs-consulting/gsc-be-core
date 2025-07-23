@@ -1,0 +1,20 @@
+type: object
+description: |
+  媒体マスタ一覧
+allOf:
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./MasterMediaItemsDto.yaml
+        example:
+          - id: id
+            title: 求人部
+          - id: id
+            title: エン転職
+x-use:
+  builder: true

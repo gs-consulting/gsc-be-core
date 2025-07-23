@@ -1,0 +1,47 @@
+get:
+  tags:
+    - crawler
+  summary: "クローラーメディアデータ取得"
+  description: "クローラーに必要なメディアデータを取得するAPI"
+  operationId: getCrawlerMedias
+  security:
+    - apiKeyAuth: []
+  parameters:
+    - name: mediaId
+      in: query
+      required: true
+      schema:
+        type: string
+      description: "Media ID"
+  responses:
+    "200":
+      description: "OK"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/crawler/CrawlerMediasDto.yaml"
+    "400":
+      description: "Bad Request"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "401":
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "403":
+      description: "Forbidden"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "500":
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+            

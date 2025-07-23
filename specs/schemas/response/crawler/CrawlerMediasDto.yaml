@@ -1,0 +1,23 @@
+type: object
+properties:
+  mediaId:
+    type: string
+    description: "メディアID"
+  loginId:
+    type: string
+    description: "ログインID"
+  password:
+    type: string
+    description: "パスワード"
+  parentId:
+    type: string
+    description: "クライアントID"
+  oemGroupId:
+    type: string
+    description: "OEMグループID"
+required:
+  - mediaId
+  - loginId
+  - password
+  - parentId
+  - oemGroupId

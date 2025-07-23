@@ -1,0 +1,49 @@
+post:
+  summary: Get media cost after join report (媒体費レポート)
+  security:
+    - bearerAuth: []
+  operationId: getMediaCostAfterJoin
+  description: |
+    # Get media cost report - first table and charts
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/report/MediaReportSearchBoxDto.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/report/MediaReportAfterJoinDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

@@ -1,0 +1,138 @@
+type: object
+required:
+  - fullName
+  - furiganaName
+  - birthday
+  - gender
+  - projectId
+  - mediaId
+  - email
+  - tel
+  - postCode
+  - prefecture
+  - city
+  - homeAddress
+  - occupation
+  - selectionStatusId
+  - qualificationIds
+  - experienceIds
+  - picId
+  - joinDate
+  - interviews
+description: |
+  応募者情報
+properties:
+  fullName:
+    type: string
+    description: 名前(漢字)
+    example: 山田太郎
+  furiganaName:
+    type: string
+    nullable: true
+    description: フリガナ
+    example: ヤマダタロウ
+    x-use:
+      furigana: true
+  birthday:
+    type: string
+    nullable: true
+    format: date
+    description: 生年月日
+    example: "1990-01-01"
+  gender:
+    type: string
+    nullable: true
+    default: MALE
+    description: 性別
+    example: MALE
+  projectId:
+    type: string
+    description: 案件ID
+    example: id
+  mediaId:
+    type: string
+    nullable: true
+    description: 媒体ID
+    example: id
+  email:
+    type: string
+    format: email
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+    x-use:
+      email: true
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: "090-1234-5678"
+    x-use:
+      phone: true
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+    x-use:
+      postcode: true
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県 / String number
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  homeAddress:
+    type: string
+    nullable: true
+    description: 住所(その他)
+    example: 1-1-1
+  occupation:
+    type: string
+    nullable: true
+    description: |
+      現在の職業
+    example: STUDENT
+  selectionStatusId:
+    type: string
+    nullable: true
+    description: 選考ステータス
+    example: id
+  qualificationIds:
+    type: array
+    nullable: true
+    description: 資格
+    items:
+      type: string
+    example:
+      - NORMAL
+  experienceIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: |
+      経験
+    example:
+      - EXP
+  picId:
+    type: string
+    nullable: true
+    description: 担当者ID / client account
+    example: id
+  joinDate:
+    type: string
+    format: date
+    nullable: true
+    description: 入社日
+    example: "2025-01-01"
+  interviews:
+    type: array
+    items:
+      $ref: "./ApplicantInterviewUpsertDto.yaml"
+    nullable: true
+    description: 面接情報

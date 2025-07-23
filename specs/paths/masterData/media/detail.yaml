@@ -1,0 +1,114 @@
+get:
+  summary: Get media details (媒体マスタ登録)
+  security:
+    - bearerAuth: []
+  operationId: getMasterMediaDetails
+  description: |
+    # Get media details
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    200:
+      description: Get all notifications
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/masterData/media/MasterMediaDetailsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+put:
+  summary: Edit a master media (媒体マスタ登録)
+  security:
+    - bearerAuth: []
+  operationId: editMasterMedia
+  description: |
+    # Edit a master media
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/masterData/media/MasterMediaUpsertDto.yaml"
+  responses:
+    201:
+      description: Save notifications successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

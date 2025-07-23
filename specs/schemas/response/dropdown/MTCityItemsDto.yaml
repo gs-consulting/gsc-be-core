@@ -1,0 +1,17 @@
+type: object
+required:
+  - id
+  - name
+  - cities
+description: | 
+  市区群一覧
+properties:
+  id:
+    type: integer
+    format: int32
+    description: 市区群コード
+    example: 1202
+  name:
+    type: string
+    description: 市区群
+    example: 函館市

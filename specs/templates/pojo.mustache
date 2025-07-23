@@ -1,0 +1,247 @@
+/**
+ * {{description}}{{^description}}{{classname}}{{/description}}{{#isDeprecated}}
+ * @deprecated{{/isDeprecated}}
+ */
+{{>additionalModelTypeAnnotations}}
+@lombok.Getter
+@lombok.Setter
+{{#vendorExtensions.x-use.builder}}
+@lombok.Builder
+{{/vendorExtensions.x-use.builder}}
+{{#description}}
+{{#isDeprecated}}
+@Deprecated
+{{/isDeprecated}}
+{{#swagger1AnnotationLibrary}}
+@ApiModel(description = "{{{description}}}")
+{{/swagger1AnnotationLibrary}}
+{{#swagger2AnnotationLibrary}}
+@Schema({{#name}}name = "{{name}}", {{/name}}description = "{{{description}}}"{{#deprecated}}, deprecated = true{{/deprecated}})
+{{/swagger2AnnotationLibrary}}
+{{/description}}
+{{#discriminator}}
+{{>typeInfoAnnotation}}
+{{/discriminator}}
+{{#jackson}}
+{{#isClassnameSanitized}}
+{{^hasDiscriminatorWithNonEmptyMapping}}
+@JsonTypeName("{{name}}")
+{{/hasDiscriminatorWithNonEmptyMapping}}
+{{/isClassnameSanitized}}
+{{/jackson}}
+{{#withXml}}
+{{>xmlAnnotation}}
+{{/withXml}}
+{{#vendorExtensions.x-class-extra-annotation}}
+{{{vendorExtensions.x-class-extra-annotation}}}
+{{/vendorExtensions.x-class-extra-annotation}}
+public class {{classname}}{{#parent}} extends {{{parent}}}{{/parent}}{{^parent}}{{#hateoas}} extends RepresentationModel<{{classname}}> {{/hateoas}}{{/parent}}{{#vendorExtensions.x-implements}}{{#-first}} implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{/vendorExtensions.x-implements}} {
+{{#serializableModel}}
+  private static final long serialVersionUID = 1L;
+{{/serializableModel}}
+{{! begin feature: display field }}
+  {{#vars}}
+
+    {{#isEnum}}
+    {{^isContainer}}
+{{>enumClass}}
+    {{/isContainer}}
+    {{#isContainer}}
+    {{#mostInnerItems}}
+{{>enumClass}}
+    {{/mostInnerItems}}
+    {{/isContainer}}
+    {{/isEnum}}
+  {{#jackson}}
+  {{#withXml}}
+  @JacksonXmlProperty({{#isXmlAttribute}}isAttribute = true, {{/isXmlAttribute}}{{#xmlNamespace}}namespace="{{.}}", {{/xmlNamespace}}localName = "{{xmlName}}{{^xmlName}}{{baseName}}{{/xmlName}}")
+  {{/withXml}}
+  {{/jackson}}
+  {{#gson}}
+  @SerializedName("{{baseName}}")
+  {{/gson}}
+  {{#vendorExtensions.x-field-extra-annotation}}
+  {{{vendorExtensions.x-field-extra-annotation}}}
+  {{/vendorExtensions.x-field-extra-annotation}}
+  {{#deprecated}}
+  @Deprecated
+  {{/deprecated}}
+  {{#isContainer}}
+  {{#useBeanValidation}}{{>beanValidation}}{{/useBeanValidation}}
+  {{#openApiNullable}}
+  private {{#isNullable}}{{>nullableDataTypeBeanValidation}} {{name}} = JsonNullable.<{{{datatypeWithEnum}}}>undefined();{{/isNullable}}{{^required}}{{^isNullable}}{{>nullableDataTypeBeanValidation}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/isNullable}}{{/required}}{{#required}}{{^isNullable}}{{>nullableDataTypeBeanValidation}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/isNullable}}{{/required}}
+  {{/openApiNullable}}
+  {{^openApiNullable}}
+  private {{>nullableDataType}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};
+  {{/openApiNullable}}
+  {{/isContainer}}
+  {{^isContainer}}
+  {{! begin feature: check for String type }}
+  {{#isString}}
+  {{#required}}
+  {{^isNullable}}
+  {{#isEnum}}
+  @NotNull(message = "この項目は必須です。")
+  {{/isEnum}}
+  {{^isEnum}}
+  @NotBlank(message = "この項目は必須です。")
+  {{/isEnum}}
+  {{/isNullable}}
+  {{/required}}
+  {{#vendorExtensions.x-use.number-pattern}}
+  @Pattern(regexp = "{{vendorExtensions.x-use.number-pattern}}", message = "数字のみ入力してください。")
+  {{/vendorExtensions.x-use.number-pattern}}
+  {{#vendorExtensions.x-use.password}}
+  @jp.co.goalist.gsc.utils.validation.CustomPasswordConstraint
+  {{/vendorExtensions.x-use.password}}
+  {{#vendorExtensions.x-use.furigana}}
+  @jp.co.goalist.gsc.utils.validation.FuriganaConstraint
+  {{/vendorExtensions.x-use.furigana}}
+  {{#vendorExtensions.x-use.postcode}}
+  @jp.co.goalist.gsc.utils.validation.PostCodeConstraint
+  {{/vendorExtensions.x-use.postcode}}
+  {{#vendorExtensions.x-use.time-pattern}}
+  @jp.co.goalist.gsc.utils.validation.CustomTimeConstraint
+  {{/vendorExtensions.x-use.time-pattern}}
+  {{#vendorExtensions.x-use.email}}
+  @jp.co.goalist.gsc.utils.validation.EmailConstraint
+  {{/vendorExtensions.x-use.email}}
+  {{#vendorExtensions.x-use.phone}}
+  @jp.co.goalist.gsc.utils.validation.PhoneNumberConstraint
+  {{/vendorExtensions.x-use.phone}}
+  {{#vendorExtensions.x-use.fax-code}}
+  @jp.co.goalist.gsc.utils.validation.FaxCodeConstraint
+  {{/vendorExtensions.x-use.fax-code}}
+  {{/isString}}
+  {{! end feature: check for String type }}
+  {{! begin feature: check for Integer type }}
+  {{#isInteger}}
+  {{#required}}
+  {{^isNullable}}
+  @NotNull(message = "この項目は必須です。")
+  {{/isNullable}}
+  {{/required}}
+  {{/isInteger}}
+  {{! end feature: check for Integer type }}
+  {{! begin feature: check for Long type }}
+  {{#isLong}}
+  {{#required}}
+  {{^isNullable}}
+  @NotNull(message = "この項目は必須です。")
+  {{/isNullable}}
+  {{/required}}
+  {{/isLong}}
+  {{! end feature: check for Long type }}
+  {{! begin feature: check for Boolean type }}
+  {{#isBool}}
+  {{#required}}
+  {{^isNullable}}
+  @NotNull(message = "この項目は必須です。")
+  {{/isNullable}}
+  {{/required}}
+  {{/isBool}}
+  {{! end feature: check for Boolean type }}
+  {{#isDate}}
+  {{#required}}
+  {{^isNullable}}
+  @NotNull(message = "この項目は必須です。")
+  {{/isNullable}}
+  {{/required}}
+  @JsonFormat(pattern = "yyyy/MM/dd")
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
+  {{/isDate}}
+  {{#isDateTime}}
+  @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+  @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+  {{/isDateTime}}
+  {{#openApiNullable}}
+  private {{#isNullable}}{{>nullableDataTypeBeanValidation}} {{name}} = JsonNullable.<{{{datatypeWithEnum}}}>undefined();{{/isNullable}}{{^required}}{{^isNullable}}{{>nullableDataTypeBeanValidation}} {{name}}{{#useOptional}} = Optional.{{^defaultValue}}empty(){{/defaultValue}}{{#defaultValue}}of({{{.}}}){{/defaultValue}};{{/useOptional}}{{^useOptional}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/useOptional}}{{/isNullable}}{{/required}}{{^isNullable}}{{#required}}{{>nullableDataTypeBeanValidation}} {{name}}{{#defaultValue}} = {{{.}}}{{/defaultValue}};{{/required}}{{/isNullable}}
+  {{/openApiNullable}}
+  {{^openApiNullable}}
+  private {{>nullableDataType}} {{name}}{{#isNullable}} = null{{/isNullable}}{{^isNullable}}{{#defaultValue}} = {{{.}}}{{/defaultValue}}{{/isNullable}};
+  {{/openApiNullable}}
+  {{/isContainer}}
+  {{/vars}}
+{{>additionalProperties}}
+  {{#parentVars}}
+
+  {{! begin feature: fluent setter methods for inherited properties }}
+  public {{classname}} {{name}}({{{datatypeWithEnum}}} {{name}}) {
+    super.{{name}}({{name}});
+    return this;
+  }
+  {{#isArray}}
+
+  public {{classname}} add{{nameInCamelCase}}Item({{{items.datatypeWithEnum}}} {{name}}Item) {
+    super.add{{nameInCamelCase}}Item({{name}}Item);
+    return this;
+  }
+  {{/isArray}}
+  {{#isMap}}
+
+  public {{classname}} put{{nameInCamelCase}}Item(String key, {{{items.datatypeWithEnum}}} {{name}}Item) {
+    super.put{{nameInCamelCase}}Item(key, {{name}}Item);
+    return this;
+  }
+  {{/isMap}}
+  {{! end feature: fluent setter methods for inherited properties }}
+  {{/parentVars}}
+
+{{! end feature: fluent setter methods }}
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }{{#hasVars}}
+    {{classname}} {{classVarName}} = ({{classname}}) o;
+    return {{#vars}}{{#vendorExtensions.x-is-jackson-optional-nullable}}equalsNullable(this.{{name}}, {{classVarName}}.{{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^vendorExtensions.x-is-jackson-optional-nullable}}{{#isByteArray}}Arrays{{/isByteArray}}{{^isByteArray}}Objects{{/isByteArray}}.equals(this.{{name}}, {{classVarName}}.{{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^-last}} &&
+        {{/-last}}{{/vars}}{{#additionalPropertiesType}} &&
+    Objects.equals(this.additionalProperties, {{classVarName}}.additionalProperties){{/additionalPropertiesType}}{{#parent}} &&
+        super.equals(o){{/parent}};{{/hasVars}}{{^hasVars}}
+    return true;{{/hasVars}}
+  }{{#vendorExtensions.x-jackson-optional-nullable-helpers}}
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }{{/vendorExtensions.x-jackson-optional-nullable-helpers}}
+
+  @Override
+  public int hashCode() {
+    return Objects.hash({{#vars}}{{#vendorExtensions.x-is-jackson-optional-nullable}}hashCodeNullable({{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^vendorExtensions.x-is-jackson-optional-nullable}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}Arrays.hashCode({{name}}){{/isByteArray}}{{/vendorExtensions.x-is-jackson-optional-nullable}}{{^-last}}, {{/-last}}{{/vars}}{{#parent}}{{#hasVars}}, {{/hasVars}}super.hashCode(){{/parent}}{{#additionalPropertiesType}}{{#hasVars}}, {{/hasVars}}{{^hasVars}}{{#parent}}, {{/parent}}{{/hasVars}}additionalProperties{{/additionalPropertiesType}});
+  }{{#vendorExtensions.x-jackson-optional-nullable-helpers}}
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+  }{{/vendorExtensions.x-jackson-optional-nullable-helpers}}
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class {{classname}} {\n");
+    {{#parent}}
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    {{/parent}}
+    {{#vars}}sb.append("    {{name}}: ").append({{#isPassword}}"*"{{/isPassword}}{{^isPassword}}toIndentedString({{name}}){{/isPassword}}).append("\n");
+    {{/vars}}{{#additionalPropertiesType}}
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
+    {{/additionalPropertiesType}}sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+}

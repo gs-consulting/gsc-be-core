@@ -1,0 +1,15 @@
+type: object
+description: 入社前のテーブルとグラフ
+required:
+  - costTable
+  - barChart
+  - pieChart
+properties:
+  costTable:
+    $ref: ./MediaTable/MediaCostListBeforeJoinDto.yaml
+  barChart:
+    $ref: ./MediaBarChart/MediaBarChartBeforeJoinDto.yaml
+  pieChart:
+    $ref: ./MediaPieChart/MediaPieChartBeforeJoinDto.yaml
+x-use:
+  builder: true

@@ -1,0 +1,27 @@
+package {{package}};
+
+import java.net.URI;
+{{#imports}}import {{import}};
+{{/imports}}
+{{#openApiNullable}}
+import org.openapitools.jackson.nullable.JsonNullable;
+{{/openApiNullable}}
+import com.fasterxml.jackson.annotation.*;
+{{#useBeanValidation}}
+import {{javaxPackage}}.validation.Valid;
+import {{javaxPackage}}.validation.constraints.*;
+{{/useBeanValidation}}
+{{^useBeanValidation}}
+import {{javaxPackage}}.validation.constraints.NotNull;
+{{/useBeanValidation}}
+{{#swagger2AnnotationLibrary}}
+import io.swagger.v3.oas.annotations.media.Schema;
+{{/swagger2AnnotationLibrary}}
+
+import java.util.*;
+
+{{#models}}
+{{#model}}
+{{>pojo}}
+{{/model}}
+{{/models}}

@@ -1,0 +1,13 @@
+name: statusType
+in: path
+description: |
+  案件ステータスenum
+  - 職種 / OCCUPATION
+  - 雇用形態 / EMPLOYMENT_TYPE
+  - 勤務期間 / WORK_PERIOD
+  - 面接会場 / INTERVIEW_LOC
+  - 資格 / QUALIFICATION
+required: true
+schema:
+  type: string
+  example: OCCUPATION

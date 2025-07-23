@@ -1,0 +1,39 @@
+type: object
+description: 未読メッセージ
+required: 
+  - id
+  - fullName
+  - gender
+  - age
+  - address
+  - repliedDate
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  gender:
+    type: string
+    description: 性別
+    nullable: true
+    example: FEMALE
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: 年齢
+    example: 10
+  address:
+    type: string
+    nullable: true
+    description: 住所
+    example: 東京都中央区
+  repliedDate:
+    type: string
+    format: date-time
+    description: 応募受付日時
+    example: 2024/12/31 22:10

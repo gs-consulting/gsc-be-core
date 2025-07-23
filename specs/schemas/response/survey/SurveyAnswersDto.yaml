@@ -1,0 +1,20 @@
+type: object
+required:
+  - id
+  - answerText
+  - isFixed
+description: |
+  選択方式
+properties:
+  id:
+    type: string
+    description: 回答ID
+    example: id
+  answerText:
+    type: string
+    description: 回答テキスト
+    example: 質問1
+  isFixed:
+    type: boolean
+    description: 回答方式固定
+    example: true

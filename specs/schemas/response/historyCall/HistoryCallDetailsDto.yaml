@@ -1,0 +1,24 @@
+type: object
+required:
+  - id
+  - contactStartDateTime
+  - contactEndDateTime
+  - picId
+  - memo
+properties:
+  id:
+    type: string
+    description: 通話履歴ID
+  contactStartDateTime:
+    type: string
+    description: 通話開始時間
+  contactEndDateTime:
+    type: string
+    description: 通話終了時間
+  picId:
+    type: string
+    description: 担当者ID
+  memo:
+    type: string
+    nullable: true
+    description: メモ

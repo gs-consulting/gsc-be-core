@@ -1,0 +1,16 @@
+type: object
+description: 媒体の表示色
+required:
+  - name
+  - color
+properties:
+  name:
+    type: string
+    description: 媒体名
+    example: indeed
+  color:
+    type: string
+    description: 色
+    example: "#fffff"
+x-use:
+  builder: true

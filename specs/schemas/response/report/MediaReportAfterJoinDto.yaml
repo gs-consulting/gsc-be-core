@@ -1,0 +1,15 @@
+type: object
+description: 入社後のテーブルとグラフ
+required:
+  - costTable
+  - barChart
+  - pieChart
+properties:
+  costTable:
+    $ref: ./MediaTable/MediaCostListAfterJoinDto.yaml
+  barChart:
+    $ref: ./MediaBarChart/MediaBarChartAfterJoinDto.yaml
+  pieChart:
+    $ref: ./MediaPieChart/MediaPieChartAfterJoinDto.yaml
+x-use:
+  builder: true

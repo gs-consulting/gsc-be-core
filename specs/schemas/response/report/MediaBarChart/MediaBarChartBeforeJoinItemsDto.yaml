@@ -1,0 +1,16 @@
+type: object
+nullable: true
+description: バーグラフで入社前の項目
+required:
+  - total
+  - groups
+properties:
+  total:
+    $ref: "./MediaBarChartTotalDto.yaml"
+  groups:
+    type: array
+    items:
+      $ref: "./MediaBarChartItemGroupDto.yaml"
+x-use:
+  builder: true
+

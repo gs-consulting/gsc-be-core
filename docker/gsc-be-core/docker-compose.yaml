@@ -1,0 +1,17 @@
+services:
+  gsc-be-core:
+    image: gsc_be_core:1.0
+    container_name: gsc_be_core
+    build:
+      context: ../..
+      dockerfile: docker/gsc-be-core/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - gsc_network
+
+networks:
+  gsc_network:
+    external: true

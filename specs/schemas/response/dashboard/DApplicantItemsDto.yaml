@@ -1,0 +1,57 @@
+type: object
+description: 新規応募者一覧
+required:
+  - id
+  - fullName
+  - isStatusNotChanged
+  - gender
+  - age
+  - address
+  - mediaName
+  - projectName
+  - registeredDate
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  isStatusNotChanged:
+    type: boolean
+    description: 24時間以上ステータスの変動がない応募のみ表示
+    default: false
+    example: false
+  gender:
+    type: string
+    nullable: true
+    description: 性別
+    example: FEMALE
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: 年齢
+    example: 10
+  address:
+    type: string
+    nullable: true
+    description: 住所
+    example: 東京都中央区
+  mediaName:
+    type: string
+    nullable: true
+    description: 応募経路
+    example: 中小企業求人部
+  projectName:
+    type: string
+    nullable: true
+    description: 案件名
+    example: 案件名
+  registeredDate:
+    type: string
+    format: date-time
+    description: 応募受付日時
+    example: 2024/12/31 22:10

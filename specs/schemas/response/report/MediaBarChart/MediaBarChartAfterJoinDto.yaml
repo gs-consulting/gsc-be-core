@@ -1,0 +1,17 @@
+type: object
+description: ボリューム推移タイムライン（入社後）
+required:
+  - groups
+  - colors
+properties:
+  groups:
+    type: array
+    items:
+      $ref: "./MediaBarChartItemGroupDto.yaml"
+  colors:
+    type: array
+    items:
+      $ref: "../MediaColorDto.yaml"
+x-use:
+  builder: true
+

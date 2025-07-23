@@ -1,0 +1,18 @@
+type: array
+description: |
+  マスターデータ一覧
+items:
+  $ref: ./MasterDataStatusItemsDto.yaml
+example:
+  - id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    name: 選択
+    order: 1
+    isDeletable: true
+  - id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    name: 公開
+    order: 1
+    isDeletable: false
+  - id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    name: 非公開
+    order: 1is
+    isDeletable: false

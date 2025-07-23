@@ -1,0 +1,15 @@
+type: object
+required:
+  - name
+  - content
+description: |
+  テンプレート管理
+properties:
+  name:
+    type: string
+    description: テンプレート名
+    example: 仕事の経験年数
+  content:
+    type: array
+    items:
+      $ref: ./SurveyQuestionsUpsertDto.yaml

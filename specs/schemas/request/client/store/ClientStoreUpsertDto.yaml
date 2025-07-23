@@ -1,0 +1,78 @@
+type: object
+description: |
+  クライアント・拠点・店舗登録
+required:
+  - name
+  - furiganaName
+  - branchId
+  - storeCode
+  - postCode
+  - prefecture
+  - city
+  - tel
+  - faxCode
+  - email
+  - memo
+properties:
+  name:
+    type: string
+    description: 拠点・店舗名
+    example: 〇〇支店
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: 〇〇拠点・店舗
+    x-use:
+      furigana: true
+  branchId:
+    type: string
+    description: 支店
+    example: id
+  storeCode:
+    type: string
+    nullable: true
+    description: 拠点・店舗コード
+    example: code
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+    x-use:
+      postcode: true
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: "0901-2345-678"
+    x-use:
+      phone: true
+  faxCode:
+    type: string
+    nullable: true
+    description: FAX番号
+    example: "0901-2345-678"
+    x-use:
+      fax-code: true
+  email:
+    type: string
+    nullable: true
+    description: メールアドレス
+    example: sample@goalist.co.jp
+    x-use:
+      email: true
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: "メモ"

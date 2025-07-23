@@ -1,0 +1,13 @@
+type: object
+required:
+  - token
+  - content
+properties:
+  token:
+    type: string
+    description: アンケートトークン
+    example: abczyx1234567890
+  content:
+    type: array
+    items:
+      $ref: "./AnswerSubmissionDto.yaml"

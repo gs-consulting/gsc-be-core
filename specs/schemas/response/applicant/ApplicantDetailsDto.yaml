@@ -1,0 +1,147 @@
+type: object
+required:
+  - id
+  - fullName
+  - furiganaName
+  - birthday
+  - gender
+  - projectId
+  - mediaId
+  - email
+  - tel
+  - postCode
+  - prefecture
+  - city
+  - homeAddress
+  - occupation
+  - selectionStatusId
+  - qualificationIds
+  - experienceIds
+  - manuscriptUrl
+  - joinDate
+  - interviews
+  - picId
+  - isCrawledData
+description: |
+  応募者情報
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  fullName:
+    type: string
+    description: 名前(漢字)
+    example: 山田太郎
+  furiganaName:
+    type: string
+    nullable: true
+    description: フリガナ
+    example: ヤマダタロウ
+  birthday:
+    type: string
+    nullable: true
+    format: date
+    description: 生年月日
+    example: "1990-01-01"
+  gender:
+    type: string
+    nullable: true
+    default: MALE
+    description: 性別
+    example: MALE
+  projectId:
+    type: string
+    nullable: true
+    description: |
+      クロールのデータに対してくら案件IDが空いている
+    example: id
+  mediaId:
+    type: string
+    nullable: true
+    description: 媒体ID
+    example: id
+  email:
+    type: string
+    format: email
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 09012345678
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+    x-use:
+      postcode: true
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県 / String number
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  homeAddress:
+    type: string
+    nullable: true
+    description: 住所(その他)
+    example: 1-1-1
+  occupation:
+    type: string
+    nullable: true
+    description: |
+      現在の職業
+    example: id
+  selectionStatusId:
+    type: string
+    nullable: true
+    description: 選考ステータス
+    example: id
+  qualificationIds:
+    type: array
+    nullable: true
+    description: 資格
+    items:
+      type: string
+    example:
+      - NORMAL
+  experienceIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: |
+      経験
+    example:
+      - EXP
+  manuscriptUrl:
+    type: string
+    description: 原稿URL
+    example: https://example.com
+  joinDate:
+    type: string
+    format: date
+    nullable: true
+    description: 入社日
+    example: "2025-01-01"
+  interviews:
+    type: array
+    items:
+      $ref: "./ApplicantInterviewDto.yaml"
+    description: 面接情報
+  picId:
+    type: string
+    nullable: true
+    example: id
+  isCrawledData:
+    type: boolean
+    description: クロールのデータかどうか
+    example: false

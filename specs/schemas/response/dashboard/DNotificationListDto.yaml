@@ -1,0 +1,10 @@
+type: array
+items:
+  $ref: ./DNotificationItemsDto.yaml
+example:
+  - id: id
+    title: 緊急メンテナンスのお知らせ
+    postingStartDate: 2024/12/31
+  - id: id
+    title: 新プランのお知らせ
+    postingStartDate: 2024/12/31

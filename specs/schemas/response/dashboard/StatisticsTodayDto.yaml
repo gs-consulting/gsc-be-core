@@ -1,0 +1,29 @@
+type: object
+description: 本日の採用状況
+required: 
+  - totalApplies
+  - totalInterviews
+  - totalOffers
+  - totalAgreements
+properties:
+  totalApplies:
+    type: integer
+    format: int32
+    description: 応募
+    example: 10
+  totalInterviews:
+    type: integer
+    format: int32
+    description: 面接
+    example: 10
+  totalOffers:
+    type: integer
+    format: int32
+    description: 内定
+    example: 10
+  totalAgreements:
+    type: integer
+    format: int32
+    description: 入社
+    example: 10
+  

@@ -1,0 +1,10 @@
+name: branchIds
+in: query
+required: false
+description: 支店
+schema:
+  type: array
+  items:
+    type: string
+  example: 
+    - id

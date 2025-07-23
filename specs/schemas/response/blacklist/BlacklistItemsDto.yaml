@@ -1,0 +1,50 @@
+type: object
+required:
+  - id
+  - createdDateTime
+  - fullName
+  - birthday
+  - tel
+  - email
+  - memo
+  - isRestricted
+description: |
+  選考対象外一覧
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  createdDateTime:
+    type: string
+    format: date-time
+    example: 2025/01/31 17:29
+    description: 追加日時
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  birthday:
+    type: string
+    nullable: true
+    description: 生年月日
+    example: 199X/09/09
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 0909090909
+  email:
+    type: string
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: 合同説明会参加者
+  isRestricted:
+    type: boolean
+    description: 変更できるかどうか
+    example: false

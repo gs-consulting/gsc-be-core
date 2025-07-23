@@ -1,0 +1,5 @@
+type: array
+description: | 
+  選考ステータス一覧
+items:
+  $ref: "./MasterSelectionStatusUpsertDto.yaml"

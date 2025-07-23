@@ -1,0 +1,27 @@
+type: object
+required:
+  - id
+  - questionType
+  - questionText
+  - answers
+description: |
+  選択方式
+properties:
+  id:
+    type: string
+    description: 質問ID
+    example: id
+  questionType:
+    type: string
+    description: 質問方式
+    example: FREE_TEXT
+  questionText:
+    type: string
+    description: 質問テキスト
+    example: 質問1
+  answers:
+    type: array
+    description: 選択方式の答えリスト
+    nullable: true
+    items:
+      $ref: ./SurveyStatisticAnswersDto.yaml

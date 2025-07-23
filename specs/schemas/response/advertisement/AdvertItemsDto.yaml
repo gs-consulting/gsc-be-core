@@ -1,0 +1,99 @@
+type: object
+required:
+  - id
+  - advertisementName
+  - mediaName
+  - category
+  - publishingStartDate
+  - amount
+  - totalApplies
+  - totalInterviews
+  - totalOffers
+  - totalAgreements
+  - linkedProjectsCount
+  - store
+  - imageURL
+  - registeredDate
+  - memo
+  - isDeletable
+  - isRestricted
+properties:
+  id:
+    type: string
+    description: 広告ID
+    example: id
+  advertisementName:
+    type: string
+    description: 広告名
+    example: お知らせ
+  mediaName:
+    type: string
+    description: 広告媒体名
+    example: 中小企業求人部
+  category:
+    type: string
+    description: 区分
+    example: ネット媒体
+  publishingStartDate:
+    type: string
+    format: date-time
+    description: 掲載日
+    example: 2024/08/20 18:00
+  amount:
+    type: integer
+    format: int32
+    nullable: true
+    description: 金額(月毎)
+    example: 10000
+  totalApplies:
+    type: integer
+    format: int32
+    nullable: true
+    description: 応募(応募者)
+    example: 10
+  totalInterviews:
+    type: integer
+    format: int32
+    nullable: true
+    description: 面接(応募者)
+    example: 10
+  totalOffers:
+    type: integer
+    format: int32
+    nullable: true
+    description: 内定(応募者)
+    example: 10
+  totalAgreements:
+    type: integer
+    format: int32
+    nullable: true
+    description: 入社(応募者)
+    example: 10
+  linkedProjectsCount:
+    type: integer
+    format: int64
+    description: 紐付け
+    example: 10
+  imageURL:
+    type: string
+    nullable: true
+    description: 画像
+    example: imageLink
+  registeredDate:
+    type: string
+    format: date-time
+    description: 登録日
+    example: 2024/08/20 18:00
+  memo:
+    type: string
+    description: メモ
+    example: 合同説明会参加者
+  isDeletable:
+    type: boolean
+    description: 削除できるかどうか
+    example: false
+  isRestricted:
+    type: boolean
+    description: 制限されているかどうか
+    example: false
+  

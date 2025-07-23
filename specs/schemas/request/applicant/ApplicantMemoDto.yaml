@@ -1,0 +1,11 @@
+type: object
+required:
+  - memo
+description: | 
+  応募者メモ編集
+properties:
+  memo:
+    type: string
+    description: メモ
+    nullable: true
+    example: 合同説明会参加者

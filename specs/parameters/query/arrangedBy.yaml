@@ -1,0 +1,7 @@
+name: arrangedBy
+in: query
+required: false
+description: order by
+schema:
+  type: string
+  example: "field:asc,field:desc"

@@ -1,0 +1,35 @@
+post:
+  operationId: submitSurvey
+  summary: Submit survey
+  description: |
+    # Submit survey
+  security: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/public/SurveySubmissionDto.yaml"
+  responses:
+    200:
+      description: Submit successfully
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "name"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

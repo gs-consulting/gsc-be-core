@@ -1,0 +1,10 @@
+type: object
+description: |
+  案件の応募者一覧
+properties:
+  project:
+    $ref: "./ProjectInfoDto.yaml"
+  applicants:
+    $ref: "./ProjectApplicantListDto.yaml"
+x-use:
+  builder: true

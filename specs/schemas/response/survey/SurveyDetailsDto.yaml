@@ -1,0 +1,25 @@
+type: object
+required:
+  - id
+  - name
+  - isEditable
+  - content
+description: |
+  テンプレート管理
+properties:
+  id:
+    type: string
+    description: テンプレートID
+    example: id
+  name:
+    type: string
+    description: テンプレート名
+    example: 仕事の経験年数
+  isEditable:
+    type: boolean
+    description: 編集可能かどうか
+    example: true
+  content:
+    type: array
+    items:
+      $ref: ./SurveyQuestionsDto.yaml

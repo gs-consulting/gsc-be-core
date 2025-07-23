@@ -1,0 +1,11 @@
+name: accountType
+in: path
+description: |
+  # Role type
+  Enum: 
+    - OEM
+    - STAFF
+    - CLIENT
+required: true
+schema:
+  type: string

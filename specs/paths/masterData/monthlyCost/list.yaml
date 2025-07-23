@@ -1,0 +1,105 @@
+get:
+  summary: Get list of monthly cost (月間コスト登録)
+  security:
+    - bearerAuth: []
+  operationId: getMonthlyCost
+  description: |
+    # Get media report settings
+  parameters:
+    - $ref: "../../../parameters/query/selectedDate.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/masterData/monthlyCost/MasterMonthlyCostListDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+            
+post:
+  summary: Create list of monthly cost (月間コスト登録)
+  operationId: upsertMonthlyCost
+  security:
+    - bearerAuth: []
+  description: |
+    # Create list of media report settings
+  parameters:
+    - $ref: "../../../parameters/query/selectedDate.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/masterData/monthlyCost/MasterMonthlyCostUpsertListDto.yaml"
+  responses:
+    201:
+      description: Created successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "400"
+            fieldError: "name"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

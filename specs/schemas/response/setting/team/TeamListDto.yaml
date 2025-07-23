@@ -1,0 +1,25 @@
+allOf: 
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./TeamItemsDto.yaml
+example:
+  page: 1
+  limit: 10
+  total: 2
+  items:
+    - teamId: "1"
+      teamName: "株式会社〇〇"
+      address: "東京都〇〇区〇〇町"
+      tel: "09012345678"
+    - teamId: "2"
+      teamName: "株式会社△△"
+      address: "東京都△△区△△町"
+      tel: "09012345678"
+x-use:
+  builder: true

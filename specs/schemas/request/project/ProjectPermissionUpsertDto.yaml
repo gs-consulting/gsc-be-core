@@ -1,0 +1,9 @@
+type: object
+properties:
+  items:
+    type: array
+    items:
+      $ref: ./ProjectPermissionUpsertItemsDto.yaml
+    example:
+      - id: id
+        permission: VIEW

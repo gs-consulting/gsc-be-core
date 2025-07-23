@@ -1,0 +1,60 @@
+get:
+  summary: Get application list for each status (案件の応募一覧)
+  security:
+    - bearerAuth: []
+  operationId: getApplicationListBasedOnFlowType
+  description: |
+    # Get application list for each status
+  parameters:
+    - $ref: "../../parameters/path/id.yaml"
+    - $ref: "../../parameters/path/flowType.yaml"
+    - $ref: "../../parameters/query/pageNumber.yaml"
+    - $ref: "../../parameters/query/pageSize.yaml"
+    - $ref: "../../parameters/query/arrangedBy.yaml"
+  responses:
+    200:
+      description: Get all applications
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/project/ProjectApplicantsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    404:
+      description: NotFound
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: NotFound
+            statusCode: "404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

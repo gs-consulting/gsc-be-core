@@ -1,0 +1,33 @@
+type: object
+required:
+  - startDate
+  - endDate
+  - dateType
+  - dataType
+description: |
+  媒体費レポートの検索ボックス
+properties:
+  startDate:
+    type: string
+    format: date
+    description: 開始日
+    example: "2021/01/01"
+  endDate:
+    type: string
+    format: date
+    description: 終了日
+    example: "2021/01/31"
+  dateType:
+    type: string
+    description: |
+      広告日起算 ADVERTISEMENT_DATE
+      計上日起算 APPLICATION_DATE
+    example: APPLICATION_DATE
+  dataType:
+    type: string
+    description: |
+      面接官別 INTERVIEWER
+      拠点・店舗別 STORE
+      職種別 OCCUPATION
+      媒体別 MEDIA_NAME
+    example: MEDIA_NAME

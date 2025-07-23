@@ -1,0 +1,8 @@
+name: chartType
+in: query
+required: false
+description: |
+  1. 媒体別
+schema:
+  type: string
+  example: 1

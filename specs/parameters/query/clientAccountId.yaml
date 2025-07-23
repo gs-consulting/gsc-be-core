@@ -1,0 +1,7 @@
+name: clientAccountId
+in: query
+required: false
+description: クライアント
+schema:
+  type: string
+  example: id

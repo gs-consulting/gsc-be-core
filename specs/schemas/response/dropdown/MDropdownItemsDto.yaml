@@ -1,0 +1,15 @@
+type: object
+required:
+  - id
+  - name
+description: | 
+  親項目一覧
+properties:
+  id:
+    type: string
+    description: ID
+    example: id
+  name:
+    type: string
+    description: 項目名
+    example: チームA

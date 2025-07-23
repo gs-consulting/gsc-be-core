@@ -1,0 +1,33 @@
+type: object
+required:
+  - id
+  - questionText
+  - type
+  - isRequired
+  - answers
+description: |
+  アンケート管理
+properties:
+  id:
+    type: string
+    nullable: true
+    description: アンケートID
+    example: id
+  questionText:
+    type: string
+    description: 回答方式
+    example: 質問1
+  type:
+    type: string
+    description: 回答方式
+    example: SELECTION
+  isRequired:
+    type: boolean
+    description: 必須
+    example: true
+  answers:
+    type: array
+    description: 選択方式の答えリスト
+    nullable: true
+    items:
+      $ref: "./SurveyAnswerUpsertDto.yaml"

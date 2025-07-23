@@ -1,0 +1,12 @@
+allOf:
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./ClientBranchItemsDto.yaml
+x-use:
+  builder: true

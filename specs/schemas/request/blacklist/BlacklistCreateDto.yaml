@@ -1,0 +1,32 @@
+type: object
+required:
+  - fullName
+  - birthday
+  - tel
+  - email
+description: | 
+  選考対象外一覧登録
+properties:
+  fullName:
+    type: string
+    description: 氏名
+    example: 氏名を入力してください
+  birthday:
+    type: string
+    format: date
+    nullable: true
+    description: 生年月日
+    example: 1998/01/25
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    x-use:
+      phone: true
+  email:
+    type: string
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+    x-use:
+      email: true

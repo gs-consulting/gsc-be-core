@@ -1,0 +1,119 @@
+type: object
+required:
+  - id
+  - fullName
+  - furiganaName
+  - birthday
+  - age
+  - gender
+  - email
+  - tel
+  - prefecture
+  - city
+  - homeAddress
+  - occupation
+  - selectionStatus
+  - qualifications
+  - experiences
+  - manuscriptUrl
+  - joinDate
+description: |
+  応募者情報
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  fullName:
+    type: string
+    description: 名前(漢字)
+    example: 山田太郎
+  furiganaName:
+    type: string
+    nullable: true
+    description: フリガナ
+    example: ヤマダタロウ
+  birthday:
+    type: string
+    nullable: true
+    format: date
+    description: 生年月日
+    example: "1994/01/25"
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: 年齢
+    example: 30
+  gender:
+    type: string
+    nullable: true
+    default: MALE
+    description: 性別
+    example: MALE
+  email:
+    type: string
+    format: email
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 09012345678
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  homeAddress:
+    type: string
+    nullable: true
+    description: 住所(その他)
+    example: 1-1-1
+  occupation:
+    type: string
+    nullable: true
+    description: |
+      現在の職業
+    example: STUDENT
+  selectionStatus:
+    type: string
+    nullable: true
+    description: 選考ステータス
+    example: id
+  qualifications:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: |
+      資格
+    example:
+      - LARGE
+      - MEDIUM
+  experiences:
+    type: array
+    nullable: true
+    items:
+      type: string
+    description: |
+      経験
+    example:
+      - EXP
+  manuscriptUrl:
+    type: string
+    description: 原稿URL
+    example: https://example.com
+  joinDate:
+    type: string
+    format: date
+    nullable: true
+    description: 入社日
+    example: "2025-01-01"

@@ -1,0 +1,21 @@
+type: array
+description: |
+  選考ステータス一覧
+items:
+  $ref: ./MasterSelectionStatusItemsDto.yaml
+example:
+  - id: id
+    name: 未対応
+    flowOrder: 1
+    displayOrder: 1
+    isDeletable: true
+  - id: id
+    name: 選考前辞退
+    flowOrder: 1
+    displayOrder: 2
+    isDeletable: false
+  - id: id
+    name: 書類送付依頼
+    flowOrder: 2
+    displayOrder: 1
+    isDeletable: true

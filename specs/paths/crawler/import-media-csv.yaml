@@ -1,0 +1,52 @@
+post:
+  tags:
+    - crawler
+  summary: "MediaCsv インポート"
+  description: "クローラーで取得されたメディアの応募者情報をImportするAPI"
+  operationId: importMediaCsv
+  security:
+    - apiKeyAuth: []
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            mediaId:
+              type: string
+              description: "Media ID"
+            multipartFile:
+              type: string
+              format: binary
+              description: "CSV file to import"
+          required:
+            - mediaId
+            - multipartFile
+  responses:
+    "202":
+      description: "OK"
+    "400":
+      description: "Bad Validation"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "401":
+      description: "Unauthorized"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "403":
+      description: "Forbidden"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+    "500":
+      description: "Internal Server Error"
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"

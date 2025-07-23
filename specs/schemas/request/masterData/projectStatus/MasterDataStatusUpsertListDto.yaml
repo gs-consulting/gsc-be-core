@@ -1,0 +1,13 @@
+type: array
+description: | 
+  マスターデータ一覧
+items:
+  $ref: "./MasterDataStatusUpsertDto.yaml"
+example:
+  - id: xxxxxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    name: "Update"
+    order: 1
+  - name: "New"
+    order: 2
+  - name: "Delete"
+    order: 3

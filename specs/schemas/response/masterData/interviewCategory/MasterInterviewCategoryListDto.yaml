@@ -1,0 +1,18 @@
+type: array
+description: |
+  面接一覧
+items:
+  $ref: ./MasterInterviewCategoryItemsDto.yaml
+example:
+  - id: id
+    name: 未対応
+    order: 0
+    isDeletable: true
+  - id: id
+    name: 選考前辞退
+    order: 1
+    isDeletable: false
+  - id: id
+    name: 書類送付依頼
+    order: 2
+    isDeletable: true

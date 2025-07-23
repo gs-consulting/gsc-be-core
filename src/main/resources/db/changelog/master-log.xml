@@ -1,0 +1,28 @@
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <include file="DDL/202501021200-create-master-data-tables.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202501030600-create-accounts.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202501101400-create-settings-related-entities.sql" relativeToChangelogFile="true" />
+    <include file="DML/202501151600-insert-master-data.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202502030800-create-new-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202502071400-create-project-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202502101400-create-media-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202502170900-create-advertisement-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503031700-create-applicant-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503101600-create-files-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503151700-create-blacklist-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503161700-create-history-call-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503171500-create-template-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202503181100-create-survey-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202504091700-create-applicant-count-view.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202504171200-create-message-entities.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202505081300-add-sendgrid-batch-id.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202505260000-create-contact-date-trigger.xml" relativeToChangelogFile="true" />
+    <include file="DDL/202506181300-create-media-report-view.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507070800-update-phone-number-column.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507081500-update-applicant-count-view.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507210900-modify-branch-store-tables.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507221000-update-permissions-staff-account.sql" relativeToChangelogFile="true" />
+</databaseChangeLog>

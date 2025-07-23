@@ -1,0 +1,169 @@
+post:
+  summary: Create an operator account (スタッフ・運営)
+  description: |
+    # Create an operator account  (スタッフ・運営)
+  operationId: createStaffOperatorAccount
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../schemas/request/setting/staff/operator/StaffOperatorAccountUpserDto.yaml"
+  responses:
+    201:
+      description: Create successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: get list of operator accounts  (スタッフ・運営)
+  security:
+    - bearerAuth: []
+  operationId: getStaffOperatorAccounts
+  description: |
+    # Get list of operator accounts  (スタッフ・運営)
+  parameters:
+    - $ref: "../../../../parameters/query/pageNumber.yaml"
+    - $ref: "../../../../parameters/query/pageSize.yaml"
+    - $ref: "../../../../parameters/query/searchInput.yaml"
+  responses:
+    200:
+      description: Get list successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/setting/staff/operator/StaffOperatorAccountListDto.yaml"
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+delete:
+  summary: Delete selected Operator staffs(スタッフ)
+  security:
+    - bearerAuth: []
+  operationId: deleteSelectedOperatorStaffs
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../../../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    200:
+      description: OK
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

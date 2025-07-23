@@ -1,0 +1,57 @@
+type: object
+required:
+  - id
+  - fullName
+  - email
+  - branches
+  - stores
+  - totalApplications
+  - totalNotSupportedApplications
+  - isExpired
+description: | 
+  社内ユーザー一覧
+properties:
+  id:
+    type: string
+    description: ユーザーID
+    example: id
+  fullName:
+    type: string
+    description: 氏名
+    example: 山田太郎
+  email:
+    type: string
+    description: メールアドレス
+    example: sample@goalist.co.jp
+  branches:
+    type: array
+    description: 支店
+    nullable: true
+    items:
+      type: string
+    example: 
+      - id
+  stores:
+    type: array
+    description: 拠点・店舗
+    nullable: true
+    items:
+      type: string
+    example: 
+      - id
+  totalApplications:
+    type: integer
+    format: int64
+    default: 0
+    description: 応募件数
+    example: 10
+  totalNotSupportedApplications:
+    type: integer
+    format: int64
+    default: 0
+    description: 応募件数
+    example: 10
+  isExpired:
+    type: boolean
+    description: 再送信
+    example: false

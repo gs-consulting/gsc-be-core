@@ -1,0 +1,8 @@
+name: pageSize
+in: query
+required: false
+description: Number of items per page
+schema:
+  type: integer
+  format: int32
+  minimum: 1

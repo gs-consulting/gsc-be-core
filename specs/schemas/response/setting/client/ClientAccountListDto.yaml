@@ -1,0 +1,35 @@
+allOf:
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./ClientAccountItemsDto.yaml
+example:
+  page: 1
+  limit: 10
+  total: 2
+  items:
+    - id: "1"
+      fullName: "山田太郎"
+      client: "株式会社〇〇"
+      branch: "本社"
+      stores: "本社"
+      address: "東京都〇〇区〇〇町"
+      tel: "09012345678"
+      functionLimitation: "機能制限あり"
+      proxyLogin: "代理ログインあり"
+    - id: "2"
+      fullName: "鈴木次郎"
+      client: "株式会社△△"
+      branch: "支店A"
+      stores: "支店A"
+      address: "東京都△△区△△町"
+      tel: "09012345678"
+      functionLimitation: "機能制限なし"
+      proxyLogin: "代理ログインなし"
+x-use:
+  builder: true

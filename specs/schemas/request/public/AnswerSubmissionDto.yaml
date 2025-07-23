@@ -1,0 +1,24 @@
+type: object
+required:
+  - questionId
+  - answerIds
+  - answerText
+properties:
+  questionId:
+    type: string
+    description: 質問ID
+    example: id
+  answerIds:
+    type: array
+    items:
+      type: string
+    nullable: true
+    description: 回答ID
+    example:
+      - id1
+      - id2
+  answerText:
+    type: string
+    nullable: true
+    description: 回答テキスト
+    example: 回答テキスト

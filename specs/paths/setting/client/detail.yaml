@@ -1,0 +1,105 @@
+put:
+  summary: Edit a client account (クライアント)
+  description: |
+    # Edit a client account (クライアント)
+  operationId: editClientAccount
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/accountId.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/setting/client/ClientAccountUpsertDto.yaml"
+  responses:
+    200:
+      description: Update successfully
+    400:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid request
+            statusCode: "ERR_400"
+            fieldError: "clientName"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: Get client account details (クライアント)
+  description: |
+    # Get client account details (クライアント)
+  operationId: getClientAccountDetails
+  security:
+    - bearerAuth: []
+  parameters: 
+    - $ref: "../../../parameters/path/accountId.yaml"
+  responses:
+    200:
+      description: Get successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/setting/client/ClientAccountDetailsDto.yaml"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

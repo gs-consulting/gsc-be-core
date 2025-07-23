@@ -1,0 +1,51 @@
+type: object
+description: OEMアカウント情報
+required:
+  - id
+  - email
+  - fullName
+  - furiganaName
+  - teamIds
+  - tel
+  - faxCode
+  - memo
+properties:
+  id:
+    type: string
+    description: アカウントID
+    example: id
+  email:
+    type: string
+    format: email
+    description: メールアドレス
+    example: abc@goalist.co.jp
+  fullName:
+    type: string
+    description: 氏名
+    example: 山田太郎
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: ヤマダタロウ
+  teamIds:
+    type: array
+    nullable: true
+    description: チーム
+    items: 
+      type: string
+    example: ["id"]
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 09012345678
+  faxCode:
+    type: string
+    nullable: true
+    description: FAX番号
+    example: 09012345678
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: これはメモです

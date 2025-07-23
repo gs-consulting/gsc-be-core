@@ -1,0 +1,6 @@
+name: oemId
+in: query
+required: false
+description: OEMアカウントトID
+schema:
+  type: string

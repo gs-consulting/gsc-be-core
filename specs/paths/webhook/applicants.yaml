@@ -1,0 +1,103 @@
+post:
+  operationId: createNewApplicantWebhook
+  summary: Create a new applicant via webhook (応募者)
+  security:
+    - bearerAuth: []
+  description: |
+    # Webhook経由で新しい応募者を作成
+    ## 概要
+    リクエストヘッダーの `Authorization` に GS-C によって提供された `token` を設定してください。<br>
+    リクエストボディがバリデーションを通過しない場合、400レスポンスとエラーメッセージが返されます。<br>
+    トークンが提供されない、または無効な場合、401レスポンスが返されます。<br>
+    システムエラーが発生した場合、500レスポンスが返されます。<br>
+
+    ## Request Body
+    外部応募者情報の作成リクエスト。
+
+    例:
+    POST /webhook/applicants
+    ```json
+    {
+        "userId": "xxxxxxxxxx",
+        "mediaName": "応募経路",
+        "manuscriptUrl": "https://example.com/job",
+        "occupation": "応募職種",
+        "fullName": "お名前",
+        "furiganaName": "フリガナ",
+        "gender": "男性",
+        "birthday": "1990-01-01",
+        "homeAddress": "ご住所",
+        "email": "email@domain.com",
+        "tel": "09012345678",
+        "memo": "備考",
+        "applicationDate": "2025-07-11 10:00:00",
+        "postCode": "1000001",
+        "prefecture": "13",
+        "city": "千代田区",
+        "kyujinApplicantId": "APP-12345",
+        "kyujinJobId": "JOB-67890",
+        "kyujin_occupation_name": "Software Engineer"
+    }
+    ```
+
+    ## パラメーター一覧
+
+    | フィールド名 | 必須 | CSVデータ項目名 | メモ |
+    | :--- | :---: | :--- | :--- |
+    | userId | X | | 求人部．テーブルにある「user_id」。<br>検索要件：求人部連携の「ユーザーID」を一致する |
+    | mediaName | X | 応募経路 | テキスト |
+    | manuscriptUrl | | 求人URL | テキスト |
+    | occupation | | 応募職種 | 以下の固定値: **学生**, **フリーター**, **会社員**, **留学生**, **自営業**, **主婦・主夫**, **その他**。<br>いずれかの値に一致しない場合、**その他**として扱われます。 |
+    | fullName | X | お名前 | テキスト |
+    | furiganaName | | フリガナ | テキスト |
+    | gender | | 性別 | 固定値: **男性**, **女性**。<br>いずれかの値に一致しない場合、空として扱われます。 |
+    | birthday | | 生年月日 | `yyyy-MM-dd hh:mm:ss` |
+    | postCode | | | テキスト。できれば送る |
+    | prefecture | | | テキスト。できれば送る |
+    | city | | | テキスト。できれば送る |
+    | homeAddress | | ご住所 | 住所全体。分割可能な場合、`postCode`、`prefecture`、`city`がこれから入力されます。 |
+    | email | | メールアドレス | 有効なメールアドレス形式である必要があります（例: `user@example.com`）。<br>ローカルパート（`@`の前）には、小文字の英字、数字、および記号（`.` `_` `%` `+` `-`）を使用できます。<br>ドメイン（`@`の後）には、小文字の英字、数字、ハイフン、ドットを使用でき、<br>トップレベルドメイン（`.com`など）は2文字以上である必要があります。 |
+    | tel | | 電話番号 | 数字、`+`、`()`、`-`、スペース、のみ使用可能で、長さは1～30文字です。 |
+    | memo | | 備考 | テキスト |
+    | applicationDate | | 応募受付日時 | `yyyy-MM-dd hh:mm:ss` |
+    | kyujinApplicantId | X | | 求人部．テーブルにある「applicant_id」 |
+    | kyujinJobId | | | 求人部．テーブルにある「job_id」 |
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/request/webhook/ExternalApplicantCreateDto.yaml"
+  responses:
+    201:
+      description: Created successfully
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "name"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

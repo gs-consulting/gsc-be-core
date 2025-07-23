@@ -1,0 +1,127 @@
+type: object
+required:
+  - id
+  - registeredDateTime
+  - fullName
+  - gender
+  - age
+  - address
+  - selectionStatusId
+  - masterMediaName
+  - picName
+  - projectName
+  - latestContactDateTime
+  - memo
+  - isUnread
+  - hasTel
+  - hasEmail
+  - isStatusNotChanged
+  - isDuplicate
+  - isValid
+  - isDeletable
+  - isBlacklist
+  - interviewDateTime
+  - hasPermission
+description: |
+  応募者一覧
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  registeredDateTime:
+    type: string
+    format: date-time
+    description: 応募受付日時
+    example: 2024/12/31 22:10
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  gender:
+    type: string
+    nullable: true
+    description: 性別
+    example: FEMALE
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: age
+    example: 10
+  address:
+    type: string
+    nullable: true
+    description: address
+    example: 東京都中央区
+  selectionStatusId:
+    type: string
+    nullable: true
+    description: 選考ステータス
+    example: 選考ステータス
+  masterMediaName:
+    type: string
+    nullable: true
+    description: 応募経路 / Master media name
+    example: 中小企業求人部
+  picName:
+    type: string
+    nullable: true
+    description: 担当者
+    example: 鈴木 太郎
+  projectName:
+    type: string
+    nullable: true
+    description: 案件名
+    example: 在宅ワークOK！自宅で働けるデータ入力のお仕事です！
+  latestContactDateTime:
+    type: string
+    format: date-time
+    nullable: true
+    description: 最新連絡日時 申請者が最後にメッセージ（電子メール/SMS/LINE）を送信または受信した日
+    example: 2024/08/20 18:00
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: 合同説明会参加者
+  isUnread:
+    type: boolean
+    description: メッセージ
+    example: false
+  hasTel:
+    type: boolean
+    description: 電話
+    example: false
+  hasEmail:
+    type: boolean
+    description: メール
+    example: false
+  isStatusNotChanged:
+    type: boolean
+    description: 24時間以上ステータスの変動がない応募のみ表示
+    default: false
+    example: false
+  isDuplicate:
+    type: boolean
+    description: 重複
+    example: false
+  isValid:
+    type: boolean
+    description: 有効
+    example: false
+  isDeletable:
+    type: boolean
+    example: false
+  isBlacklist:
+    type: boolean
+    description: 対象外
+    example: false
+  interviewDateTime:
+    type: string
+    nullable: true
+    example: "2021-01-01 00:00"
+  hasPermission:
+    type: boolean
+    description: 変更できるかどうか
+    example: false

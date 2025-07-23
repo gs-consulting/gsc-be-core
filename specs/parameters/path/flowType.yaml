@@ -1,0 +1,12 @@
+name: flowType
+in: path
+description: |
+  # Status type
+  Enum: 
+    - 1: 応募
+    - 2: 面接
+    - 3: 内定
+    - 4: 入社
+required: true
+schema:
+  type: string

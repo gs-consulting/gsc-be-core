@@ -1,0 +1,17 @@
+type: object
+required:
+  - statusCode
+  - message
+  - fieldError
+description: | 
+  データレスポンス
+properties:
+  statusCode:
+    type: string
+  message:
+    type: string
+  fieldError:
+    type: string
+    nullable: true
+x-use:
+  builder: true

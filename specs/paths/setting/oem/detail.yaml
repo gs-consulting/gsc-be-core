@@ -1,0 +1,127 @@
+put:
+  summary: Edit OEM account details (OEMアカウント)
+  description: |
+    # Edit OEM account details (OEMアカウント)
+  operationId: editOemAccount
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+    - $ref: "../../../parameters/path/accountId.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/setting/oem/OemAccountUpsertDto.yaml"
+  responses:
+    200:
+      description: Update successfully
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "name"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+get:
+  summary: Get OEM account details (OEMアカウント)
+  description: |
+    # Get OEM account details (OEMアカウント)
+  operationId: getOemAccountDetails
+  security:
+    - bearerAuth: []
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+    - $ref: "../../../parameters/path/accountId.yaml"
+  responses:
+    200:
+      description: Get successfully
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/setting/oem/OemAccountDetailsDto.yaml"
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "ERR_400"
+            fieldError: "email"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "ERR_403"
+            fieldError: null
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Not found
+            statusCode: "ERR_404"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

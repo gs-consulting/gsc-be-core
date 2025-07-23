@@ -1,0 +1,137 @@
+type: object
+required:
+  - id
+  - projectNo
+  - projectName
+  - statusId
+  - occupation
+  - totalApplies
+  - totalInterviews
+  - totalOffers
+  - totalAgreements
+  - goalApply
+  - goalInterview
+  - goalOffer
+  - goalAgreement
+  - qualifications
+  - workplace
+  - abAdjustment
+  - memo
+  - registeredDate
+  - isGroupedByOccupation
+  - isGroupedByBranch
+  - hasPermission
+description: | 
+  案件一覧
+properties:
+  id:
+    type: string
+    description: 案件ID
+    example: id
+  projectNo:
+    type: string
+    description: 案件No.
+    example: 1234567
+  projectName:
+    type: string
+    description: 案件名
+    example: 案件００１
+  statusId:
+    type: string
+    nullable: true
+    description: ステータスID
+    example: id
+  occupation:
+    type: string
+    nullable: true
+    description: 職種
+    example: 大型ドライバ
+  totalApplies:
+    type: integer
+    format: int32
+    nullable: true
+    description: 応募
+    example: 10
+  totalInterviews:
+    type: integer
+    format: int32
+    nullable: true
+    description: 面接
+    example: 10
+  totalOffers:
+    type: integer
+    format: int32
+    nullable: true
+    description: 内定
+    example: 10
+  totalAgreements:
+    type: integer
+    format: int32
+    nullable: true
+    description: 入社
+    example: 10
+  goalApply:
+    type: integer
+    format: int32
+    nullable: true
+    description: 応募(目標)
+    example: 10
+  goalInterview:
+    type: integer
+    format: int32
+    nullable: true
+    description: 面接(目標)
+    example: 10
+  goalOffer:
+    type: integer
+    format: int32
+    nullable: true
+    description: 内定(目標)
+    example: 10
+  goalAgreement:
+    type: integer
+    format: int32
+    nullable: true
+    description: 入社(目標)
+    example: 10
+  qualifications:
+    type: array
+    description: 資格
+    nullable: true
+    items:
+      type: string
+    example: 
+      - リフト
+  workplace:
+    type: string
+    description: 勤務地
+    nullable: true
+    example: 東京都 中央区
+  abAdjustment:
+    type: string
+    nullable: true
+    description: AB判定
+    example: A
+  memo:
+    type: string
+    description: メモ
+    example: 合同説明会参加者
+  registeredDate:
+    type: string
+    format: date-time
+    description: 登録日時
+    example: 2024/08/20 17:29:23
+  isGroupedByOccupation:
+    type: boolean
+    description: 職種でまとめる
+    default: false
+    example: false
+  isGroupedByBranch:
+    type: boolean
+    description: 職種でまとめる
+    default: false
+    example: false
+  hasPermission:
+    type: boolean
+    description: 変更できるかどうか
+    example: false

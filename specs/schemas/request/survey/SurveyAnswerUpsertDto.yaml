@@ -1,0 +1,22 @@
+type: object
+required:
+  - id
+  - answerText
+  - isFixed
+description: |
+  選択方式
+properties:
+  id:
+    type: string
+    nullable: true
+    description: テンプレートID
+    example: id
+  answerText:
+    type: string
+    nullable: true
+    description: 回答方式
+    example: 質問1
+  isFixed:
+    type: boolean
+    description: 回答方式固定
+    example: false

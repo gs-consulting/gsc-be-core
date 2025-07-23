@@ -1,0 +1,44 @@
+type: object
+required:
+  - id
+  - answerDateTime
+  - fullName
+  - gender
+  - age
+  - answers
+description: |
+  テンプレート管理
+properties:
+  id:
+    type: string
+    description: 応募者ID
+    example: id
+  answerDateTime:
+    type: string
+    format: date-time
+    description: 回答日時
+    example: 2024/12/31 22:10
+  fullName:
+    type: string
+    description: 応募者
+    example: テスト次郎
+  gender:
+    type: string
+    nullable: true
+    description: 性別
+    example: FEMALE
+  age:
+    type: integer
+    format: int32
+    nullable: true
+    description: age
+    example: 10
+  answers:
+    type: array
+    description: 選択方式の答えリスト
+    nullable: true
+    items:
+      type: string
+    example:
+      - Answer 1, Answer 2
+      - Answer 3

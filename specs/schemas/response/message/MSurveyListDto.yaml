@@ -1,0 +1,15 @@
+allOf:
+  - $ref: "../MetaListResponse.yaml"
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./MSurveyItemsDto.yaml
+        example:
+          - id: id
+            name: アンケート名
+x-use:
+  builder: true

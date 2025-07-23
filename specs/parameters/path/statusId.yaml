@@ -1,0 +1,8 @@
+name: statusId
+in: path
+description: |
+  案件ステータス
+required: true
+schema:
+  type: string
+  example: id

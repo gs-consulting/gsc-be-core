@@ -1,0 +1,30 @@
+type: object
+description: |
+  社内ユーザー一覧
+allOf:
+  - $ref: ../../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./ClientUserAccountItemsDto.yaml
+        example:
+          - id: id
+            fullName: 氏名
+            email: sample@goalist.co.jp
+            branches:
+              - 1
+            stores:
+              - 2
+          - id: id
+            fullName: 氏名
+            email: sample@goalist.co.jp
+            branches:
+              - 2
+            stores:
+              - 2
+x-use:
+  builder: true

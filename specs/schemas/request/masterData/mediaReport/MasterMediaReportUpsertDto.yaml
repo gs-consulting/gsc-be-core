@@ -1,0 +1,12 @@
+type: object
+required:
+  - settings
+description: | 
+  媒体レポート登録
+properties:
+  settings:
+    type: array
+    description: 応募>面接>内定>入社
+    items:
+      type: boolean
+    example: [true, false, false, true]

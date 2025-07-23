@@ -1,0 +1,109 @@
+type: object
+required:
+  - userId
+  - mediaName
+  - manuscriptUrl
+  - occupation
+  - fullName
+  - furiganaName
+  - gender
+  - birthday
+  - homeAddress
+  - email
+  - tel
+  - memo
+  - applicationDate
+  - postCode
+  - prefecture
+  - city
+  - kyujinApplicantId
+  - kyujinJobId
+properties:
+  userId:
+    type: string
+    description: 求人部．テーブルにある「user_id」
+    example: "xxxxxxxxxx"
+  mediaName:
+    type: string
+    nullable: true
+    description: 応募経路
+    example: "Web"
+  manuscriptUrl:
+    type: string
+    nullable: true
+    description: 求人URL
+  occupation:
+    type: string
+    nullable: true
+    description: 応募職種
+    example: "Software Engineer"
+  fullName:
+    type: string
+    description: お名前
+    example: 山田太郎
+  furiganaName:
+    type: string
+    nullable: true
+    description: フリガナ
+    example: ヤマダタロウ
+  gender:
+    type: string
+    nullable: true
+    description: 性別
+    example: "男性"
+  birthday:
+    type: string
+    nullable: true
+    description: 生年月日 (yyyy-MM-dd)
+    example: "1990-01-01"
+  homeAddress:
+    type: string
+    nullable: true
+    description: ご住所
+    example: "東京都千代田区1-1-1"
+  email:
+    type: string
+    format: email
+    nullable: true
+    description: メールアドレス
+    example: example@goalist.co.jp
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: "09012345678"
+  memo:
+    type: string
+    nullable: true
+    description: 備考
+    example: "備考欄です"
+  applicationDate:
+    type: string
+    nullable: true
+    description: 応募受付日時 (yyyy-MM-dd hh:mm:ss)
+    example: "2025-07-11"
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: "1000001"
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "東京都"
+  city:
+    type: string
+    nullable: true
+    description: 市区町村
+    example: "千代田区"
+  kyujinApplicantId:
+    type: string
+    nullable: true
+    description: 求人応募者ID
+    example: "APP-12345"
+  kyujinJobId:
+    type: string
+    nullable: true
+    description: 求人ID
+    example: "JOB-67890"

@@ -1,0 +1,104 @@
+type: object
+description: |
+  クライアントのアンケント登録
+required:
+  - clientName
+  - furiganaName
+  - oemGroupId
+  - branchIds
+  - storeIds
+  - managerIds
+  - clientCode
+  - postCode
+  - prefecture
+  - city
+  - tel
+  - faxCode
+  - memo
+  - domainSetting
+properties:
+  clientName:
+    type: string
+    description: クライアント名
+    example: 山田太郎
+  furiganaName:
+    type: string
+    description: フリガナ
+    example: ヤマダタロウ
+  oemGroupId:
+    type: string
+    nullable: true
+    description: OEM（運営のみ）
+    example: id
+  branchIds:
+    type: array
+    nullable: true
+    description: 支店
+    items: 
+      type: string
+    example: 
+      - id
+  storeIds:
+    type: array
+    nullable: true
+    description: 拠点・店舗
+    items: 
+      type: string
+    example: 
+        - id
+  managerIds:
+    type: array
+    nullable: true
+    description: 担当者
+    items: 
+      type: string
+    example: 
+      - id
+  clientCode:
+    type: string
+    nullable: true
+    description: クライアントコード
+    example: code
+  postCode:
+    type: string
+    nullable: true
+    description: 郵便番号
+    example: 1234567
+    x-use:
+      postcode: true
+  prefecture:
+    type: string
+    nullable: true
+    description: 都道府県
+    example: "北海道"
+  city:
+    type: string
+    nullable: true
+    description: 住所(市区町村)
+    example: "小樽市"
+  tel:
+    type: string
+    nullable: true
+    description: 電話番号
+    example: 0901-2345-678
+    x-use:
+      phone: true
+  faxCode:
+    type: string
+    nullable: true
+    description: FAX番号
+    example: 0901-2345-678
+    x-use:
+      fax-code: true
+  memo:
+    type: string
+    nullable: true
+    description: メモ
+    example: これはメモです
+  domainSetting:
+    type: string
+    nullable: true
+    description: メッセージ用メールアドレス
+    example: client_domain
+
+

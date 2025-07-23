@@ -1,0 +1,29 @@
+type: object
+required:
+  - pageNumber
+  - pageSize
+  - searchInput
+  - arrangedBy
+properties:
+  pageNumber:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページ番号
+    example: 1
+  pageSize:
+    type: integer
+    format: int32
+    nullable: true
+    description: ページサイズ
+    example: 10
+  searchInput:
+    type: string
+    nullable: true
+    description: 検索文字列
+    example: "検索文字列"
+  arrangedBy:
+    type: string
+    nullable: true
+    description: 並び順
+    example: "field:asc"

@@ -1,0 +1,10 @@
+name: reportType
+in: path
+description: |
+  1. 広告日起算
+  2. 計上日起算
+required: true
+schema:
+  type: integer
+  format: int32
+  example: 1

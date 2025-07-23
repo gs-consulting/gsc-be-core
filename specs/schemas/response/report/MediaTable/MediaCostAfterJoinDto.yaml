@@ -1,0 +1,33 @@
+type: object
+description: 最初の表の各行の項目
+nullable: true
+required:
+  - name
+  - amount
+  - oneWeek
+  - oneMonth
+  - twoMonth
+  - threeMonth
+  - sixMonth
+properties:
+  name:
+    type: string
+    description: name
+    example: 合計
+  amount:
+    type: integer
+    format: int32
+    description: 金額
+    example: 15000000
+  oneWeek:
+    $ref: "./MediaCostColumnDto.yaml"
+  oneMonth:
+    $ref: "./MediaCostColumnDto.yaml"
+  twoMonth:
+    $ref: "./MediaCostColumnDto.yaml"
+  threeMonth:
+    $ref: "./MediaCostColumnDto.yaml"
+  sixMonth:
+    $ref: "./MediaCostColumnDto.yaml"
+x-use:
+  builder: true

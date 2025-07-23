@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: gsc-be-core
+
+  datasource:
+    url: jdbc:mysql://${DB_URL}:${DB_PORT}/${DB_NAME}?allowPublicKeyRetrieval=true&useSSL=false
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+      properties:
+        hibernate:
+          jdbc:
+            batch_size: 1000
+          order_inserts: true
+
+  liquibase:
+    change-log: classpath:db/changelog/master-log.xml
+
+server:
+  port: 8080
+  servlet:
+    context-path: /core
+
+gsc-be-core:
+  frontend-url: ${FE_URL}
+  is_local: ${IS_LOCAL}
+  jwt:
+    expiration-days: ${JWT_EXPIRATION_DAYS}
+    private-key: ${JWT_PRIVATE_KEY}
+    public-key: ${JWT_PUBLIC_KEY}
+  service-url: ${SERVICE_URL}
+  crawler:
+    api-key: ${CRAWLER_API_KEY}

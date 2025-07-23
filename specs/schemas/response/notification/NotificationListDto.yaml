@@ -1,0 +1,28 @@
+type: object
+description: |
+  お知らせ一覧
+allOf:
+  - $ref: ../MetaListResponse.yaml
+  - type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: ./NotificationItemsDto.yaml
+        example:
+          - id: id
+            title: 緊急メンテナンスのお知らせ
+            postingStartDate: 2024/12/31
+            postingEndDate: 2025/06/30
+            status: 公開
+            isDeletable: false
+          - id: id
+            title: 新プランのお知らせ
+            postingStartDate: 2024/12/31
+            postingEndDate: 2025/06/30
+            status: 非公開
+            isDeletable: true
+x-use:
+  builder: true
