@@ -56,6 +56,22 @@ public class AccountService {
         return optionalOne.get();
     }
 
+    public List<Account> getExistingAccountsByIds(List<String> ids) {
+       List<Account>  accounts = accountRepository.findAllById(ids);
+        if (!Objects.equals(accounts.size(), ids.size())) {
+            throw new BadValidationException(ErrorResponse.builder()
+                    .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                    .message(String.format(ErrorMessage.INVALID_DATA.getMessage(), "アカウント"))
+                    .fieldError("accounts")
+                    .build());
+        }
+        return accounts;
+    }
+
+    public void deleteExistingAccountsByIds(List<Account> accounts) {
+        accountRepository.deleteAll(accounts);
+    }
+
     @Transactional
     public LoginInfoDto login(LoginFormDto loginFormDto) {
         // use authenticationManager of Spring to authenticate

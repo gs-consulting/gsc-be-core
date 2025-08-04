@@ -33,7 +33,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Cacheable
 @Cache(region = "accountCache", usage = CacheConcurrencyStrategy.READ_WRITE)
-@SQLDelete(sql = "UPDATE accounts SET is_deleted = true, updated_date = current_timestamp WHERE id=?")
+@SQLDelete(sql = "UPDATE accounts SET is_deleted = true, updated_at = current_timestamp WHERE id=?")
 @SQLRestriction("is_deleted=false")
 @Entity(name = "accounts")
 @EqualsAndHashCode(callSuper = true)

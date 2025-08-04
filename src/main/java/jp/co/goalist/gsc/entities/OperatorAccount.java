@@ -5,6 +5,8 @@ import jp.co.goalist.gsc.utils.JsonColumnConverter;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.List;
 @Cacheable
 @Cache(region = "operatorAccountCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "operator_accounts")
+@SQLDelete(sql = "UPDATE operator_accounts SET is_deleted = true, updated_at = current_timestamp WHERE id = ?")
+@SQLRestriction("is_deleted=false")
 @EqualsAndHashCode(callSuper = true)
 public class OperatorAccount extends BaseEntity {
 
@@ -27,7 +31,7 @@ public class OperatorAccount extends BaseEntity {
     @Id
     private String id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id")  // Foreign key column referencing Account table's primary key.
     private Account account;
 
@@ -38,11 +42,16 @@ public class OperatorAccount extends BaseEntity {
     @Convert(converter = JsonColumnConverter.class)
     private List<String> permissions;
 
+    @Column
+    @Builder.Default
+    private Boolean isDeleted = false;
+
     @ManyToMany
     @JoinTable(
             name = "operator_account_teams",
             joinColumns = @JoinColumn(name = "operator_id"),
             inverseJoinColumns = @JoinColumn(name = "team_id"))
+    @Builder.Default
     private List<OperatorTeam> teams = new ArrayList<>();
 
     public void setTeams(List<OperatorTeam> teams) {

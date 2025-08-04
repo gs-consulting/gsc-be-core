@@ -47,7 +47,7 @@ get:
             message: Internal server error
             statusCode: "500"
             fieldError: null
-            
+
 post:
   summary: Create a store by client accounts (クライアント・拠点・店舗名)
   operationId: createClientStore
@@ -94,6 +94,61 @@ post:
             message: Invalid input
             statusCode: "400"
             fieldError: "name"
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null
+
+delete:
+  summary: Delete selected stores by client accounts (クライアント・拠点・店舗名)
+  security:
+    - bearerAuth: []
+  operationId: deleteSelectedStores
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../../schemas/request/common/SelectedIds.yaml
+  responses:
+    204:
+      description: Delete successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
     500:
       description: Internal server error
       content:

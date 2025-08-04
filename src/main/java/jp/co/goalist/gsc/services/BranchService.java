@@ -6,6 +6,7 @@ import jp.co.goalist.gsc.common.ErrorMessage;
 import jp.co.goalist.gsc.entities.*;
 import jp.co.goalist.gsc.enums.Role;
 import jp.co.goalist.gsc.enums.TargetName;
+import jp.co.goalist.gsc.exceptions.BadValidationException;
 import jp.co.goalist.gsc.exceptions.NotFoundException;
 import jp.co.goalist.gsc.gen.dtos.*;
 import jp.co.goalist.gsc.repositories.OemBranchRepository;
@@ -37,6 +38,7 @@ public class BranchService {
     private final OperatorClientAccountRepository operatorClientAccountRepository;
     private final ProjectService projectService;
     private final UtilService utilService;
+    private final StoreService storeService;
 
     public List<OemBranch> getExistingOemBranchByIds(List<String> ids) {
         return oemBranchRepository.findAllById(ids);
@@ -293,5 +295,56 @@ public class BranchService {
 
         operatorBranch.setPrefecture(prefectureCityPair.getLeft());
         operatorBranch.setCity(prefectureCityPair.getRight());
+    }
+
+    @Transactional
+    public void deleteSelectedBranches(SelectedIds selectedIds) {
+        Account account = GeneralUtils.getCurrentUser();
+        List<String> branchIds = selectedIds.getSelectedIds();
+
+        switch (Role.fromId(account.getSubRole())) {
+            case Role.OPERATOR -> {
+                OperatorClientAccount parent = utilService.getOperatorParent(account);
+                
+                // First verify that all branches belong to the current user
+                List<OperatorBranch> branches = operatorBranchRepository.findBranchesBy(branchIds, parent.getId());
+                if (branches.size() != branchIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_OPERATOR.getStatusCode())
+                            .message(ErrorMessage.INVALID_OPERATOR
+                                    .getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+
+                // Delete stores first (due to foreign key constraints)
+                storeService.deleteStoresByBranchIds(branchIds, parent.getId(), null);
+                
+                // Then delete branches
+                operatorBranchRepository.deleteBranchesByIds(branchIds, parent.getId());
+            }
+            case Role.OEM -> {
+                OemClientAccount parent = utilService.getOemParent(account);
+                
+                // First verify that all branches belong to the current user
+                List<OemBranch> branches = oemBranchRepository.findBranchesBy(
+                        branchIds, parent.getId(), parent.getOemAccount().getId(), parent.getOemGroupId());
+                if (branches.size() != branchIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_OPERATOR.getStatusCode())
+                            .message(ErrorMessage.INVALID_OPERATOR
+                                    .getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                
+                // Delete stores first (due to foreign key constraints)
+                storeService.deleteStoresByBranchIds(branchIds, parent.getId(), parent.getOemGroupId());
+                
+                // Then delete branches
+                oemBranchRepository.deleteBranchesByIds(branchIds, parent.getId(), parent.getOemGroupId());
+            }
+            default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
+        }
     }
 }

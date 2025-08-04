@@ -215,4 +215,12 @@ public class SettingsController implements SettingsApi {
         oemService.deleteSelectedOemStaffs(selectedIds);
         return ResponseEntity.ok().build();
     }
+
+    @Override
+    @PreAuthorize("hasAnyAuthority('OPERATOR', 'OEM')")
+    public ResponseEntity<Void> deleteSelectedClientAccounts(SelectedIds selectedIds) {
+        log.info("deleteSelectedClientAccounts");
+        clientAccountService.deleteSelectedClientAccounts(selectedIds);
+        return ResponseEntity.noContent().build();
+    }
 }

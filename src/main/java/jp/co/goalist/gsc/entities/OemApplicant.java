@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
@@ -21,6 +23,8 @@ import java.util.Optional;
 @Cacheable
 @Cache(region = "oemApplicantCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "oem_applicants")
+@SQLDelete(sql = "UPDATE oem_applicants SET is_deleted = true, updated_at = current_timestamp WHERE id = ?")
+@SQLRestriction("is_deleted=false")
 public class OemApplicant extends BaseEntity {
 
     @Id
@@ -111,6 +115,9 @@ public class OemApplicant extends BaseEntity {
 
     @Column
     private Boolean isUnread = false;
+
+    @Column
+    private Boolean isDeleted = false;
 
     @Column
     private String mediaApplicantId;

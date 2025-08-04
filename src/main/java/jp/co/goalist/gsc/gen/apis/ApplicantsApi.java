@@ -236,7 +236,7 @@ public interface ApplicantsApi {
      * DELETE /applicants : Delete selected applicants (応募者)
      *
      * @param selectedIds  (optional)
-     * @return OK (status code 200)
+     * @return OK (status code 204)
      *         or Bad Validation (status code 400)
      *         or Unauthorized (status code 401)
      *         or Forbidden (status code 403)
@@ -246,7 +246,7 @@ public interface ApplicantsApi {
         operationId = "deleteSelectedApplicants",
         summary = "Delete selected applicants (応募者)",
         responses = {
-            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "204", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad Validation", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             }),

@@ -36,9 +36,11 @@ public class OperatorBranch extends BaseEntity {
     private String postCode;
 
     @ManyToOne
+    @ToString.Exclude
     private Prefecture prefecture;
 
     @ManyToOne
+    @ToString.Exclude
     private City city;
 
     @Column
@@ -63,5 +65,14 @@ public class OperatorBranch extends BaseEntity {
     private String parentId;
 
     @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<OperatorStore> stores = new ArrayList<>();
+
+    @OneToMany(mappedBy = "operatorBranch", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<OperatorClientLocation> locations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @ToString.Exclude
+    private List<OperatorProject> projects = new ArrayList<>();
 }

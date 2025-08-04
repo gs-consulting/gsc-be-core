@@ -37,7 +37,7 @@ public class ApplicantCriteriaBuilder {
             case when a.tel is not null then true else false end AS hasTel,
             case when a.email is not null then true else false end AS hasEmail,
             case when a.lst_status_change_date_time IS NULL OR a.lst_status_change_date_time < CURRENT_TIMESTAMP - INTERVAL 24 HOUR then true else false end AS isStatusNotChanged,
-            (a.is_mail_duplicate OR a.is_tel_duplicate) AS isDuplicate, 0 AS isDeletable, 0 AS isRestricted,
+            (a.is_mail_duplicate OR a.is_tel_duplicate) AS isDuplicate, 1 AS isDeletable, 0 AS isRestricted,
             case when a.blacklist1_id is not null or a.blacklist2_id is not null or a.is_mail_duplicate or a.is_tel_duplicate then false else true end AS isValid,
             (a.blacklist1_id IS NOT NULL OR a.blacklist2_id IS NOT NULL) AS isBlacklist,
             interview_data.interview_date AS interviewDateTime
@@ -106,6 +106,7 @@ public class ApplicantCriteriaBuilder {
     private void buildWhereClause(ApplicantQueryBuilder queryBuilder, String parentId, String oemGroupId,
                                   ApplicantSearchBoxRequest request) {
         queryBuilder.addCondition("a.parent_id = :parentId", Map.of("parentId", parentId));
+        queryBuilder.addCondition("a.is_deleted = :isDeleted", Map.of("isDeleted", false));
 
         if (Objects.nonNull(oemGroupId)) {
             queryBuilder.addCondition("a.oem_group_id = :oemGroupId", Map.of("oemGroupId", oemGroupId));

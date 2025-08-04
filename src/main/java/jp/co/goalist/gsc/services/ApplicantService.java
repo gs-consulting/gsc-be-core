@@ -10,7 +10,9 @@ import jp.co.goalist.gsc.exceptions.BadValidationException;
 import jp.co.goalist.gsc.exceptions.NotFoundException;
 import jp.co.goalist.gsc.gen.dtos.*;
 import jp.co.goalist.gsc.repositories.MasterMediaRepository;
+import jp.co.goalist.gsc.repositories.OemApplicantInterviewRepository;
 import jp.co.goalist.gsc.repositories.OemApplicantRepository;
+import jp.co.goalist.gsc.repositories.OperatorApplicantInterviewRepository;
 import jp.co.goalist.gsc.repositories.OperatorApplicantRepository;
 import jp.co.goalist.gsc.repositories.SelectionStatusRepository;
 import jp.co.goalist.gsc.services.criteriaBuilder.ApplicantCriteriaBuilder;
@@ -638,6 +640,54 @@ public class ApplicantService {
             mProfileDto.setExperiences(experiences);
         } else {
             mProfileDto.setExperiences(null);
+        }
+    }
+
+    @Transactional
+    public void deleteSelectedApplicants(SelectedIds selectedIds) {
+        Account account = GeneralUtils.getCurrentUser();
+        List<String> applicantIds = selectedIds.getSelectedIds();
+
+        switch (SubRole.fromId(account.getSubRole())) {
+            case SubRole.OPERATOR -> {
+                OperatorClientAccount parent = utilService.getOperatorParent(account);
+                
+                // Validate that all applicants exist and belong to the current user
+                List<OperatorApplicant> existingApplicants = operatorApplicantRepo.findAllApplicantsByIds(applicantIds, parent.getId());
+                if (existingApplicants.size() != applicantIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                            .message(ErrorMessage.INVALID_DATA.getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                
+                // Delete the applicants
+                operatorApplicantRepo.deleteAll(existingApplicants);
+
+                operatorApplicantRepo.updateMailDuplicate();
+                operatorApplicantRepo.updateTelDuplicate();
+            }
+            case SubRole.OEM -> {
+                OemClientAccount parent = utilService.getOemParent(account);
+                
+                // Validate that all applicants exist and belong to the current user
+                List<OemApplicant> existingApplicants = oemApplicantRepo.findAllApplicantsByIds(applicantIds, parent.getId(), parent.getOemGroupId());
+                if (existingApplicants.size() != applicantIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                            .message(ErrorMessage.INVALID_DATA.getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                
+                // Delete the applicants
+                oemApplicantRepo.deleteAll(existingApplicants);
+
+                oemApplicantRepo.updateMailDuplicate();
+                oemApplicantRepo.updateTelDuplicate();
+            }
+            default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
         }
     }
 

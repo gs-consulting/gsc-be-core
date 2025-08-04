@@ -17,6 +17,7 @@ import org.hibernate.annotations.UuidGenerator;
 @Cacheable
 @Cache(region = "oemSurveyCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "oem_surveys")
+@EqualsAndHashCode(callSuper = true)
 public class OemSurvey extends BaseEntity {
 
     @Id

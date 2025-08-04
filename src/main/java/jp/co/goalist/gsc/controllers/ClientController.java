@@ -327,4 +327,20 @@ public class ClientController implements ClientsApi {
         log.info("getSurveyStatisticsSummary");
         return ResponseEntity.ok(surveyStatisticService.getSurveyStatisticsSummary(surveyId));
     }
+
+    @Override
+    @PreAuthorize("hasAuthority('CLIENT')")
+    public ResponseEntity<Void> deleteSelectedBranches(SelectedIds selectedIds) {
+        log.info("deleteSelectedBranches");
+        branchService.deleteSelectedBranches(selectedIds);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    @PreAuthorize("hasAuthority('CLIENT')")
+    public ResponseEntity<Void> deleteSelectedStores(SelectedIds selectedIds) {
+        log.info("deleteSelectedStores");
+        storeService.deleteSelectedStores(selectedIds);
+        return ResponseEntity.noContent().build();
+    }
 }

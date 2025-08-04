@@ -363,6 +363,94 @@ public interface ClientsApi {
 
 
     /**
+     * DELETE /clients/branches : Delete selected branches (クライアント・支店)
+     *
+     * @param selectedIds  (optional)
+     * @return Delete successfully (status code 204)
+     *         or Bad Validation (status code 400)
+     *         or Unauthorized (status code 401)
+     *         or Forbidden (status code 403)
+     *         or Internal server error (status code 500)
+     */
+    @Operation(
+        operationId = "deleteSelectedBranches",
+        summary = "Delete selected branches (クライアント・支店)",
+        responses = {
+            @ApiResponse(responseCode = "204", description = "Delete successfully"),
+            @ApiResponse(responseCode = "400", description = "Bad Validation", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "403", description = "Forbidden", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            })
+        },
+        security = {
+            @SecurityRequirement(name = "bearerAuth")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = "/clients/branches",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    
+    ResponseEntity<Void> deleteSelectedBranches(
+        @Parameter(name = "SelectedIds", description = "") @Valid @RequestBody(required = false) SelectedIds selectedIds
+    );
+
+
+    /**
+     * DELETE /clients/stores : Delete selected stores by client accounts (クライアント・拠点・店舗名)
+     *
+     * @param selectedIds  (required)
+     * @return Delete successfully (status code 204)
+     *         or Bad Validation (status code 400)
+     *         or Unauthorized (status code 401)
+     *         or Forbidden (status code 403)
+     *         or Internal server error (status code 500)
+     */
+    @Operation(
+        operationId = "deleteSelectedStores",
+        summary = "Delete selected stores by client accounts (クライアント・拠点・店舗名)",
+        responses = {
+            @ApiResponse(responseCode = "204", description = "Delete successfully"),
+            @ApiResponse(responseCode = "400", description = "Bad Validation", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "403", description = "Forbidden", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            })
+        },
+        security = {
+            @SecurityRequirement(name = "bearerAuth")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = "/clients/stores",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    
+    ResponseEntity<Void> deleteSelectedStores(
+        @Parameter(name = "SelectedIds", description = "", required = true) @Valid @RequestBody SelectedIds selectedIds
+    );
+
+
+    /**
      * DELETE /clients/surveys : Delete selected survey (アンケート管理)
      *
      * @param selectedIds  (optional)

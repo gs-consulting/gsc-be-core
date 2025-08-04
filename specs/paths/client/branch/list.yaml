@@ -103,3 +103,57 @@ post:
             message: Internal server error
             statusCode: "500"
             fieldError: null
+
+delete:
+  summary: Delete selected branches (クライアント・支店)
+  operationId: deleteSelectedBranches
+  security:
+    - bearerAuth: []
+  requestBody: 
+    content: 
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    204:
+      description: Delete successfully
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    400:
+      description: Bad Validation
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Bad Request
+            statusCode: "400"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

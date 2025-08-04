@@ -3,6 +3,7 @@ package jp.co.goalist.gsc.repositories;
 import jp.co.goalist.gsc.dtos.survey.ApplicantUnansweredItemDto;
 import jp.co.goalist.gsc.entities.OemApplicantSurvey;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -26,4 +27,8 @@ public interface OemApplicantSurveyRepository extends JpaRepository<OemApplicant
             WHERE s.survey_id = :surveyId AND s.replied_at IS NULL ORDER BY s.sent_at DESC
             """, nativeQuery = true)
     List<ApplicantUnansweredItemDto> findAllApplicantUnansweredBySurveyId(String surveyId);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_applicant_surveys WHERE applicant_id IN :applicantIds", nativeQuery = true)
+    void deleteByApplicantIdIn(List<String> applicantIds);
 }

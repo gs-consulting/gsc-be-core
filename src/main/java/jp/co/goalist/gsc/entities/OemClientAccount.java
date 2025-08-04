@@ -5,6 +5,8 @@ import jp.co.goalist.gsc.utils.JsonColumnConverter;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.Objects;
 @Cacheable
 @Cache(region = "clientAccountCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "oem_client_accounts")
+@SQLDelete(sql = "UPDATE oem_client_accounts SET is_deleted = true, updated_at = current_timestamp WHERE id = ?")
+@SQLRestriction("is_deleted=false")
 public class OemClientAccount extends BaseEntity {
 
     /**
@@ -27,7 +31,7 @@ public class OemClientAccount extends BaseEntity {
     private String id;
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "id")  // Foreign key column referencing Account table's primary key.
     private Account account;
 
@@ -83,6 +87,9 @@ public class OemClientAccount extends BaseEntity {
 
     @Column
     private Boolean isDomainEnabled = false;
+
+    @Column
+    private Boolean isDeleted = false;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OemClientLocation> locations = new ArrayList<>();

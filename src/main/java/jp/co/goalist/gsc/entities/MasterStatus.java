@@ -13,6 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @Cache(region = "masterStatusCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "master_statuses")
+@EqualsAndHashCode
 public class MasterStatus {
 
     @Id

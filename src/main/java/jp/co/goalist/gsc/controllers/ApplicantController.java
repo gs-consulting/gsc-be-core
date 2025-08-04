@@ -49,7 +49,9 @@ public class ApplicantController implements ApplicantsApi {
     @Override
     @PreAuthorize("hasAuthority('CLIENT')")
     public ResponseEntity<Void> deleteSelectedApplicants(SelectedIds selectedIds) {
-        return null;
+        log.info("deleteSelectedApplicants, selectedIds {}", selectedIds.getSelectedIds());
+        applicantService.deleteSelectedApplicants(selectedIds);
+        return ResponseEntity.noContent().build();
     }
 
     @Override

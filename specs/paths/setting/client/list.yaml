@@ -105,3 +105,60 @@ post:
             message: Internal server error
             statusCode: "500"
             fieldError: null
+
+delete:
+  summary: Delete client accounts
+  operationId: deleteSelectedClientAccounts
+  security:
+    - bearerAuth: []
+  description: |
+    # Delete client accounts
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/request/common/SelectedIds.yaml"
+  responses:
+    204:
+      description: Deleted successfully
+    400:
+      description: Invalid input
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Invalid input
+            statusCode: "400"
+            fieldError: "selectedIds"
+    401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Unauthorized
+            statusCode: "ERR_401"
+            fieldError: null
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Forbidden
+            statusCode: "403"
+            fieldError: null
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/response/ErrorResponse.yaml"
+          example:
+            message: Internal server error
+            statusCode: "500"
+            fieldError: null

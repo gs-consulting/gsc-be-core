@@ -17,52 +17,66 @@ import java.util.Optional;
 public interface OemAccountRepository extends JpaRepository<OemAccount, String> {
 
     @Query(value = """
-            from oem_accounts a join oem_groups c on a.oemGroup.id = c.id
-            where a.id = :id and c.id = :oemGroupId""")
+            FROM oem_accounts a JOIN oem_groups c ON a.oemGroup.id = c.id
+            WHERE a.id = :id AND c.id = :oemGroupId""")
     Optional<OemAccount> findByIdAndOemGroupId(String id, String oemGroupId);
 
     @Query(value = """
-        select a from oem_accounts a
-        where a.oemGroup.id = :oemGroupId and a.parent is null
-        and (:searchInput is null or  a.fullName like :searchInput)
-        order by a.id asc
+        SELECT a FROM oem_accounts a
+        WHERE a.oemGroup.id = :oemGroupId AND a.parent IS NULL
+        AND (:searchInput IS NULL OR  a.fullName LIKE :searchInput)
+        ORDER BY a.id ASC
     """)
     Page<OemAccount> findAllParentOemBy(String oemGroupId, String searchInput, Pageable pageable);
 
     @Query(value = """
-        select a from oem_accounts a
-        where a.oemGroup.id = :oemGroupId and
-        (:oemId is null or a.parent.id = :oemId or a.id = :oemId) and
-        (:searchInput is null or  a.fullName like :searchInput)
-        order by a.id asc
-    """)
+            SELECT oc.* FROM oem_accounts oc WHERE oc.id IN 
+                (SELECT o.id
+                    FROM oem_accounts o
+                    JOIN accounts a ON o.id = a.id
+                    LEFT JOIN oem_account_teams ot ON a.id = ot.oem_id
+                    LEFT JOIN oem_teams t ON ot.team_id = t.id
+                    WHERE o.oem_group_id = :oemGroupId AND
+                        (:oemId IS NULL OR o.parent_id = :oemId OR o.id = :oemId) AND
+                        (:searchInput IS NULL OR  o.full_name LIKE :searchInput OR t.name LIKE :searchInput) AND
+                        a.is_deleted = false)
+            order by oc.created_at asc
+        """,
+        countQuery = """
+            SELECT oc.* FROM oem_accounts oc WHERE oc.id IN 
+                (SELECT o.id
+                    FROM oem_accounts o
+                    JOIN accounts a ON o.id = a.id
+                    LEFT JOIN oem_account_teams ot ON a.id = ot.oem_id
+                    LEFT JOIN oem_teams t ON ot.team_id = t.id
+                    WHERE o.oem_group_id = :oemGroupId AND
+                        (:oemId IS NULL OR o.parent_id = :oemId OR o.id = :oemId) AND
+                        (:searchInput IS NULL OR  o.full_name LIKE :searchInput OR t.name LIKE :searchInput) AND
+                        a.is_deleted = false)
+            order by oc.created_at asc
+                """, nativeQuery = true)
     Page<OemAccount> findAllBy(String oemId, String oemGroupId, String searchInput, Pageable pageable);
 
     @Query(value = """
-        select o.* from oem_accounts o join accounts a on o.id = a.id
-        left join oem_account_teams ot on o.id = ot.oem_id
-        where (case when :teamId is null then a.enabled = true else ot.team_id = :teamId end)
-        and (o.id = :oemParentId or o.parent_id = :oemParentId)
-        order by a.created_at asc
+        SELECT o.* FROM oem_accounts o JOIN accounts a ON o.id = a.id
+        LEFT JOIN oem_account_teams ot ON o.id = ot.oem_id
+        WHERE (CASE WHEN :teamId IS NULL THEN a.enabled = true ELSE ot.team_id = :teamId END)
+        AND (o.id = :oemParentId OR o.parent_id = :oemParentId)
+        ORDER BY a.created_at ASC
     """, nativeQuery = true)
     Page<OemAccount> findAllEnabledManagersDropdown(String oemParentId, String teamId, Pageable pageable);
 
     @Query(value = """
-        select o.* from oem_accounts o join accounts a on o.id = a.id
-        left join oem_account_teams ot on o.id = ot.oem_id
-        where (case when :teamId is null then a.enabled = true else ot.team_id = :teamId end)
-        and (o.id = :oemParentId or o.parent_id = :oemParentId)
-        order by a.created_at asc
+        SELECT o.* FROM oem_accounts o JOIN accounts a ON o.id = a.id
+        LEFT JOIN oem_account_teams ot ON o.id = ot.oem_id
+        WHERE (CASE WHEN :teamId IS NULL THEN a.enabled = true ELSE ot.team_id = :teamId END)
+        AND (o.id = :oemParentId OR o.parent_id = :oemParentId)
+        ORDER BY a.created_at ASC
             """, nativeQuery = true)
     List<OemAccount> findAllByTeam(String oemParentId, String teamId);
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "delete from oem_account_teams where team_id in (:ids)", nativeQuery = true)
+    @Query(value = "delete FROM oem_account_teams WHERE oem_id in (:ids)", nativeQuery = true)
     void deleteOemAcountTeamsByIdIn(List<String> ids);
-
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "delete from oem_accounts where parent_id = :parentId and oem_group_id = :oemGroupId and id in (:ids)", nativeQuery = true)
-    void deleteSelectedOemStaffsByParentAndIdIn(List<String> ids, String parentId, String oemGroupId);
 }

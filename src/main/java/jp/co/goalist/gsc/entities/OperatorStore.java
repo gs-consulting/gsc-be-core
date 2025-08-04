@@ -57,4 +57,9 @@ public class OperatorStore extends BaseEntity  {
     @Column
     private String parentId;
 
+    @OneToMany(mappedBy = "operatorStore", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OperatorClientLocation> locations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<OperatorProject> projects = new ArrayList<>();
 }

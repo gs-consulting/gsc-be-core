@@ -6,6 +6,7 @@ import jp.co.goalist.gsc.entities.OemApplicantAnswer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -49,4 +50,8 @@ public interface OemApplicantAnswerRepository extends JpaRepository<OemApplicant
             WHERE s.survey_id = :surveyId AND a.id IN :applicantIds
             """, nativeQuery = true)
     Page<SurveyApplicantAnswerItemDto> findAllBySurveyIdAndApplicantIds(String surveyId, List<String> applicantIds, Pageable pageable);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_applicant_answers WHERE applicant_survey_id IN (SELECT id FROM oem_applicant_surveys WHERE applicant_id IN :applicantIds)", nativeQuery = true)
+    void deleteByApplicantIdIn(List<String> applicantIds);
 }

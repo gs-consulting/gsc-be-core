@@ -25,4 +25,7 @@
     <include file="DDL/202507081500-update-applicant-count-view.sql" relativeToChangelogFile="true" />
     <include file="DDL/202507210900-modify-branch-store-tables.sql" relativeToChangelogFile="true" />
     <include file="DDL/202507221000-update-permissions-staff-account.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507241000-update-foreign-key.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507250800-update-soft-delete-for-accounts.sql" relativeToChangelogFile="true" />
+    <include file="DDL/202507311300-update-is-deleted-count-view.sql" relativeToChangelogFile="true" />
 </databaseChangeLog>

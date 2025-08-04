@@ -4,7 +4,6 @@
 
 - Spring boot 3.4.1
 - MySQL 9+
-- QueryDSL with Spring Data JPA
 - Gradle 8.11.1+
 - Mapstruct 1.6.3, Lombok Mapstruct Binding 0.2.0 (2020)
 - Redocly - 1.26.1

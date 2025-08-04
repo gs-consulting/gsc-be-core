@@ -941,4 +941,21 @@ public class ClientAccountService {
         clientAccountDetailsDto.setIsCreatedByOperator(false);
         return clientAccountDetailsDto;
     }
+
+    @Transactional
+    public void deleteSelectedClientAccounts(SelectedIds selectedIds) {
+        Account account = GeneralUtils.getCurrentUser();
+        
+        switch (Role.fromId(account.getRole())) {
+            case Role.OPERATOR -> {
+                List<OperatorClientAccount> operatorClientAccounts = operatorClientAccountRepository.findAllById(selectedIds.getSelectedIds());
+                operatorClientAccountRepository.deleteAll(operatorClientAccounts);
+            }
+            case Role.OEM -> {
+                List<OemClientAccount> oemClientAccounts = oemClientAccountRepository.findAllById(selectedIds.getSelectedIds());
+                oemClientAccountRepository.deleteAll(oemClientAccounts);
+            }
+            default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
+        }
+    }
 }

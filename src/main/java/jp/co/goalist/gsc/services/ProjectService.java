@@ -86,7 +86,6 @@ public class ProjectService {
         ProjectSearchBoxRequest request = PROJECT_MAPPER.toProjectSearchBoxRequest(projectSearchBoxDto);
         SubRole subRole = SubRole.fromId(account.getSubRole());
         List<ApplicantTotalCountDto> applicationStatistics;
-        boolean hasProjectPermission = false;
 
         switch (subRole) {
             case SubRole.OPERATOR -> {
@@ -95,9 +94,6 @@ public class ProjectService {
                 request.setParentId(Objects.nonNull(clientAccount.getParent()) ? clientAccount.getParent().getId() : clientAccount.getId());
 
                 applicationStatistics = operatorApplicantRepo.countAllApplicantsForProject(request.getParentId());
-                if (Objects.nonNull(clientAccount.getPermissions()) && clientAccount.getPermissions().contains(ScreenPermission.PROJECT.getId())) {
-                    hasProjectPermission = true;
-                }
             }
             case SubRole.OEM -> {
                 OemClientAccount clientAccount = utilService.getExistingOemClientAccountById(account.getId());
@@ -106,9 +102,6 @@ public class ProjectService {
                 request.setOemGroupId(clientAccount.getOemGroupId());
 
                 applicationStatistics = oemApplicantRepo.countAllApplicantsForProject(request.getParentId(), request.getOemGroupId());
-                if (Objects.nonNull(clientAccount.getPermissions()) && clientAccount.getPermissions().contains(ScreenPermission.PROJECT.getId())) {
-                    hasProjectPermission = true;
-                }
             }
             default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
         }
@@ -117,14 +110,13 @@ public class ProjectService {
         Map<String, ApplicantTotalCountDto> applicationStatisticMap = applicationStatistics.stream()
                 .collect(Collectors.toMap(ApplicantTotalCountDto::getCountId, Function.identity()));
 
-        boolean finalHasProjectPermission = hasProjectPermission;
         return ProjectListDto.builder()
                 .page(projects.getNumber() + 1)
                 .limit(projects.getSize())
                 .total(projects.getTotalElements())
                 .items(projects.getContent().stream().map(i ->
                         PROJECT_MAPPER.toProjectItemsDto(i,
-                                finalHasProjectPermission,
+                                hasPermission,
                                 applicationStatisticMap.get(i.getId()))
                 ).collect(Collectors.toList()))
                 .build();

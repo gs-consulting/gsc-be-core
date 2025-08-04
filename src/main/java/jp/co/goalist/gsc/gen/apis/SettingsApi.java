@@ -334,6 +334,52 @@ public interface SettingsApi {
 
 
     /**
+     * DELETE /settings/client-accounts : Delete client accounts
+     * # Delete client accounts 
+     *
+     * @param selectedIds  (required)
+     * @return Deleted successfully (status code 204)
+     *         or Invalid input (status code 400)
+     *         or Unauthorized (status code 401)
+     *         or Forbidden (status code 403)
+     *         or Internal server error (status code 500)
+     */
+    @Operation(
+        operationId = "deleteSelectedClientAccounts",
+        summary = "Delete client accounts",
+        description = "# Delete client accounts ",
+        responses = {
+            @ApiResponse(responseCode = "204", description = "Deleted successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid input", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "403", description = "Forbidden", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            })
+        },
+        security = {
+            @SecurityRequirement(name = "bearerAuth")
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.DELETE,
+        value = "/settings/client-accounts",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    
+    ResponseEntity<Void> deleteSelectedClientAccounts(
+        @Parameter(name = "SelectedIds", description = "", required = true) @Valid @RequestBody SelectedIds selectedIds
+    );
+
+
+    /**
      * DELETE /settings/staff/oem-accounts : Delete selected OEM staffs(スタッフ)
      *
      * @param selectedIds  (optional)

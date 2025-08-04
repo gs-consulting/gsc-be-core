@@ -32,14 +32,14 @@ public interface OperatorApplicantRepository extends JpaRepository<OperatorAppli
             FROM operator_applicants a
             JOIN operator_projects p ON a.project_id = p.id
             JOIN operator_branches b ON p.branch_id = b.id
-            WHERE (:parentId IS NULL OR a.parent_id = :parentId)
+            WHERE a.is_deleted = false AND (:parentId IS NULL OR a.parent_id = :parentId)
             GROUP BY a.parent_id, b.id
             """, nativeQuery = true)
     List<ApplicantClientAccountCountDto> countAllApplicationsForClientList(String parentId);
 
     @Query(value = """
             SELECT COUNT(*) FROM operator_applicants a
-            WHERE a.parent_id = :parentId
+            WHERE a.is_deleted = false AND a.parent_id = :parentId
             AND (
                 (a.lst_status_change_date_time IS NULL OR a.lst_status_change_date_time < CURRENT_TIMESTAMP - INTERVAL 24 HOUR)
                 OR (:isToday = true AND DATE(a.created_at) = CURRENT_DATE)
@@ -219,7 +219,7 @@ public interface OperatorApplicantRepository extends JpaRepository<OperatorAppli
                 id,
                 ROW_NUMBER() OVER (PARTITION BY full_name, email ORDER BY created_at ASC) AS rn
             FROM operator_applicants
-            WHERE email IS NOT NULL
+            WHERE email IS NOT NULL AND is_deleted = false
             )
             UPDATE operator_applicants oa
             JOIN ranked_applicants ra ON oa.id = ra.id
@@ -235,7 +235,7 @@ public interface OperatorApplicantRepository extends JpaRepository<OperatorAppli
                 id,
                 ROW_NUMBER() OVER (PARTITION BY full_name, tel ORDER BY created_at ASC) AS rn
             FROM operator_applicants
-            WHERE tel IS NOT NULL
+            WHERE tel IS NOT NULL AND is_deleted = false
             )
             UPDATE operator_applicants oa
             JOIN ranked_applicants ra ON oa.id = ra.id

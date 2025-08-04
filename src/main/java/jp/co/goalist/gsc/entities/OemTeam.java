@@ -1,6 +1,7 @@
 package jp.co.goalist.gsc.entities;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,6 +17,7 @@ import java.util.*;
 @Cacheable
 @Cache(region = "oemTeamCache", usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity(name = "oem_teams")
+@EqualsAndHashCode(callSuper = true)
 public class OemTeam extends BaseEntity {
 
     @Id

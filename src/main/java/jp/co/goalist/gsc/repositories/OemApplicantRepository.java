@@ -32,7 +32,7 @@ public interface OemApplicantRepository extends JpaRepository<OemApplicant, Stri
             FROM oem_applicants a
             JOIN oem_projects p ON a.project_id = p.id
             JOIN oem_branches b ON p.branch_id = b.id
-            WHERE (:parentId IS NULL OR a.parent_id = :parentId) AND a.oem_group_id = :oemGroupId
+            WHERE a.is_deleted = false AND (:parentId IS NULL OR a.parent_id = :parentId) AND a.oem_group_id = :oemGroupId
             GROUP BY a.parent_id, b.id
             """, nativeQuery = true)
     List<ApplicantClientAccountCountDto> countAllApplicationsForClientList(String parentId, String oemGroupId);
@@ -52,7 +52,7 @@ public interface OemApplicantRepository extends JpaRepository<OemApplicant, Stri
             JOIN operator_branches b ON p.branch_id = b.id
             JOIN operator_client_locations loc ON loc.branch_id = b.id
             JOIN operator_client_accounts oca ON loc.operator_client_id = oca.id
-            WHERE oca.oem_group_id = :oemGroupId
+            WHERE a.is_deleted = false AND oca.oem_group_id = :oemGroupId
             GROUP BY a.parent_id, b.id)
             UNION ALL
             (SELECT b.id AS branchId,
@@ -67,14 +67,14 @@ public interface OemApplicantRepository extends JpaRepository<OemApplicant, Stri
             FROM oem_applicants a
             JOIN oem_projects p ON a.project_id = p.id
             JOIN oem_branches b ON p.branch_id = b.id
-            WHERE a.oem_group_id = :oemGroupId
+            WHERE a.is_deleted = false AND a.oem_group_id = :oemGroupId
             GROUP BY a.parent_id, b.id)
             """, nativeQuery = true)
     List<ApplicantClientAccountCountDto> countAllApplicationsForClientListForOemList(String oemGroupId);
 
     @Query(value = """
             SELECT COUNT(*) FROM oem_applicants a
-            WHERE a.parent_id = :parentId AND a.oem_group_id = :oemGroupId
+            WHERE a.is_deleted = false AND a.parent_id = :parentId AND a.oem_group_id = :oemGroupId
             AND (
                 (a.lst_status_change_date_time IS NULL OR a.lst_status_change_date_time < CURRENT_TIMESTAMP - INTERVAL 24 HOUR)
                 OR (:includeToday = true AND DATE(a.created_at) = CURRENT_DATE)
@@ -256,7 +256,7 @@ public interface OemApplicantRepository extends JpaRepository<OemApplicant, Stri
                 id,
                 ROW_NUMBER() OVER (PARTITION BY full_name, email ORDER BY created_at ASC) AS rn
             FROM oem_applicants
-            WHERE email IS NOT NULL
+            WHERE email IS NOT NULL AND is_deleted = false
             )
             UPDATE oem_applicants oa
             JOIN ranked_applicants ra ON oa.id = ra.id
@@ -272,12 +272,19 @@ public interface OemApplicantRepository extends JpaRepository<OemApplicant, Stri
                 id,
                 ROW_NUMBER() OVER (PARTITION BY full_name, tel ORDER BY created_at ASC) AS rn
             FROM oem_applicants
-            WHERE tel IS NOT NULL
+            WHERE tel IS NOT NULL AND is_deleted = false
             )
             UPDATE oem_applicants oa
             JOIN ranked_applicants ra ON oa.id = ra.id
             SET oa.is_tel_duplicate = IF(ra.rn = 1, FALSE, TRUE)
             """, nativeQuery = true)
     void updateTelDuplicate();
+
+    @Query(value = "SELECT a.id FROM oem_applicants a WHERE a.id IN (:applicantIds) AND a.parent_id = :parentId AND a.oem_group_id = :oemGroupId", nativeQuery = true)
+    List<String> findApplicantIdsByIds(List<String> applicantIds, String parentId, String oemGroupId);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_applicants WHERE id IN (:applicantIds) AND parent_id = :parentId AND oem_group_id = :oemGroupId", nativeQuery = true)
+    void deleteApplicantsByIds(List<String> applicantIds, String parentId, String oemGroupId);
 
 }

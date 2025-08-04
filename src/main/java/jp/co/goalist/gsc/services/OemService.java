@@ -277,11 +277,11 @@ public class OemService {
         }
     }
 
+    @Transactional
     public void deleteSelectedOemStaffs(SelectedIds selectedIds) {
-        Account account = GeneralUtils.getCurrentUser();
-        OemClientAccount parentOem = utilService.getOemParent(account);
-
         oemAccountRepository.deleteOemAcountTeamsByIdIn(selectedIds.getSelectedIds());
-        oemAccountRepository.deleteSelectedOemStaffsByParentAndIdIn(selectedIds.getSelectedIds(), parentOem.getId(), parentOem.getOemGroupId());
+
+        List<OemAccount> oemAccounts = oemAccountRepository.findAllById(selectedIds.getSelectedIds());
+        oemAccountRepository.deleteAll(oemAccounts);
     }    
 }

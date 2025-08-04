@@ -172,8 +172,11 @@ public class OperatorService {
         }
     }
 
+    @Transactional
     public void deleteSelectedOperatorStaffs(SelectedIds selectedIds) {
         operatorAccountRepository.deleteOpAcountTeamsByIdIn(selectedIds.getSelectedIds());
-        operatorAccountRepository.deleteSelectedOperatorStaffsByIdIn(selectedIds.getSelectedIds());
+
+        List<OperatorAccount> operatorAccounts = operatorAccountRepository.findAllById(selectedIds.getSelectedIds());
+        operatorAccountRepository.deleteAll(operatorAccounts);
     }
 }

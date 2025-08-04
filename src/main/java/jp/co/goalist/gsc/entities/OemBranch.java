@@ -70,4 +70,10 @@ public class OemBranch extends BaseEntity {
 
     @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OemStore> stores = new ArrayList<>();
+
+    @OneToMany(mappedBy = "oemBranch", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OemClientLocation> locations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "branch", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<OemProject> projects = new ArrayList<>();
 }

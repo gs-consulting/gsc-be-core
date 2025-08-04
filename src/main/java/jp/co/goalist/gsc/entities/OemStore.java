@@ -62,4 +62,11 @@ public class OemStore extends BaseEntity {
 
     @Column(columnDefinition = "TEXT")
     private String memo;
+
+    @OneToMany(mappedBy = "oemStore", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OemClientLocation> locations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    private List<OemProject> projects = new ArrayList<>();
+
 }

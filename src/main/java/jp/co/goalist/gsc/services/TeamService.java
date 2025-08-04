@@ -303,14 +303,35 @@ public class TeamService {
     @Transactional
     public void deleteSelectedTeams(SelectedIds selectedIds) {
         Account account = GeneralUtils.getCurrentUser();
+        
         switch (Role.fromId(account.getRole())) {
             case Role.OPERATOR -> {
-                operatorTeamRepository.deleteOpAcountTeamsByParentAndIdIn(selectedIds.getSelectedIds());
-                operatorTeamRepository.deleteTeamsByParentAndIdIn(selectedIds.getSelectedIds());
+                // Get existing teams to validate they exist and belong to the current user
+                List<OperatorTeam> teams = getExistingOperatorTeamByIds(selectedIds.getSelectedIds());
+                
+                if (teams.size() != selectedIds.getSelectedIds().size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                            .message(ErrorMessage.INVALID_DATA.getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                
+                operatorTeamRepository.deleteAll(teams);
             }
             case OEM -> {
-                oemTeamRepository.deleteOemAcountTeamsByParentAndIdIn(selectedIds.getSelectedIds());
-                oemTeamRepository.deleteTeamsByParentAndIdIn(selectedIds.getSelectedIds());
+                // Get existing teams to validate they exist and belong to the current user
+                List<OemTeam> teams = getExistingOemTeamByIds(selectedIds.getSelectedIds());
+                
+                if (teams.size() != selectedIds.getSelectedIds().size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                            .message(ErrorMessage.INVALID_DATA.getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+
+                oemTeamRepository.deleteAll(teams);
             }
             default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
         }

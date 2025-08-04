@@ -1,26 +1,44 @@
 package jp.co.goalist.gsc.services;
 
-import jakarta.transaction.Transactional;
-import jp.co.goalist.gsc.common.ErrorMessage;
-import jp.co.goalist.gsc.entities.*;
-import jp.co.goalist.gsc.enums.Role;
-import jp.co.goalist.gsc.gen.dtos.*;
-import jp.co.goalist.gsc.repositories.OemStoreRepository;
-import jp.co.goalist.gsc.repositories.OperatorStoreRepository;
-import jp.co.goalist.gsc.utils.GeneralUtils;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang3.tuple.*;
-import org.springframework.data.domain.Page;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.stereotype.Service;
+import static jp.co.goalist.gsc.mappers.DropdownMapper.DROPDOWN_MAPPER;
+import static jp.co.goalist.gsc.mappers.StoreMapper.STORE_MAPPER;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static jp.co.goalist.gsc.mappers.DropdownMapper.DROPDOWN_MAPPER;
-import static jp.co.goalist.gsc.mappers.StoreMapper.STORE_MAPPER;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
+import org.springframework.data.domain.Page;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
+import jp.co.goalist.gsc.common.ErrorMessage;
+import jp.co.goalist.gsc.entities.Account;
+import jp.co.goalist.gsc.entities.City;
+import jp.co.goalist.gsc.entities.OemAccount;
+import jp.co.goalist.gsc.entities.OemBranch;
+import jp.co.goalist.gsc.entities.OemClientAccount;
+import jp.co.goalist.gsc.entities.OemStore;
+import jp.co.goalist.gsc.entities.OperatorBranch;
+import jp.co.goalist.gsc.entities.OperatorClientAccount;
+import jp.co.goalist.gsc.entities.OperatorStore;
+import jp.co.goalist.gsc.entities.Prefecture;
+import jp.co.goalist.gsc.enums.Role;
+import jp.co.goalist.gsc.enums.SubRole;
+import jp.co.goalist.gsc.exceptions.BadValidationException;
+import jp.co.goalist.gsc.gen.dtos.ClientStoreDetailsDto;
+import jp.co.goalist.gsc.gen.dtos.ClientStoreListDto;
+import jp.co.goalist.gsc.gen.dtos.ClientStoreUpsertDto;
+import jp.co.goalist.gsc.gen.dtos.ErrorResponse;
+import jp.co.goalist.gsc.gen.dtos.MDropdownListDto;
+import jp.co.goalist.gsc.gen.dtos.SelectedIds;
+import jp.co.goalist.gsc.repositories.OemStoreRepository;
+import jp.co.goalist.gsc.repositories.OperatorStoreRepository;
+import jp.co.goalist.gsc.utils.GeneralUtils;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -280,6 +298,59 @@ public class StoreService {
         } else {
             OemBranch branch = utilService.getExistingOemBranchById(branchId);
             oemStore.setBranch(branch);
+        }
+    }
+
+    public void deleteStoresByBranchIds(List<String> branchIds, String parentId, String oemGroupId) {
+        if (oemGroupId != null) {
+            oemStoreRepository.deleteStoresByBranchIds(branchIds, parentId, oemGroupId);
+        } else {
+            operatorStoreRepository.deleteStoresByBranchIds(branchIds, parentId);
+        }
+    }
+
+    @Transactional
+    public void deleteSelectedStores(SelectedIds selectedIds) {
+        Account account = GeneralUtils.getCurrentUser();
+        List<String> storeIds = selectedIds.getSelectedIds();
+
+        // Validate that store IDs are provided
+        if (storeIds == null || storeIds.isEmpty()) {
+            throw new BadValidationException(ErrorResponse.builder()
+                    .statusCode(ErrorMessage.INVALID_DATA.getStatusCode())
+                    .message("店舗IDが指定されていません")
+                    .fieldError("selectedIds")
+                    .build());
+        }
+
+        switch (SubRole.fromId(account.getSubRole())) {
+            case SubRole.OPERATOR -> {
+                OperatorClientAccount parent = utilService.getOperatorParent(account);
+                List<OperatorStore> validStores = operatorStoreRepository.findStoresBy(storeIds, parent.getId());
+                if (validStores.size() != storeIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_OPERATOR.getStatusCode())
+                            .message(ErrorMessage.INVALID_OPERATOR
+                                    .getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                operatorStoreRepository.deleteStoresByIds(storeIds, parent.getId());
+            }
+            case SubRole.OEM -> {
+                OemClientAccount parent = utilService.getOemParent(account);
+                List<OemStore> validStores = oemStoreRepository.findStoresBy(storeIds, parent.getId(), parent.getOemGroupId());
+                if (validStores.size() != storeIds.size()) {
+                    throw new BadValidationException(ErrorResponse.builder()
+                            .statusCode(ErrorMessage.INVALID_OPERATOR.getStatusCode())
+                            .message(ErrorMessage.INVALID_OPERATOR
+                                    .getMessage())
+                            .fieldError("selectedIds")
+                            .build());
+                }
+                oemStoreRepository.deleteStoresByIds(storeIds, parent.getId(), parent.getOemGroupId());
+            }
+            default -> throw new AccessDeniedException(ErrorMessage.PERMISSION_DENIED.getMessage());
         }
     }
 

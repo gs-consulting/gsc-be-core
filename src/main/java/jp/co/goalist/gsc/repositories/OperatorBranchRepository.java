@@ -4,6 +4,7 @@ import jp.co.goalist.gsc.entities.OperatorBranch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -42,4 +43,8 @@ public interface OperatorBranchRepository extends JpaRepository<OperatorBranch, 
         AND (b.parentId IS NULL OR b.parentId = :clientAccountId)
         """)
     List<OperatorBranch> findBranchesBy(List<String> ids, String clientAccountId);
+
+    @Query(value = "DELETE FROM operator_branches WHERE id IN (:branchIds) AND parent_id = :parentId", nativeQuery = true)
+    @Modifying
+    void deleteBranchesByIds(List<String> branchIds, String parentId);
 }

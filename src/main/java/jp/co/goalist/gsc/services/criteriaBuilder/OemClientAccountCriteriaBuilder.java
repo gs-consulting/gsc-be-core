@@ -46,11 +46,13 @@ public class OemClientAccountCriteriaBuilder {
         String conditionStatementForOperator = """
                         WHERE oca.oem_group_id = :oemGroupId AND oca.parent_id IS NULL
                         AND (:searchInput IS NULL OR oca.client_name like :searchInput)
+                        AND oca.is_deleted = false
                         """;
         String conditionStatementForOem = """
                         WHERE oca.oem_group_id = :oemGroupId AND oca.oem_account_id = :oemAccountId
                         AND oca.parent_id IS NULL
                         AND (:searchInput IS NULL OR oca.client_name like :searchInput)
+                        AND oca.is_deleted = false
                         """;
 
         String groupByStatement = "GROUP BY oca.id";

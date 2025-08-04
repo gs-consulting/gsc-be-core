@@ -4,6 +4,7 @@ import jp.co.goalist.gsc.entities.OemStore;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -29,8 +30,8 @@ public interface OemStoreRepository extends JpaRepository<OemStore, String> {
             AND (:searchInput IS NULL OR s.store_name LIKE :searchInput
             OR s.store_code LIKE :searchInput OR p.name LIKE :searchInput
             OR c.name LIKE :searchInput
-            OR b.branch_name LIKE :searchInput))
-            AND (:branchId IS NULL OR s.branch_id = :branchId)
+            OR b.branch_name LIKE :searchInput)
+            AND (:branchId IS NULL OR s.branch_id = :branchId))
             ORDER BY created_at asc""",
         nativeQuery = true,
         countQuery = """
@@ -43,8 +44,8 @@ public interface OemStoreRepository extends JpaRepository<OemStore, String> {
             AND (:searchInput IS NULL OR s.store_name LIKE :searchInput
             OR s.store_code LIKE :searchInput OR p.name LIKE :searchInput
             OR c.name LIKE :searchInput
-            OR b.branch_name LIKE :searchInput))
-            AND (:branchId IS NULL OR s.branch_id = :branchId)
+            OR b.branch_name LIKE :searchInput)
+            AND (:branchId IS NULL OR s.branch_id = :branchId))
             """)
     Page<OemStore> findOemClientStoresBy(String parentId, String oemParentId, String oemGroupId,
                                          String branchId, String searchInput, Pageable pageable);
@@ -67,7 +68,7 @@ public interface OemStoreRepository extends JpaRepository<OemStore, String> {
         SELECT s.* FROM oem_stores s WHERE 
         s.oem_parent_id = :oemParentId
         AND (:clientAccountId IS NULL OR s.parent_id = :clientAccountId OR s.parent_id IS NULL)
-        AND (coalesce(:branchIds) IS NULL OR s.branch_id IN (:branchIds)))
+        AND (coalesce(:branchIds) IS NULL OR s.branch_id IN (:branchIds))
         ORDER BY s.created_at ASC
     """, nativeQuery = true)
     List<OemStore> findClientStoresDropdownByBranchIds(String clientAccountId, String oemParentId, List<String> branchIds);
@@ -78,4 +79,18 @@ public interface OemStoreRepository extends JpaRepository<OemStore, String> {
         AND s.oemParentId = :oemParentId
         AND s.oemGroupId = :oemGroupId""")
     List<OemStore> findStoresBy(List<String> ids, String parentId, String oemParentId, String oemGroupId);
+
+    @Query(value = """
+            SELECT s FROM oem_stores s WHERE s.id IN (:ids)
+            AND (s.parentId IS NULL OR s.parentId = :parentId)
+            AND s.oemGroupId = :oemGroupId""")
+    List<OemStore> findStoresBy(List<String> ids, String parentId, String oemGroupId);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_stores WHERE branch_id IN (:branchIds) AND parent_id = :parentId AND oem_group_id = :oemGroupId", nativeQuery = true)
+    void deleteStoresByBranchIds(List<String> branchIds, String parentId, String oemGroupId);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_stores WHERE id IN (:storeIds) AND parent_id = :parentId AND oem_group_id = :oemGroupId", nativeQuery = true)
+    void deleteStoresByIds(List<String> storeIds, String parentId, String oemGroupId);
 }

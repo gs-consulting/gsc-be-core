@@ -4,6 +4,7 @@ import jp.co.goalist.gsc.entities.OemBranch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -53,4 +54,8 @@ public interface OemBranchRepository extends JpaRepository<OemBranch, String> {
             AND b.oemGroupId = :oemGroupId
             """)
     List<OemBranch> findBranchesBy(List<String> ids, String parentId, String oemParentId, String oemGroupId);
+
+    @Modifying
+    @Query(value = "DELETE FROM oem_branches WHERE id IN (:branchIds) AND parent_id = :parentId AND oem_group_id = :oemGroupId", nativeQuery = true)
+    void deleteBranchesByIds(List<String> branchIds, String parentId, String oemGroupId); // Added parentId and oemGroupId for consistency
 }

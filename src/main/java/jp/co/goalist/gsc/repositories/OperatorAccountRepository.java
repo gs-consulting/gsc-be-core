@@ -17,53 +17,51 @@ import jakarta.transaction.Transactional;
 public interface OperatorAccountRepository extends JpaRepository<OperatorAccount, String> {
 
     @Query(value = """
-                select o.* from operator_accounts o 
-                join accounts a on o.id = a.id 
-                left join operator_account_teams ot on o.id = ot.operator_id
-                where (case when :teamId is null then a.enabled = true else ot.team_id = :teamId end)
-                order by a.created_at asc
+                SELECT o.* FROM operator_accounts o 
+                JOIN accounts a ON o.id = a.id 
+                LEFT JOIN operator_account_teams ot ON o.id = ot.operator_id
+                WHERE (CASE WHEN :teamId IS NULL THEN a.enabled = true ELSE ot.team_id = :teamId END)
+                ORDER BY a.created_at ASC
             """, nativeQuery = true)
     Page<OperatorAccount> findAllEnabledManagersDropdown(Pageable pageable, String teamId);
 
     @Query(value = """
-                select oc.* from operator_accounts oc where oc.id in 
-                (select o.id
-                    from operator_accounts o
-                    join accounts a on o.id = a.id
-                    left join operator_account_teams ot on a.id = ot.operator_id
-                    left join operator_teams t on ot.team_id = t.id
-                    where (:searchInput is null or o.full_name like :searchInput
-                    or a.email like :searchInput or t.name like :searchInput))
-                order by oc.created_at asc
+                SELECT oc.* FROM operator_accounts oc WHERE oc.id in 
+                    (SELECT o.id
+                        FROM operator_accounts o
+                        JOIN accounts a ON o.id = a.id
+                        LEFT JOIN operator_account_teams ot ON a.id = ot.operator_id
+                        LEFT JOIN operator_teams t ON ot.team_id = t.id
+                        WHERE (:searchInput IS NULL OR o.full_name LIKE :searchInput
+                        OR a.email LIKE :searchInput OR t.name LIKE :searchInput)
+                        AND a.is_deleted = false)
+                ORDER BY oc.created_at ASC
             """,
             countQuery = """
-                   select count(oc.*) from operator_accounts oc where oc.id in (select o.id
-                    from operator_accounts o
-                    join accounts a on o.id = a.id
-                    left join operator_account_teams ot on a.id = ot.operator_id
-                    left join operator_teams t on ot.team_id = t.id
-                    where (:searchInput is null or o.full_name like :searchInput
-                    or a.email like :searchInput or t.name like :searchInput))
-                    order by oc.created_at asc
+                    SELECT count(oc.*) FROM operator_accounts oc WHERE oc.id in
+                        (SELECT o.id
+                            FROM operator_accounts o
+                            JOIN accounts a ON o.id = a.id
+                            LEFT JOIN operator_account_teams ot ON a.id = ot.operator_id
+                            LEFT JOIN operator_teams t ON ot.team_id = t.id
+                            WHERE (:searchInput IS NULL OR o.full_name LIKE :searchInput
+                            OR a.email LIKE :searchInput OR t.name LIKE :searchInput)
+                            AND a.is_deleted = false)
+                    ORDER BY oc.created_at ASC
                     """, nativeQuery = true)
     Page<OperatorAccount> findAllBy(String searchInput, Pageable pageable);
-
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "delete from operator_account_teams where team_id in (:ids)", nativeQuery = true)
-    void deleteOpAcountTeamsByIdIn(List<String> ids);
-
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "delete from operator_accounts where id in (:ids)", nativeQuery = true)
-    void deleteSelectedOperatorStaffsByIdIn(List<String> ids);
     
     @Query(value = """
-                select o.* from operator_accounts o 
-                join accounts a on o.id = a.id 
-                left join operator_account_teams ot on o.id = ot.operator_id
-                where (case when :teamId is null then a.enabled = true else ot.team_id = :teamId end)
-                order by a.created_at asc
+                SELECT o.* FROM operator_accounts o 
+                JOIN accounts a ON o.id = a.id 
+                LEFT JOIN operator_account_teams ot ON o.id = ot.operator_id
+                WHERE (CASE WHEN :teamId IS NULL THEN a.enabled = true ELSE ot.team_id = :teamId END)
+                ORDER BY a.created_at ASC
             """, nativeQuery = true)
     List<OperatorAccount> findAllByTeam(String teamId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "DELETE FROM operator_account_teams WHERE operator_id in (:ids)", nativeQuery = true)
+    void deleteOpAcountTeamsByIdIn(List<String> ids);
 }
